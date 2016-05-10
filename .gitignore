@@ -1,0 +1,9 @@
+node_modules/
+bower_components/
+.idea
+typings
+dist
+coverage
+.env
+Locator-darwin-x64
+bachelor.pem
