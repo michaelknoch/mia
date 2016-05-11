@@ -1,0 +1,45 @@
+@import '../../colors';
+
+.login-container {
+    min-height: 100vh;
+    background-image: url('dist/assets/img/login_back.jpeg');
+    background-size: cover;
+}
+
+.form-wrapper {
+    position: absolute;
+    width: 350px;
+    top: 30%;
+    left: 30%;
+    margin-left: -195px;
+
+    background-color: rgba(38, 38, 38, 0.8);
+    padding: 23px;
+
+    img.logo {
+        max-width: 100%;
+    }
+}
+
+.nav {
+    li + li {
+        margin-left: 5px;
+    }
+
+    li {
+        a {
+            background-color: $grey;
+            color: white;
+            border-radius: 0;
+            padding: 0 15px;
+            line-height: 32px;
+            text-transform: uppercase;
+        }
+
+        &.active a {
+            background-color: $yellow;
+        }
+    }
+
+}
+

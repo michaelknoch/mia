@@ -1,0 +1,24 @@
+<div class="container-fluid login-container">
+    <div class="container">
+
+        <h2>Select a Company</h2>
+        <div class="row costumer-wrapper">
+            <div class="col-xs-3 company" (click)="selectCompany(item)" *ngFor="#item of companies; #i = index">
+                <div [ngStyle]="{'border-color': item.color}" class="inner-wrapper">
+                    <div class="color" [ngStyle]="{'background-color': item.color}"></div>
+                    <div class="content">
+                        <h4>{{item.name}}</h4>
+                        <h5>{{item.url}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-3">
+                <i [routerLink]="['NewCompany']" aria-hidden="true" class="fa fa-plus-circle pointer"></i>
+            </div>
+        </div>
+
+    </div>
+</div>

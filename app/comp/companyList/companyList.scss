@@ -1,0 +1,48 @@
+@import '../../colors';
+
+.container-fluid {
+    background-color: $asphalt;
+}
+
+.company {
+    padding-right: 0;
+    padding-bottom: 10px;
+    cursor: pointer;
+
+    .content {
+        overflow: hidden;
+        position: absolute;
+        z-index: 5;
+        height: 100%;
+        top: 0;
+        left: 15px;
+        right: 0;
+    }
+
+    .inner-wrapper {
+        padding: 15px;
+        background-color: white;
+        border-left: 5px solid #446CB3;
+        background-size: cover;
+        height: 100px;
+        position: relative;
+
+        .color {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            opacity: 0.3;
+        }
+    }
+
+    h4 {
+        margin-bottom: 0;
+    }
+
+    h5 {
+        margin-top: 5px;
+    }
+
+}

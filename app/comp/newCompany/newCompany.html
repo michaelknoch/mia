@@ -1,0 +1,33 @@
+<div class="container-fluid asphalt">
+
+    <div class="container">
+
+        <div class="row">
+            <h2 class="col-xs-12">New Company</h2>
+            <div class="form-wrapper col-sm-4">
+                <input [(ngModel)]="name" type="text" class="form-control" placeholder="Name"
+                       aria-describedby="basic-addon1">
+
+                <input [(ngModel)]="mail" type="text" class="form-control" placeholder="Mail"
+                       aria-describedby="basic-addon1">
+
+                <input [(ngModel)]="url" type="text" class="form-control" placeholder="Url"
+                       aria-describedby="basic-addon1">
+
+                <input [(ngModel)]="address.street" type="text" class="form-control" placeholder="Street"
+                       aria-describedby="basic-addon1">
+
+                <input [(ngModel)]="address.number" type="text" class="form-control" placeholder="Number"
+                       aria-describedby="basic-addon1">
+
+                <input [(ngModel)]="address.plz" type="text" class="form-control" placeholder="Plz"
+                       aria-describedby="basic-addon1">
+
+                <input [(ngModel)]="address.city" type="text" class="form-control" placeholder="City"
+                       aria-describedby="basic-addon1">
+                <button (click)="newCompany()" type="button" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,50 @@
+<div class="container-fluid login-container">
+
+    <div class="user-wrapper">
+        <div class="user">
+          <!--  <img
+                src="https://scontent-fra3-1.xx.fbcdn.net/hphotos-xfl1/v/t1.0-9/1474558_1207958742552423_6007711756409685465_n.jpg?oh=c8fdf7e6fc22db66300698252ae54270&oe=57B73E99"
+                class="thumb"> -->
+            <h3 class="name">{{userData.name}}</h3>
+            <h4 class="company">{{userData.companyName}}</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-2 menu">
+            <ul>
+                <li [routerLink]="['Dashboard']" router-link-active>
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li [routerLink]="['Costumer']">
+                    <i class="fa fa-users " aria-hidden="true"></i>
+                    <span>Costumer</span>
+                </li>
+                <li [routerLink]="['Offers']">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    <span>Offers</span>
+                </li>
+                <li [routerLink]="['Invoices']">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                    <span>Invoices</span>
+                </li>
+                <li [routerLink]="['Feed']">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    <span>Feed</span>
+                    <span class="badge">3</span>
+                </li>
+                <li [routerLink]="['Settings']">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-10 main">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,75 @@
+.costumer-wrapper {
+    padding-bottom: 15px;
+}
+
+.costumer {
+    padding-right: 0;
+    padding-bottom: 10px;
+
+    .content {
+        overflow: hidden;
+        position: absolute;
+        z-index: 5;
+        height: 100%;
+        top: 0;
+        left: 15px;
+        right: 0;
+    }
+
+    .inner-wrapper {
+        padding: 15px;
+        background-color: white;
+        border-left: 5px solid #446CB3;
+        background-size: cover;
+        height: 200px;
+        position: relative;
+
+        .color {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            opacity: 0.3;
+        }
+    }
+
+    &:hover .actions {
+        visibility: visible;
+        bottom: 0;
+    }
+
+    .actions {
+        visibility: hidden;
+        bottom: -30px;
+        float: right;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        font-size: 20px;
+        position: absolute;
+        color: rgb(34, 34, 34);
+        font-size: 20px;
+        transition-duration: 0.3s;
+        transition-property: all;
+        i.fa {
+            padding: 3px;
+        }
+    }
+
+    img.costumer-thumb {
+        float: left;
+        max-width: 40px;
+        padding-top: 10px;
+        margin-right: 10px;
+    }
+
+    h4 {
+        margin-bottom: 0;
+    }
+
+    h5 {
+        margin-top: 5px;
+    }
+
+}
+

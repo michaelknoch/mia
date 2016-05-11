@@ -1,0 +1,97 @@
+@import '../../colors';
+
+.top-bar {
+    .logo {
+        max-height: 100px;
+        width: auto;
+    }
+}
+
+.main {
+    width: calc(100% - 120px);
+    padding-left: 30px;
+    padding-top: 25px;
+    padding-right: 45px;
+    color: rgb(38, 38, 38);
+}
+
+.menu {
+    padding: 0;
+    color: #f4f4f4;
+    max-width: 120px;
+    min-height: 100%;
+    background-color: $asphalt;
+
+    i.fa {
+        width: 100%;
+        font-size: 30px;
+        text-align: center;
+        transition-duration: 0.3s;
+    }
+
+    li {
+        padding: 15px;
+        position: relative;
+        cursor: pointer;
+        height: 80px;
+        margin-top: 20px;
+        float: left;
+        width: 100%;
+        &:hover {
+            i.fa {
+                font-size: 35px;
+            }
+        }
+
+        .badge {
+            background-color: #e74c3c;
+            position: absolute;
+            width: auto;
+            line-height: 60%;
+            right: 30px;
+            top: 6px;
+            padding: 5px;
+            font-size: 15px;
+            border-radius: 0;
+        }
+        &.router-link-active {
+            background-color: #333333;
+        }
+    }
+
+    span {
+        text-align: center;
+        width: 100%;
+        float: left;
+        padding: 10px;
+    }
+}
+
+.user-wrapper {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    padding: 15px;
+    padding-top: 0;
+    color: black;
+
+    img.thumb {
+        width: 55px;
+        border-radius: 50%;
+        border: 3px solid black;
+        float: left;
+        margin-right: 10px;
+        margin-top: -5px;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: lighter;
+        margin-bottom: 3px;
+    }
+
+    h4 {
+        margin-top: 0;
+        font-size: 15px;
+    }
+}
