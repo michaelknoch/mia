@@ -57,7 +57,7 @@ gulp.task('web', function () {
     gulp.src('./')
         .pipe(webserver({
             livereload: false,
-            open: true
+            open: false
         }));
 });
 
