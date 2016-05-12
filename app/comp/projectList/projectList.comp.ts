@@ -1,7 +1,7 @@
 import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {SystemService} from "../../service/system/system.service";
-import {Router} from "@angular/router";
+import {Router} from "@angular/router-deprecated";
 import {DataService} from "../../service/data.service";
 
 @Component({
@@ -33,7 +33,7 @@ export class ProjectList {
             this._router.navigate(['Root'])
         });*/
 
-        this._router.navigate(['/root/...'])
+        this._router.navigate(['Root'])
     }
 
 }

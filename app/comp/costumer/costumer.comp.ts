@@ -1,5 +1,5 @@
 import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {CostumerService} from "../../service/costumer/costumer.service";
 
 @Component({

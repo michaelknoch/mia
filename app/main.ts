@@ -3,7 +3,7 @@
 import {AppComponent} from './app.component';
 import {provide} from '@angular/core';
 import {bootstrap}    from '@angular/platform-browser-dynamic';
-import {ROUTER_PROVIDERS} from '@angular/router';
+import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 import {HTTP_PROVIDERS} from '@angular/http';
 import {CostumerService} from './service/costumer/costumer.service';

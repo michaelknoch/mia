@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router} from '@angular/router-deprecated';
 import {UserService} from "../../service/user/user.service";
 import {DataService} from "../../service/data.service";
 
@@ -31,7 +31,7 @@ export class Login {
             },
             err => this.err(err));*/
 
-        this._router.navigate(['/project-list']);
+        this._router.navigate(['Project-list']);
     }
 
     logout() {
@@ -42,7 +42,7 @@ export class Login {
 
     register() {
         this._userService.register(this.mail, this.password, this.name, this.surname).subscribe(
-            data => this._router.navigate(['/companyList']),
+            data => this._router.navigate(['Project-list']),
             err => this.err(err));
     }
 

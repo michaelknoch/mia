@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router, Routes, ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from '@angular/router';
+import {Router, RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Login} from './comp/login/login.comp';
 import {Root} from './comp/root/root.comp';
 import {ProjectList} from "./comp/projectList/projectList.comp";
@@ -12,22 +12,26 @@ import {NewProject} from "./comp/newProject/newProject.comp";
     directives: [ROUTER_DIRECTIVES]
 })
 
-@Routes([
+@RouteConfig([
     {
         path: '/',
-        component: Login
+        component: Login,
+        name: 'Login'
     },
     {
         path: '/project-list',
-        component: ProjectList
+        component: ProjectList,
+        name: 'Project-list'
     },
     {
         path: '/new-project',
-        component: NewProject
+        component: NewProject,
+        name: 'New-project'
     },
     {
         path: '/root/...',
-        component: Root
+        component: Root,
+        name: 'Root'
     }
 ])
 
