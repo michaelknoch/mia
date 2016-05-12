@@ -9,8 +9,7 @@ import {NewProject} from "./comp/newProject/newProject.comp";
     moduleId: module.id,
     selector: 'dash',
     templateUrl: 'app.html',
-    directives: [ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS]
+    directives: [ROUTER_DIRECTIVES]
 })
 
 @Routes([
