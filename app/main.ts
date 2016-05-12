@@ -9,7 +9,7 @@ import {HTTP_PROVIDERS} from '@angular/http';
 import {CostumerService} from './service/costumer/costumer.service';
 import {UserService} from "./service/user/user.service";
 
-import {CompanyService} from "./service/company/company.service";
+import {SystemService} from "./service/system/system.service";
 import {DataService} from "./service/data.service";
 
 import {
@@ -27,7 +27,7 @@ bootstrap(AppComponent, [
     HTTP_PROVIDERS,
     CostumerService,
     UserService,
-    CompanyService,
+    SystemService,
     DataService,
     provide(LocationStrategy, {useClass: HashLocationStrategy}),
     provide(APP_BASE_HREF, { useValue: '/' })

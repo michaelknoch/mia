@@ -15,7 +15,7 @@ export class SystemService {
     getSystems() {
         /*return this.http.get(Config.BASEPATH + '/companies')
             .map(res => res.json())*/
-        
+
         return this.http.get('dist/service/system/system.mock.json')
             .map(res => res.json())
     }

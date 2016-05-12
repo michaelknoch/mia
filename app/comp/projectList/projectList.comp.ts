@@ -27,11 +27,13 @@ export class ProjectList {
     }
 
     selectCompany(company) {
-        this._systemService.selectSystem(company._id).subscribe(data => {
+      /*  this._systemService.selectSystem(company._id).subscribe(data => {
             this._dataService.setData('current-company', company);
             console.info('select company', data);
             this._router.navigate(['Root'])
-        });
+        });*/
+
+        this._router.navigate(['/root/...'])
     }
 
 }
