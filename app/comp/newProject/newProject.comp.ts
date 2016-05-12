@@ -6,13 +6,13 @@ import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
-    selector: 'new-company',
+    selector: 'new-project',
     directives: [ROUTER_DIRECTIVES],
-    templateUrl: 'newCompany.html',
-    styleUrls: ['newCompany.css']
+    templateUrl: 'newProject.html',
+    styleUrls: ['newProject.css']
 })
 
-export class NewCompany {
+export class NewProject {
 
     mail: string;
     name: string;
