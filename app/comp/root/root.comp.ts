@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
+import {Router, Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {Dashboard} from '../dashboard/comp';
 import {Settings} from '../settings/comp';
 import {Feed} from "../feed/feed.comp";
@@ -14,11 +14,11 @@ import {DataService} from "../../service/data.service";
     directives: [ROUTER_DIRECTIVES],
 })
 
-@RouteConfig([
-    {path: '/dashboard', name: 'Dashboard', component: Dashboard, useAsDefault: true},
-    {path: '/costumer', name: 'Costumer', component: Costumer},
-    {path: '/feed', name: 'Feed', component: Feed},
-    {path: '/settings', name: 'Settings', component: Settings}
+@Routes([
+    {path: '/dashboard', component: Dashboard, useAsDefault: true},
+    {path: '/costumer', component: Costumer},
+    {path: '/feed', component: Feed},
+    {path: '/settings', component: Settings}
 ])
 
 export class Root {
@@ -28,9 +28,10 @@ export class Root {
         companyName: ''
     };
 
-    constructor(private _dataService: DataService) {
-        this.userData.name = this._dataService.getData('current-user').name;
-        this.userData.companyName = this._dataService.getData('current-company').name;
+    constructor(private _dataService: DataService, private _router: Router) {
+       /* this.userData.name = this._dataService.getData('current-user').name;
+        this.userData.companyName = this._dataService.getData('current-company').name;*/
     }
+
 
 }
