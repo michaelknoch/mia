@@ -1,23 +1,23 @@
 import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router';
-import {CompanyService} from "../../service/company/company.service";
+import {SystemService} from "../../service/system/system.service";
 import {Router} from "@angular/router";
 import {DataService} from "../../service/data.service";
 
 @Component({
     moduleId: module.id,
-    selector: 'company-list',
+    selector: 'project-list',
     directives: [ROUTER_DIRECTIVES],
-    templateUrl: 'companyList.html',
-    styleUrls: ['companyList.css'],
+    templateUrl: 'projectList.html',
+    styleUrls: ['projectList.css'],
 })
 
-export class CompanyList {
+export class ProjectList {
 
     companies;
 
-    constructor(private companyService: CompanyService, private _router: Router, private _dataService: DataService) {
-        companyService.getCompanies().subscribe(
+    constructor(private _systemService: SystemService, private _router: Router, private _dataService: DataService) {
+        _systemService.getSystems().subscribe(
             data => {
                 this.companies = data;
                 console.info(data);
@@ -27,7 +27,7 @@ export class CompanyList {
     }
 
     selectCompany(company) {
-        this.companyService.selectCompany(company._id).subscribe(data => {
+        this._systemService.selectSystem(company._id).subscribe(data => {
             this._dataService.setData('current-company', company);
             console.info('select company', data);
             this._router.navigate(['Root'])

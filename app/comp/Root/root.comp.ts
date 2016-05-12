@@ -3,8 +3,6 @@ import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-
 import {Dashboard} from '../dashboard/comp';
 import {Settings} from '../settings/comp';
 import {Feed} from "../feed/feed.comp";
-import {Offers} from "../offers/offers.comp";
-import {Invoices} from "../invoices/invoices.comp";
 import {Costumer} from "../costumer/costumer.comp";
 import {DataService} from "../../service/data.service";
 
@@ -19,8 +17,6 @@ import {DataService} from "../../service/data.service";
 @RouteConfig([
     {path: '/dashboard', name: 'Dashboard', component: Dashboard, useAsDefault: true},
     {path: '/costumer', name: 'Costumer', component: Costumer},
-    {path: '/offers', name: 'Offers', component: Offers},
-    {path: '/invoices', name: 'Invoices', component: Invoices},
     {path: '/feed', name: 'Feed', component: Feed},
     {path: '/settings', name: 'Settings', component: Settings}
 ])

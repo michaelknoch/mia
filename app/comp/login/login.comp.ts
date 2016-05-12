@@ -6,7 +6,7 @@ import {DataService} from "../../service/data.service";
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'template.html',
+    templateUrl: 'login.html',
     styleUrls: ['login.css'],
 })
 
@@ -24,12 +24,14 @@ export class Login {
     }
 
     login() {
-        this._userService.login(this.mail, this.password).subscribe(
+       /* this._userService.login(this.mail, this.password).subscribe(
             data => {
                 this._dataService.setData('current-user', data.user);
                 this._router.navigate(['CompanyList']);
             },
-            err => this.err(err));
+            err => this.err(err));*/
+
+        this._router.navigate(['/project-list']);
     }
 
     logout() {
@@ -40,7 +42,7 @@ export class Login {
 
     register() {
         this._userService.register(this.mail, this.password, this.name, this.surname).subscribe(
-            data => this._router.navigate(['CompanyList']),
+            data => this._router.navigate(['/companyList']),
             err => this.err(err));
     }
 

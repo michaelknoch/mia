@@ -1,7 +1,8 @@
 import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router';
-import {CompanyService} from "../../service/company/company.service";
+import {SystemService} from "../../service/system/system.service";
 import {Router} from "@angular/router";
+import {SystemService} from "../../service/system/system.service";
 
 
 @Component({
@@ -25,11 +26,11 @@ export class NewProject {
         city: ''
     };
 
-    constructor(private companyService: CompanyService, private _router: Router) {
+    constructor(private _systemService: SystemService, private _router: Router) {
     }
 
     newCompany() {
-        this.companyService.createCompanie(this.mail, this.name, this.url, this.address).subscribe(
+        this._systemService.createSystem(this.mail, this.name, this.url, this.address).subscribe(
             data => {
                 console.info('create company success');
                 this._router.navigate(['CompanyList']);
