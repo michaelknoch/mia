@@ -7,3 +7,4 @@ coverage
 .env
 Locator-darwin-x64
 bachelor.pem
+npm-debug.log
