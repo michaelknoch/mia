@@ -14,22 +14,15 @@ import {Router} from "@angular/router-deprecated";
 
 export class NewProject {
 
-    mail: string;
-    name: string;
-    url: string;
 
-    address = {
-        street: '',
-        number: '',
-        plz: '',
-        city: ''
-    };
+    name: string;
+    description: string;
 
     constructor(private _systemService: SystemService, private _router: Router) {
     }
 
     newCompany() {
-        this._systemService.createSystem(this.mail, this.name, this.url, this.address).subscribe(
+        this._systemService.createSystem(this.name, this.description).subscribe(
             data => {
                 console.info('create company success');
                 this._router.navigate(['CompanyList']);

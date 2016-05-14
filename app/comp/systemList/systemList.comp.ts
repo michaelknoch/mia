@@ -26,7 +26,7 @@ export class ProjectList {
         );
     }
 
-    selectCompany(company) {
+    selectSystem(company) {
       /*  this._systemService.selectSystem(company._id).subscribe(data => {
             this._dataService.setData('current-company', company);
             console.info('select company', data);
