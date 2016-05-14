@@ -27,11 +27,10 @@ export class Login {
        this._userService.login(this.mail, this.password).subscribe(
             data => {
                 this._dataService.setData('current-user', data.user);
-                this._router.navigate(['CompanyList']);
+                this._router.navigate(['Project-list']);
             },
             err => this.err(err));
 
-        this._router.navigate(['Project-list']);
     }
 
     logout() {
