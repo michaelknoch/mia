@@ -4,7 +4,7 @@ import 'rxjs/Rx';
 import {Config} from "../../app.config";
 
 @Injectable()
-export class ApplicationService {
+export class SystemService {
 
     http;
 
@@ -12,13 +12,18 @@ export class ApplicationService {
         this.http = http;
     }
 
-    getApplication() {
-        return this.http.get(Config.BASEPATH + '/applications')
+    getSystems() {
+        return this.http.get(Config.BASEPATH + '/systems')
             .map(res => res.json())
     }
 
-    createApplication (name: String, description: String) {
-        return this.http.post(Config.BASEPATH + '/applications', JSON.stringify({
+    selectSystem(id: String) {
+        return this.http.get(Config.BASEPATH + '/systems/select/' + id)
+            .map(res => res.json())
+    }
+
+    createSystem(name: String, description: String) {
+        return this.http.post(Config.BASEPATH + '/systems', JSON.stringify({
                 name: name,
                 description: description
             }))
