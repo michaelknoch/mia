@@ -24,12 +24,12 @@ export class Login {
     }
 
     login() {
-       /* this._userService.login(this.mail, this.password).subscribe(
+       this._userService.login(this.mail, this.password).subscribe(
             data => {
                 this._dataService.setData('current-user', data.user);
                 this._router.navigate(['CompanyList']);
             },
-            err => this.err(err));*/
+            err => this.err(err));
 
         this._router.navigate(['Project-list']);
     }
