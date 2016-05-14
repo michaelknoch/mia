@@ -11,6 +11,7 @@ import {UserService} from "./service/user/user.service";
 
 import {SystemService} from "./service/system/system.service";
 import {DataService} from "./service/data.service";
+import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 
 import {
     PlatformLocation,
@@ -30,5 +31,6 @@ bootstrap(AppComponent, [
     SystemService,
     DataService,
     provide(LocationStrategy, {useClass: HashLocationStrategy}),
-    provide(APP_BASE_HREF, { useValue: '/' })
+    provide(APP_BASE_HREF, { useValue: '/' }),
+    AUTH_PROVIDERS
 ]);
