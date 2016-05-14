@@ -8,18 +8,18 @@ import {DataService} from "../../service/data.service";
     moduleId: module.id,
     selector: 'project-list',
     directives: [ROUTER_DIRECTIVES],
-    templateUrl: 'projectList.html',
-    styleUrls: ['projectList.css'],
+    templateUrl: 'systemList.html',
+    styleUrls: ['systemList.css'],
 })
 
-export class ProjectList {
+export class SystemList {
 
-    companies;
+    systems;
 
     constructor(private _systemService: SystemService, private _router: Router, private _dataService: DataService) {
         _systemService.getSystems().subscribe(
             data => {
-                this.companies = data;
+                this.systems = data;
                 console.info(data);
             },
             err => console.error(err)
@@ -27,13 +27,11 @@ export class ProjectList {
     }
 
     selectSystem(company) {
-      /*  this._systemService.selectSystem(company._id).subscribe(data => {
+        this._systemService.selectSystem(company._id).subscribe(data => {
             this._dataService.setData('current-company', company);
             console.info('select company', data);
             this._router.navigate(['Root'])
-        });*/
-
-        this._router.navigate(['Root'])
+        });
     }
 
 }

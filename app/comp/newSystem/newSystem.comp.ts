@@ -8,11 +8,11 @@ import {Router} from "@angular/router-deprecated";
     moduleId: module.id,
     selector: 'new-project',
     directives: [ROUTER_DIRECTIVES],
-    templateUrl: 'newProject.html',
-    styleUrls: ['newProject.css']
+    templateUrl: 'newSystem.html',
+    styleUrls: ['newSystem.css']
 })
 
-export class NewProject {
+export class NewSystem {
 
 
     name: string;
@@ -21,7 +21,7 @@ export class NewProject {
     constructor(private _systemService: SystemService, private _router: Router) {
     }
 
-    newCompany() {
+    newSystem() {
         this._systemService.createSystem(this.name, this.description).subscribe(
             data => {
                 console.info('create company success');

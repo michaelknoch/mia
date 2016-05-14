@@ -3,13 +3,15 @@
     <div class="container">
 
         <div class="row">
-            <h2 class="col-xs-12">New Company</h2>
+            <h2 class="col-xs-12">New System</h2>
             <div class="form-wrapper col-sm-4">
                 <input [(ngModel)]="name" type="text" class="form-control" placeholder="Name"
                        aria-describedby="basic-addon1">
 
                 <textarea [(ngModel)]="description" type="text" class="form-control" placeholder="Description"
-                       aria-describedby="basic-addon1">
+                          aria-describedby="basic-addon1"></textarea>
+
+                <button (click)="newSystem()" type="button" class="btn btn-default">Submit</button>
 
             </div>
         </div>
