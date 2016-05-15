@@ -5,6 +5,7 @@ import {Settings} from '../settings/comp';
 import {Feed} from "../feed/feed.comp";
 import {DataService} from "../../service/data.service";
 import {ApplicationList} from "../applicationList/applicationList.comp";
+import {NewApplication} from "../newApplication/newApplication.comp";
 
 
 @Component({
@@ -16,7 +17,8 @@ import {ApplicationList} from "../applicationList/applicationList.comp";
 
 @RouteConfig([
     {path: '/dashboard', component: Dashboard, name: 'Dashboard', useAsDefault: true},
-    {path: '/applications', component: ApplicationList, name: 'ApplicationList',},
+    {path: '/applications', component: ApplicationList, name: 'Applications',},
+    {path: '/new-application', component: NewApplication, name: 'New-application',},
     {path: '/feed', component: Feed, name: 'Feed'},
     {path: '/settings', component: Settings, name: 'Settings'}
 ])
