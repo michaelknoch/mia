@@ -6,7 +6,7 @@ import {bootstrap}    from '@angular/platform-browser-dynamic';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 import {HTTP_PROVIDERS, BrowserXhr} from '@angular/http';
-import {CostumerService} from './service/costumer/costumer.service';
+import {ApplicationService} from './service/application/application.service';
 import {UserService} from "./service/user/user.service";
 
 import {SystemService} from "./service/system/system.service";
@@ -27,7 +27,7 @@ import {
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
-    CostumerService,
+    ApplicationService,
     UserService,
     SystemService,
     DataService,
