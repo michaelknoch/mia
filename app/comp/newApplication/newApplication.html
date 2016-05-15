@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h2 class="">New Application</h2>
+        <p>Heurika, give it a name and a short description</p>
+    </div>
+
+    <div class="form-wrapper col-sm-4">
+        <input [(ngModel)]="name" type="text" class="form-control" placeholder="Name"
+               aria-describedby="basic-addon1">
+
+                <textarea [(ngModel)]="description" type="text" class="form-control" placeholder="Description"
+                          aria-describedby="basic-addon1"></textarea>
+
+        <button (click)="newApplication()" type="button" class="btn btn-default">Submit</button>
+
+    </div>
+</div>
+
+
+
