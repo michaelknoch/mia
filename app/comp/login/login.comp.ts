@@ -26,7 +26,7 @@ export class Login {
     login() {
        this._userService.login(this.mail, this.password).subscribe(
             data => {
-                this._dataService.setData('current-user', data.user);
+                this._dataService.setData('current-user', data);
                 this._router.navigate(['System-list']);
             },
             err => this.err(err));
