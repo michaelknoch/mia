@@ -18,7 +18,7 @@ export class SystemService {
     }
 
     selectSystem(id: String) {
-        return this.http.get(Config.BASEPATH + '/systems/select/' + id)
+        return this.http.post(Config.BASEPATH + '/systems/select/' + id)
             .map(res => res.json())
     }
 

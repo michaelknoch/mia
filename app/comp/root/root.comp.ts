@@ -3,8 +3,8 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular
 import {Dashboard} from '../dashboard/comp';
 import {Settings} from '../settings/comp';
 import {Feed} from "../feed/feed.comp";
-import {Costumer} from "../costumer/costumer.comp";
 import {DataService} from "../../service/data.service";
+import {ApplicationList} from "../applicationList/applicationList.comp";
 
 
 @Component({
@@ -16,7 +16,7 @@ import {DataService} from "../../service/data.service";
 
 @RouteConfig([
     {path: '/dashboard', component: Dashboard, name: 'Dashboard', useAsDefault: true},
-    {path: '/costumer', component: Costumer, name: 'Costumer',},
+    {path: '/applications', component: ApplicationList, name: 'ApplicationList',},
     {path: '/feed', component: Feed, name: 'Feed'},
     {path: '/settings', component: Settings, name: 'Settings'}
 ])

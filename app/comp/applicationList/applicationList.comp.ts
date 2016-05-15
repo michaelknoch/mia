@@ -6,20 +6,20 @@ import {CostumerService} from "../../service/costumer/costumer.service";
     moduleId: module.id,
     selector: 'costumer',
     directives: [ROUTER_DIRECTIVES],
-    templateUrl: 'costumer.html',
-    styleUrls: ['costumer.css'],
+    templateUrl: 'applicationList.html',
+    styleUrls: ['applicationList.css'],
     bindings: [CostumerService],
 })
 
-export class Costumer {
+export class ApplicationList {
 
-    costumer;
+    applications;
 
     constructor(private _costumerService: CostumerService) {
 
         _costumerService.getCostumer().subscribe(
             data => {
-                this.costumer = data;
+                this.applications = data;
                 console.info(data);
             },
             err => console.error(err)
