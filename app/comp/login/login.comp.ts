@@ -24,7 +24,7 @@ export class Login {
     }
 
     login() {
-       this._userService.login(this.mail, this.password).subscribe(
+        this._userService.login(this.mail, this.password).subscribe(
             data => {
                 this._dataService.setData('current-user', data);
                 this._router.navigate(['System-list']);
@@ -41,7 +41,10 @@ export class Login {
 
     register() {
         this._userService.register(this.mail, this.password, this.name, this.surname).subscribe(
-            data => this._router.navigate(['System-list']),
+            data => {
+                this._router.navigate(['System-list'])
+                this._dataService.setData('current-user', data);
+            },
             err => this.err(err));
     }
 
