@@ -7,8 +7,12 @@
     }
 }
 
+.background {
+    background-color: $darkgrey;
+}
+
 .main {
-    width: calc(100% - 120px);
+    width: calc(100% - 200px);
     padding-left: 30px;
     padding-top: 25px;
     padding-right: 45px;
@@ -18,25 +22,36 @@
 .menu {
     padding: 0;
     color: #f4f4f4;
-    max-width: 120px;
+    max-width: 200px;
     min-height: 100%;
     background-color: $asphalt;
 
     i.fa {
-        width: 100%;
+        float: left;
         font-size: 30px;
         text-align: center;
         transition-duration: 0.3s;
+
+        max-width: 30px;
+        max-height: 30px;
     }
 
     li {
-        padding: 15px;
+
+        a {
+            padding: 15px;
+            float: left;
+            width: 100%;
+            &.router-link-active, &:hover {
+                background-color: rgba(245, 245, 245, 0.18);
+                color: white;
+            }
+        }
+
+        width: 100%;
         position: relative;
         cursor: pointer;
-        height: 80px;
-        margin-top: 20px;
         float: left;
-        width: 100%;
         &:hover {
             i.fa {
                 font-size: 35px;
@@ -45,25 +60,19 @@
 
         .badge {
             background-color: #e74c3c;
-            position: absolute;
             width: auto;
             line-height: 60%;
-            right: 30px;
-            top: 6px;
+            margin-top: 5px;
             padding: 5px;
             font-size: 15px;
             border-radius: 0;
-        }
-        &.router-link-active {
-            background-color: #333333;
         }
     }
 
     span {
         text-align: center;
-        width: 100%;
         float: left;
-        padding: 10px;
+        padding: 5px 20px;
     }
 }
 
@@ -82,16 +91,5 @@
         float: left;
         margin-right: 10px;
         margin-top: -5px;
-    }
-
-    h3 {
-        font-size: 20px;
-        font-weight: lighter;
-        margin-bottom: 3px;
-    }
-
-    h4 {
-        margin-top: 0;
-        font-size: 15px;
     }
 }

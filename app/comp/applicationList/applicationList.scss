@@ -34,14 +34,9 @@
         }
     }
 
-    &:hover .actions {
+    .actions {
         visibility: visible;
         bottom: 0;
-    }
-
-    .actions {
-        visibility: hidden;
-        bottom: -30px;
         float: right;
         padding-bottom: 5px;
         padding-top: 5px;
@@ -53,6 +48,12 @@
         transition-property: all;
         i.fa {
             padding: 3px;
+        }
+
+        a {
+            width: 100%;
+            float: left;
+            font-size: 12px;
         }
     }
 
