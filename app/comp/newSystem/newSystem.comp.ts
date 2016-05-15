@@ -25,7 +25,7 @@ export class NewSystem {
         this._systemService.createSystem(this.name, this.description).subscribe(
             data => {
                 console.info('create company success');
-                this._router.navigate(['CompanyList']);
+                this._router.navigate(['System-list']);
             },
             err => this.err(err)
         )
