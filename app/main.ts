@@ -5,13 +5,14 @@ import {provide} from '@angular/core';
 import {bootstrap}    from '@angular/platform-browser-dynamic';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
-import {HTTP_PROVIDERS} from '@angular/http';
+import {HTTP_PROVIDERS, BrowserXhr} from '@angular/http';
 import {CostumerService} from './service/costumer/costumer.service';
 import {UserService} from "./service/user/user.service";
 
 import {SystemService} from "./service/system/system.service";
 import {DataService} from "./service/data.service";
 import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
+import {CustomBrowserXhr} from "./service/CustomBrowserXhr";
 
 import {
     PlatformLocation,
@@ -32,5 +33,6 @@ bootstrap(AppComponent, [
     DataService,
     provide(LocationStrategy, {useClass: HashLocationStrategy}),
     provide(APP_BASE_HREF, { useValue: '/' }),
-    AUTH_PROVIDERS
+    AUTH_PROVIDERS,
+    provide(BrowserXhr, { useClass: CustomBrowserXhr })
 ]);
