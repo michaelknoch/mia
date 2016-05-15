@@ -15,8 +15,13 @@ import {DataService} from "../../service/data.service";
 export class SystemList {
 
     systems;
+    currentUser;
 
     constructor(private _systemService: SystemService, private _router: Router, private _dataService: DataService) {
+
+        this.currentUser = _dataService.getData('current-user');
+        console.info(this.currentUser);
+
         _systemService.getSystems().subscribe(
             data => {
                 this.systems = data;
