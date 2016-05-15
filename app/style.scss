@@ -86,3 +86,17 @@ ul {
 .pointer {
     cursor: pointer;
 }
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+
+.content a {
+    color: $darkgrey;
+}
+
+h2, h3 {
+    color: white;
+}
