@@ -1,29 +1,29 @@
 import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {CostumerService} from "../../service/costumer/costumer.service";
+import {ApplicationService} from "../../service/application/application.service";
 
 @Component({
     moduleId: module.id,
     selector: 'costumer',
     directives: [ROUTER_DIRECTIVES],
     templateUrl: 'applicationList.html',
-    styleUrls: ['applicationList.css'],
-    bindings: [CostumerService],
+    styleUrls: ['applicationList.css']
 })
 
 export class ApplicationList {
 
     applications;
 
-    constructor(private _costumerService: CostumerService) {
+    constructor(private _ApplicationService: ApplicationService) {
 
-        _costumerService.getCostumer().subscribe(
+        _ApplicationService.getApplication().subscribe(
             data => {
                 this.applications = data;
                 console.info(data);
             },
             err => console.error(err)
         );
+
     }
 
 }
