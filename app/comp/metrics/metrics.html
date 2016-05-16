@@ -4,3 +4,12 @@
     <option *ngFor="let item of applications; let i = index" value="{{item._id}}">{{item.name}}</option>
 </select>
 
+<div class="col-xs-12">
+
+    <base-chart class="chart"
+                [data]="chartData"
+                [options]="options"
+                [chartType]="type">
+    </base-chart>
+
+</div>
