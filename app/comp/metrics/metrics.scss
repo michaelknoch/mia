@@ -1,0 +1,17 @@
+.inline {
+    float: left;
+    margin-right: 15px;
+}
+
+select {
+    float: left;
+    margin-left: 15px;
+    min-width: 200px;
+
+    font-size: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px 15px;
+    margin-top: 13px;
+}
