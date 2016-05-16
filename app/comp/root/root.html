@@ -13,36 +13,38 @@
     <div class="row background">
 
         <div class="col-sm-2 menu">
-            <ul>
-                <li>
-                    <a [routerLink]="['Dashboard']" router-link-active>
-                        <i class="fa fa-coffee" aria-hidden="true"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a [routerLink]="['Applications']">
-                        <i class="fa fa-diamond" aria-hidden="true"></i>
-                        <span>Apps</span>
-                    </a>
-                </li>
+            <div class="fixed-wrapper">
+                <ul>
+                    <li>
+                        <a [routerLink]="['Dashboard']" router-link-active>
+                            <i class="fa fa-coffee" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['Applications']">
+                            <i class="fa fa-diamond" aria-hidden="true"></i>
+                            <span>Apps</span>
+                        </a>
+                    </li>
 
 
-                <li>
-                    <a [routerLink]="['Feed']">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                        <span>Feed</span>
-                        <span class="badge">3</span>
-                    </a>
-                </li>
+                    <li>
+                        <a [routerLink]="['Feed']">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <span>Feed</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
 
-                <li>
-                    <a [routerLink]="['Settings']">
-                        <i class="fa fa-cogs" aria-hidden="true"></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
-            </ul>
+                    <li>
+                        <a [routerLink]="['Settings']">
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="col-sm-10 main">

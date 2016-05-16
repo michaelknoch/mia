@@ -20,6 +20,14 @@
 }
 
 .menu {
+
+    .fixed-wrapper {
+        position: fixed;
+        height: 100%;
+        background-color: $asphalt;
+        width: 200px;
+    }
+
     padding: 0;
     color: #f4f4f4;
     max-width: 200px;
