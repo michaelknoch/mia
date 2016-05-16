@@ -17,7 +17,7 @@ export class ChartsComponent {
 @Component({
     selector: 'base-chart',
     template: `
-  <canvas id="myChart" style="width: 100%; height: 100%;"></canvas>
+  <canvas id="myChart" width="400px" height="300px"></canvas>
   `,
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass]
 })
