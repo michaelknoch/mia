@@ -11,7 +11,7 @@ export class MetricService {
     }
 
     getLoadAvg(id: String) {
-        return this.http.get(Config.BASEPATH + '/metrics/applications/' + id + '/loadavg')
+        return this.http.get(Config.BASEPATH + '/metrics/applications/' + id + '/loadavg?period=5m')
             .map(res => res.json())
     }
 

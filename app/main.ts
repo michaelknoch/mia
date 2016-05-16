@@ -13,6 +13,7 @@ import {SystemService} from "./service/system/system.service";
 import {DataService} from "./service/data.service";
 import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 import {CustomBrowserXhr} from "./service/CustomBrowserXhr";
+import {MetricService} from "./service/metric/metric.service";
 
 import {
     PlatformLocation,
@@ -34,5 +35,6 @@ bootstrap(AppComponent, [
     provide(LocationStrategy, {useClass: HashLocationStrategy}),
     provide(APP_BASE_HREF, { useValue: '/' }),
     AUTH_PROVIDERS,
-    provide(BrowserXhr, { useClass: CustomBrowserXhr })
+    provide(BrowserXhr, { useClass: CustomBrowserXhr }),
+    MetricService
 ]);
