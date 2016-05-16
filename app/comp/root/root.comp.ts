@@ -6,6 +6,7 @@ import {Feed} from "../feed/feed.comp";
 import {DataService} from "../../service/data.service";
 import {ApplicationList} from "../applicationList/applicationList.comp";
 import {NewApplication} from "../newApplication/newApplication.comp";
+import {Metrics} from "../metrics/metrics.comp";
 
 
 @Component({
@@ -20,7 +21,9 @@ import {NewApplication} from "../newApplication/newApplication.comp";
     {path: '/applications', component: ApplicationList, name: 'Applications',},
     {path: '/new-application', component: NewApplication, name: 'New-application',},
     {path: '/feed', component: Feed, name: 'Feed'},
-    {path: '/settings', component: Settings, name: 'Settings'}
+    {path: '/settings', component: Settings, name: 'Settings'},
+    {path: '/metrics', component: Metrics, name: 'Metrics'}
+
 ])
 
 export class Root {
