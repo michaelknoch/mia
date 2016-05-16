@@ -13,7 +13,7 @@ export class ApplicationService {
         this.http = http;
     }
 
-    getApplication() {
+    getApplications() {
         return this.http.get(Config.BASEPATH + '/applications')
             .map(res => res.json())
     }

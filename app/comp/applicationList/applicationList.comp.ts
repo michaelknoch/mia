@@ -16,7 +16,7 @@ export class ApplicationList {
 
     constructor(private _ApplicationService: ApplicationService) {
 
-        _ApplicationService.getApplication().subscribe(
+        _ApplicationService.getApplications().subscribe(
             data => {
                 this.applications = data;
                 console.info(data);
