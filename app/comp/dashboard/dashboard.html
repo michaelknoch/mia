@@ -1,38 +1,13 @@
-
-<div class="col-sm-6 dashboard-item">
-
-    <base-chart class="chart"
-                [data]="data">
-    </base-chart>
-
-</div>
-
-<div class="col-sm-6 dashboard-item">
-
-    <base-chart class="chart"
-                [data]="data"
-                [options]="options"
-                [chartType]="type">
-    </base-chart>
-
-</div>
-
-<div class="col-sm-6 dashboard-item">
-
-    <base-chart class="chart"
-                [data]="data"
-                [options]="options"
-                [chartType]="type">
-    </base-chart>
-
-</div>
-
-<div class="col-sm-6 dashboard-item">
-
-    <base-chart class="chart"
-                [data]="data"
-                [options]="options"
-                [chartType]="type">
-    </base-chart>
-
+<div class="row">
+    <div class="col-md-6 chart-height">
+        <base-chart class="chart"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColours"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></base-chart>
+    </div>
 </div>
