@@ -92,11 +92,19 @@ a {
     text-decoration: none;
 }
 
-
 .content a {
     color: $darkgrey;
 }
 
 h2, h3 {
     color: white;
+}
+
+.chart-height {
+    min-height: 200px;
+}
+
+.chart {
+    display: block;
+    width: 100%;
 }
