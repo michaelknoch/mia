@@ -2,7 +2,7 @@ import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {ApplicationService} from "../../service/application/application.service";
 import {MetricService} from "../../service/metric/metric.service";
-import {CHART_DIRECTIVES} from '../chartJS/charts';
+import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
 @Component({
     moduleId: module.id,
@@ -14,8 +14,20 @@ import {CHART_DIRECTIVES} from '../chartJS/charts';
 
 export class Metrics {
 
-    applications;
-    chartData;
+    public applications;
+    public chartLegend: boolean = false;
+    public chartType: string = 'line';
+
+    public chartData = [];
+    public chartLabels: Array<any> = [];
+
+    public chartOptions: any = {
+        animation: false,
+        responsive: true
+    };
+
+    public chartData = [];
+    public chartLabels = [];
 
 
     constructor(private _ApplicationService: ApplicationService, private _MetricService: MetricService) {
@@ -29,13 +41,17 @@ export class Metrics {
 
     }
 
+
     selectApplication(id) {
         console.log(id);
 
         this._MetricService.getLoadAvg(id).subscribe(data => {
             console.info(data);
-            this.chartData = this.processData(data, 'LoadAvg');
 
+            let result = this.processData(data, 'LoadAvg')
+
+            this.chartData = result.data;
+            this.chartLabels = result.labels
         })
 
     }
@@ -45,31 +61,20 @@ export class Metrics {
         var labels = [];
         var values = [];
 
-        for (var item of data[0].series[0].values) {
-            labels.push(item[0]);
-            values.push(item[1]);
+        if (data[0].series) {
+            for (var item of data[0].series[0].values) {
+
+                let date = new Date(item[0]);
+                labels.push(date.getHours() + ':' + date.getMinutes());
+                values.push(item[1]);
+            }
+        } else {
+            console.info('no data available');
         }
 
         var result = {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: name,
-                    data: values,
-                    borderColor: "rgba(75,192,192,1)",
-                }]
-            },
-            options: {
-                responsive: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: false
-                        }
-                    }]
-                }
-            }
+            data: values,
+            labels: labels
         };
 
         console.info(result);
