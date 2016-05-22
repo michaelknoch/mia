@@ -1,20 +1,41 @@
 <div class="row">
+    <div class="col-xs-12">
+        <h3 class="inline">Application:</h3>
 
-    <h3 class="inline">Application:</h3>
-
-    <select (change)="selectApplication($event.target.value)" name="Applications">
-        <option *ngFor="let item of applications; let i = index" value="{{item._id}}">{{item.name}}</option>
-    </select>
-
+        <select (change)="selectApplication($event.target.value)" name="Applications">
+            <option *ngFor="let item of applications; let i = index" value="{{item._id}}">{{item.name}}</option>
+        </select>
+    </div>
 </div>
 
 <div class="row">
 
-    <div class="col-xs-12">
+
+    <h3 class="col-xs-12 space-top">Load</h3>
+
+    <div class="col-sm-8">
 
         <base-chart class="chart"
-                    [data]="chartData"
-                    [labels]="chartLabels"
+                    [datasets]="loadAvg.chartData"
+                    [labels]="loadAvg.chartLabels"
+                    [options]="chartOptions"
+                    [legend]="chartLegend"
+                    [chartType]="chartType">
+        </base-chart>
+
+    </div>
+</div>
+
+
+<div class="row">
+
+    <h3 class="col-xs-12 space-top">Memory</h3>
+
+    <div class="col-sm-8">
+
+        <base-chart class="chart"
+                    [datasets]="memory.chartData"
+                    [labels]="memory.chartLabels"
                     [options]="chartOptions"
                     [legend]="chartLegend"
                     [chartType]="chartType">
