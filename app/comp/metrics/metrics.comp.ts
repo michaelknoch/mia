@@ -108,15 +108,23 @@ export class Metrics {
         var rssValues = [];
 
         if (data[0].series) {
+
+            const columns = data[0].series[0].columns;
+
+            const _heapTotalIdx = columns.indexOf('heapTotal');
+            const _heapUsedIdx = columns.indexOf('heapUsed');
+            const _rssIdx = columns.indexOf('rss');
+
+            debugger;
+
             for (var item of data[0].series[0].values) {
 
                 let date = new Date(item[0]);
                 labels.push(date.getHours() + ':' + date.getMinutes());
 
-
-                heapTotalvalues.push(item[2]);
-                heapUsedValues.push(item[3]);
-                rssValues.push(item[4]);
+                heapTotalvalues.push(item[_heapTotalIdx]);
+                heapUsedValues.push(item[_heapUsedIdx]);
+                rssValues.push(item[_rssIdx]);
 
             }
         } else {
