@@ -19,20 +19,25 @@ export class Metrics {
     // global chart options
     public chartLegend: boolean = false;
     public chartType: string = 'line';
-    public chartOptions: any = {
-        animation: false,
-        responsive: true
-    };
 
 
     public loadAvg = {
         chartData: [{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}],
-        chartLabels: []
+        chartLabels: [],
+        chartOptions: {
+            animation: false,
+            responsive: true
+        }
     };
 
     public memory = {
         chartData: [{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}],
-        chartLabels: []
+        chartLabels: [],
+        chartOptions: {
+            animation: false,
+            responsive: true,
+            pointStyle: 'dash'
+        }
     };
 
 
@@ -115,7 +120,6 @@ export class Metrics {
             const _heapUsedIdx = columns.indexOf('heapUsed');
             const _rssIdx = columns.indexOf('rss');
 
-            debugger;
 
             for (var item of data[0].series[0].values) {
 
