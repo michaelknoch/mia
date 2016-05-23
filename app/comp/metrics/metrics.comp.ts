@@ -22,7 +22,7 @@ export class Metrics {
 
 
     public loadAvg = {
-        chartData: [{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}],
+        chartData: [{data: [], label: 'Series A'}],
         chartLabels: [],
         chartOptions: {
             animation: false,
@@ -31,7 +31,7 @@ export class Metrics {
     };
 
     public memory = {
-        chartData: [{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}],
+        chartData: [{data: [], label: 'Series A'}],
         chartLabels: [],
         chartOptions: {
             animation: false,
