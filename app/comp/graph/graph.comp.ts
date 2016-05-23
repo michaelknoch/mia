@@ -32,20 +32,28 @@ export class Graph {
         var edges = [];
 
         for (var node of data.nodes) {
-
-
-            node.faveColor = 'black';
-            node.faveShape = 'octagon';
-
-
+            node.faveColor = '#24506b';
             nodes.push({data: node})
         }
 
-        for (var edge of data.edges) {
-            edge.faveColor = 'white';
-            edge.strength = 50;
+        var maxRequests = 0;
+        for (let edge of data.edges) {
+            maxRequests = (edge.requests > maxRequests) ? edge.requests : maxRequests
+        }
+
+        for (let edge of data.edges) {
+
+            edge.faveColor = 'green';
+
+            if (edge.avgDuration > 1000) {
+                edge.faveColor = 'red';
+            } else if (edge.avgDuration > 100) {
+                edge.faveColor = 'orange';
+            }
+            
+            edge.strength = (100 / maxRequests) * edge.requests;
             edge.label = edge.avgDuration + 'ms';
-            edges.push({data: edge})
+            edges.push({data: edge});
         }
 
         return {

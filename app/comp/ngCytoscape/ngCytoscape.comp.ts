@@ -29,18 +29,15 @@ export class NgCytoscape implements OnChanges {
         $('#cy').cytoscape({
             layout: {
                 name: 'cose',
+                directed: true,
                 padding: 10
             },
 
             style: cytoscape.stylesheet()
                 .selector('node')
                 .css({
-                    'shape': 'data(faveShape)',
-                    'width': 'mapData(weight, 40, 80, 20, 60)',
                     'content': 'data(name)',
                     'text-valign': 'center',
-                    'text-outline-width': 2,
-                    'text-outline-color': 'data(faveColor)',
                     'background-color': 'data(faveColor)',
                     'color': '#fff'
                 })
@@ -51,11 +48,11 @@ export class NgCytoscape implements OnChanges {
                 })
                 .selector('edge')
                 .css({
+                    'label': 'data(label)',
                     'curve-style': 'bezier',
                     'opacity': 0.666,
                     'width': 'mapData(strength, 70, 100, 2, 6)',
                     'target-arrow-shape': 'triangle',
-                    'source-arrow-shape': 'circle',
                     'line-color': 'data(faveColor)',
                     'source-arrow-color': 'data(faveColor)',
                     'target-arrow-color': 'data(faveColor)'
