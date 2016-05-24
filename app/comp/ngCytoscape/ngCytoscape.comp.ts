@@ -17,8 +17,7 @@ export class NgCytoscape implements OnChanges {
 
     @Input() public elements: any;
 
-    public constructor() {
-    }
+    public constructor(private el: ElementRef) {}
 
     public ngOnChanges(): any {
         this.render();
@@ -26,11 +25,11 @@ export class NgCytoscape implements OnChanges {
 
     public render() {
 
-        $('#cy').cytoscape({
+        let cy = jQuery(this.el.nativeElement).cytoscape({
             layout: {
-                name: 'cose',
+                name: 'breadthfirst',
                 directed: true,
-                padding: 10
+                padding: 15
             },
 
             style: cytoscape.stylesheet()
@@ -49,6 +48,7 @@ export class NgCytoscape implements OnChanges {
                 .selector('edge')
                 .css({
                     'label': 'data(label)',
+                    'color': 'white',
                     'curve-style': 'bezier',
                     'opacity': 0.666,
                     'width': 'mapData(strength, 70, 100, 2, 6)',
@@ -71,6 +71,7 @@ export class NgCytoscape implements OnChanges {
             elements: this.elements,
 
         });
+
     }
 
 }
