@@ -5,6 +5,7 @@ const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
 const shell = require('gulp-shell');
 const tslint = require("gulp-tslint");
+const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('clean', function () {
     const del = require('del');
@@ -13,10 +14,19 @@ gulp.task('clean', function () {
 
 gulp.task('ts', function () {
 
-    return gulp
-        .src('app/**/*.ts')
-        .pipe(typescript(tscConfig.compilerOptions))
+    //return gulp
+    //    .src('app/**/*.ts')
+    //   .pipe(typescript(tscConfig.compilerOptions))
+    //  .pipe(gulp.dest('dist'));
+
+    const tsResult = gulp.src('app/**/*.ts')
+        .pipe(sourcemaps.init())
+        .pipe(typescript(tscConfig.compilerOptions));
+
+    return tsResult.js
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('dist'));
+
 });
 
 gulp.task('tslint', function () {
