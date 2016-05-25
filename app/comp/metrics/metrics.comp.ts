@@ -54,52 +54,49 @@ export class Metrics {
 
 
     selectApplication(id) {
-        console.log(id);
+        console.log('Select Application:', id);
+        this._MetricService.getMetrics(id, undefined).subscribe(data => {
+            const loadData = this.processLoadData(data.load);
+            this.loadAvg.chartData = loadData.data;
+            this.loadAvg.chartLabels = loadData.labels;
 
-        this._MetricService.getLoadAvg(id).subscribe(data => {
-            console.info(data);
 
-            let result = this.processLoadData(data, 'LoadAvg');
-            this.loadAvg.chartData = result.data;
-            this.loadAvg.chartLabels = result.labels
-
-        });
-
-        this._MetricService.getMemory(id).subscribe(data => {
-            console.info(data);
-
-            let result = this.processMemoryData(data);
-            this.memory.chartData = result.data;
-            this.memory.chartLabels = result.labels
+            const memoryData = this.processMemoryData(data.memory);
+            this.memory.chartData = memoryData.data;
+            this.memory.chartLabels = memoryData.labels;
         })
+
 
     }
 
-    processLoadData(data: any, name: String) {
+    processLoadData(data: any) {
 
-        var labels = [];
-        var values = [];
+        let labels = [];
+        let meanValues = [];
+        let medianValues = [];
 
-        if (data[0].series) {
-            for (var item of data[0].series[0].values) {
+        if (data) {
 
-                let date = new Date(item[0]);
-                labels.push(date.getHours() + ':' + date.getMinutes());
-                values.push(item[1]);
+            for (var item of data) {
+
+                labels.push(this.dateFormat(item.time));
+                meanValues.push(item.mean);
+                medianValues.push(item.median);
+
             }
+
         } else {
             console.info('no data available');
         }
 
         var result = {
-            data: [{
-                data: values,
-                label: name
-            }],
+            data: [
+                {data: meanValues, label: 'mean'},
+                {data: medianValues, label: 'median'}
+            ],
             labels: labels
         };
 
-        console.info(result);
         return result;
     }
 
@@ -112,25 +109,18 @@ export class Metrics {
         var heapUsedValues = [];
         var rssValues = [];
 
-        if (data[0].series) {
+        if (data) {
 
-            const columns = data[0].series[0].columns;
+            for (var item of data) {
 
-            const _heapTotalIdx = columns.indexOf('heapTotal');
-            const _heapUsedIdx = columns.indexOf('heapUsed');
-            const _rssIdx = columns.indexOf('rss');
+                labels.push(this.dateFormat(item.time));
 
-
-            for (var item of data[0].series[0].values) {
-
-                let date = new Date(item[0]);
-                labels.push(date.getHours() + ':' + date.getMinutes());
-
-                heapTotalvalues.push(item[_heapTotalIdx]);
-                heapUsedValues.push(item[_heapUsedIdx]);
-                rssValues.push(item[_rssIdx]);
+                heapTotalvalues.push(item.heapTotal);
+                heapUsedValues.push(item.heapUsed);
+                rssValues.push(item.rss);
 
             }
+
         } else {
             console.info('no data available');
         }
@@ -146,6 +136,11 @@ export class Metrics {
 
         console.info(result);
         return result;
+    }
+
+    dateFormat(isoDate: String) {
+        let date = new Date(isoDate);
+        return date.getHours() + ':' + date.getMinutes();
     }
 
 }

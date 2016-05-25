@@ -58,7 +58,7 @@ export class Graph {
             edge.label = edge.avgDuration + 'ms';
             edges.push({data: edge});
         }
-        
+
         return {
             nodes: nodes,
             edges: edges

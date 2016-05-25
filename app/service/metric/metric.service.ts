@@ -20,5 +20,11 @@ export class MetricService {
             .map(res => res.json())
     }
 
+    getMetrics(id: String, query: String) {
+        var _query = query || '?since=1h';
+        return this.http.get(Config.BASEPATH + '/metrics/applications/' + id + _query)
+            .map(res => res.json())
+    }
+
 
 }
