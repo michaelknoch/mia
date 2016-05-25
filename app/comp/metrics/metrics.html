@@ -2,9 +2,13 @@
     <div class="col-xs-12">
         <h3 class="inline">Application:</h3>
 
-        <select (change)="selectApplication($event.target.value)" name="Applications">
+       <!-- <select (change)="selectApplication($event.target.value)" name="Applications">
             <option *ngFor="let item of applications; let i = index" value="{{item._id}}">{{item.name}}</option>
-        </select>
+        </select> -->
+
+        <application-meta-picker (metaUpdate)="metaUpdate($event)"></application-meta-picker>
+
+
     </div>
 </div>
 

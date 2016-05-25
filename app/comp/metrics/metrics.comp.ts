@@ -3,11 +3,12 @@ import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {ApplicationService} from "../../service/application/application.service";
 import {MetricService} from "../../service/metric/metric.service";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
+import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
 
 @Component({
     moduleId: module.id,
     selector: 'metrics',
-    directives: [ROUTER_DIRECTIVES, CHART_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, CHART_DIRECTIVES, ApplicationMetaPicker],
     templateUrl: 'metrics.html',
     styleUrls: ['metrics.css'],
 })
@@ -47,15 +48,15 @@ export class Metrics {
             this.applications = data;
             console.info(this.applications);
 
-            this.selectApplication(this.applications[0]._id)
+            this.getData(this.applications[0]._id, undefined)
         });
 
     }
 
 
-    selectApplication(id) {
+    getData(id: String, query: String) {
         console.log('Select Application:', id);
-        this._MetricService.getMetrics(id, undefined).subscribe(data => {
+        this._MetricService.getMetrics(id, query).subscribe(data => {
             const loadData = this.processLoadData(data.load);
             this.loadAvg.chartData = loadData.data;
             this.loadAvg.chartLabels = loadData.labels;
@@ -65,8 +66,6 @@ export class Metrics {
             this.memory.chartData = memoryData.data;
             this.memory.chartLabels = memoryData.labels;
         })
-
-
     }
 
     processLoadData(data: any) {
@@ -142,5 +141,11 @@ export class Metrics {
         let date = new Date(isoDate);
         return date.getHours() + ':' + date.getMinutes();
     }
+
+    public metaUpdate(e: any) {
+        this.getData(e.appId, e.query);
+        console.log(e);
+    }
+
 
 }
