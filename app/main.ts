@@ -26,6 +26,8 @@ import {
     APP_BASE_HREF }
     from '@angular/common';
 
+import {ApplicationMetaPickerService} from "./comp/applicationMetaPicker/applicationMetaPicker.service";
+
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
@@ -39,5 +41,6 @@ bootstrap(AppComponent, [
     AUTH_PROVIDERS,
     provide(BrowserXhr, {useClass: CustomBrowserXhr}),
     MetricService,
-    GraphService
+    GraphService,
+    ApplicationMetaPickerService
 ]);
