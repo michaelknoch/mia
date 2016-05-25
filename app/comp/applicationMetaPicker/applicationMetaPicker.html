@@ -1,0 +1,22 @@
+<div class="app-meta-picker-wrapper">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-4 dropdown">
+
+                <select (change)="selectApplication($event.target.value)" name="Applications">
+                    <option *ngFor="let item of applications; let i = index" value="{{item._id}}">{{item.name}}</option>
+                </select>
+
+            </div>
+
+            <div class="col-sm-4 timestamps">
+                <li (click)="selectQuery('?since=1d')">1D</li>
+                <li (click)="selectQuery('?since=1h')">1h</li>
+                <li (click)="selectQuery('?since=15m')">15m</li>
+                <li (click)="selectQuery('?since=5m')">5m</li>
+            </div>
+
+        </div>
+    </div>
+</div>
