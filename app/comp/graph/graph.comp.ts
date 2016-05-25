@@ -2,11 +2,12 @@ import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {NgCytoscape} from "../ngCytoscape/ngCytoscape.comp";
 import {GraphService} from "../../service/graph.service";
+import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
 
 @Component({
     moduleId: module.id,
     selector: 'graph',
-    directives: [ROUTER_DIRECTIVES, NgCytoscape],
+    directives: [ROUTER_DIRECTIVES, NgCytoscape, ApplicationMetaPicker],
     templateUrl: 'graph.html',
     styleUrls: ['graph.css'],
 })
@@ -19,12 +20,14 @@ export class Graph {
     };
 
     constructor(private _graphService: GraphService) {
+        this.getData(undefined);
+    }
 
-        this._graphService.getGraph().subscribe(data => {
+    getData(query: String) {
+        this._graphService.getGraph(query).subscribe(data => {
             this.graphData = this.processData(data);
             console.info(this.graphData);
         });
-
     }
 
     private processData(data) {
@@ -64,6 +67,11 @@ export class Graph {
             edges: edges
         }
 
+    }
+
+    public metaUpdate(e: any) {
+        this.getData(e.query);
+        console.log(e);
     }
 
 }
