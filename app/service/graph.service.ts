@@ -11,8 +11,12 @@ export class GraphService {
 
     }
 
-    getGraph() {
-        return this.http.get(Config.BASEPATH + '/graphs?from=1464006214519')
+    getGraph(query: String) {
+        var _query = query || '?since=1h';
+        // TODO: remove this when @timoweiss is ready for it
+        _query = '?from=1464006214519';
+
+        return this.http.get(Config.BASEPATH + '/graphs' + _query)
             .map(res => res.json())
     }
 
