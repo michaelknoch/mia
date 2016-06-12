@@ -62,7 +62,7 @@ gulp.task('json', function () {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('web', function () {
+gulp.task('web', ['build'], function () {
     const webserver = require('gulp-webserver');
     gulp.src('./')
         .pipe(webserver({
