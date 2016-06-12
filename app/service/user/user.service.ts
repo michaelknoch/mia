@@ -2,14 +2,15 @@ import {Injectable} from '@angular/core';
 import {Http, HTTP_PROVIDERS} from '@angular/http';
 import 'rxjs/Rx';
 import {Config} from "../../app.config";
+import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 
 @Injectable()
 export class UserService {
 
-    http;
+    @LocalStorage() private username: string = '';
+    @LocalStorage() private currentSystem: string = '';
 
-    constructor(http: Http) {
-        this.http = http;
+    constructor(private http: Http) {
     }
 
     login(mail: String, password: String) {
@@ -33,6 +34,13 @@ export class UserService {
                 surname: surname
             }))
             .map(res => res.json())
+    }
+
+    getLocalMe() {
+        return {
+            username: this.username,
+            currentSystem: this.currentSystem
+        }
     }
 
 }

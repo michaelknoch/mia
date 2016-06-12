@@ -29,6 +29,13 @@ gulp.task('ts', function () {
 
 });
 
+gulp.task('tslib', function () {
+    return gulp
+        .src('node_modules/angular2-localstorage/*.ts')
+        .pipe(typescript(tscConfig.compilerOptions))
+        .pipe(gulp.dest('node_modules/angular2-localstorage/'));
+});
+
 gulp.task('tslint', function () {
     return gulp.src('app/**/*.ts')
         .pipe(tslint())
