@@ -25,7 +25,7 @@ export class UserService {
     }
 
     public logout() {
-        return this.http.post(Config.BASEPATH + '/users/logout')
+        return this.http.post(Config.BASEPATH + '/users/logout', undefined)
             .map(res => res.json())
     }
 

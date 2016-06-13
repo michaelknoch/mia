@@ -11,11 +11,11 @@ export class DataService {
 
     }
 
-    getData(key: String) {
+    getData(key: string) {
         return this.sharedData[key];
     }
 
-    setData(key: String, obj) {
+    setData(key: string, obj) {
         this.sharedData[key] = obj;
     }
 

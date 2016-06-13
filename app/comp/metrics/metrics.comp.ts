@@ -54,7 +54,7 @@ export class Metrics {
     }
 
 
-    getData(id: String, query: String) {
+    getData(id: String, query: string) {
         console.log('Select Application:', id);
         this._MetricService.getMetrics(id, query).subscribe(data => {
             const loadData = this.processLoadData(data.load);
@@ -137,7 +137,7 @@ export class Metrics {
         return result;
     }
 
-    dateFormat(isoDate: String) {
+    dateFormat(isoDate: string) {
         let date = new Date(isoDate);
         return date.getHours() + ':' + date.getMinutes();
     }
