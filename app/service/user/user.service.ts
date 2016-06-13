@@ -47,7 +47,6 @@ export class UserService {
     }
 
     public setUser(user: any) {
-        debugger;
         this.currentUser = user;
     }
 
