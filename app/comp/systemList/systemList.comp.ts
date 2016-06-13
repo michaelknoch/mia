@@ -1,8 +1,9 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {SystemService} from "../../service/system/system.service";
 import {Router} from "@angular/router-deprecated";
 import {DataService} from "../../service/data.service";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
     moduleId: module.id,
@@ -12,15 +13,16 @@ import {DataService} from "../../service/data.service";
     styleUrls: ['systemList.css'],
 })
 
-export class SystemList {
+export class SystemList implements OnInit {
 
-    systems;
-    currentUser;
+    private systems;
+    private currentUserName;
 
-    constructor(private _systemService: SystemService, private _router: Router, private _dataService: DataService) {
+    ngOnInit() {
+        this.currentUserName = this._userService.getLocalMe().user.name;
+    }
 
-        this.currentUser = _dataService.getData('current-user');
-        console.info(this.currentUser);
+    constructor(private _systemService: SystemService, private _router: Router, private _userService: UserService) {
 
         _systemService.getSystems().subscribe(
             data => {
@@ -33,8 +35,8 @@ export class SystemList {
 
     selectSystem(company) {
         this._systemService.selectSystem(company._id).subscribe(data => {
-            this._dataService.setData('current-company', company);
             console.info('select company', data);
+            this._userService.setSystem(data.newSystemId);
             this._router.navigate(['Root', {systemId: data.newSystemId}])
         });
     }
