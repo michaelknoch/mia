@@ -36,22 +36,23 @@
 
     i.fa {
         float: left;
-        font-size: 30px;
+        font-size: 20px;
         text-align: center;
         transition-duration: 0.3s;
 
         max-width: 30px;
         max-height: 30px;
+        line-height: 30px;
     }
 
     li {
 
         a {
-            padding: 15px;
+            padding: 5px 15px;
             float: left;
             width: 100%;
             &.router-link-active, &:hover {
-                background-color: rgba(245, 245, 245, 0.18);
+                background-color: $yellow;
                 color: white;
             }
         }
@@ -60,11 +61,6 @@
         position: relative;
         cursor: pointer;
         float: left;
-        &:hover {
-            i.fa {
-                font-size: 35px;
-            }
-        }
 
         .badge {
             background-color: #e74c3c;
@@ -86,29 +82,27 @@
 
 .user-wrapper {
     position: relative;
-    position: absolute;
-    left: 0;
     z-index: 10;
     padding: 15px;
     padding-top: 0;
-    background-color: #262626;
-    background-color: rgba(255,255,255,0.1);
-
+    background-color: $cyan;
     color: white;
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 30px;
 
-    bottom: 0;
-
-    img.thumb {
-        width: 55px;
-        border-radius: 50%;
-        border: 3px solid black;
-        float: left;
-        margin-right: 10px;
-        margin-top: -5px;
+    h5.name {
+        text-align: center;
+        padding-bottom: 20px;
     }
 
-    i.fa.fa-bars {
-        font-size: 25px;
+    img.thumb {
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+        width: 85px;
+        padding-top: 15px;
     }
 
     .dropdown {

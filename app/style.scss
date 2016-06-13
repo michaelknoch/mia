@@ -121,7 +121,7 @@ h2, h3 {
 }
 
 .cube1, .cube2 {
-    background-color: #333;
+    background-color: $cyan;
     width: 15px;
     height: 15px;
     position: absolute;
@@ -130,6 +130,10 @@ h2, h3 {
 
     -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
     animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+    background-color: $yellow;
 }
 
 .cube2 {
