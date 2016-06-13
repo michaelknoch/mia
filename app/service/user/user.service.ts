@@ -7,13 +7,16 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 @Injectable()
 export class UserService {
 
-    @LocalStorage() private username: string = '';
-    @LocalStorage() private currentSystem: string = '';
+    @LocalStorage() private currentSystemId: string = '';
+    @LocalStorage() private currentUser: any = {
+        id: '',
+        name: ''
+    };
 
     constructor(private http: Http) {
     }
 
-    login(mail: String, password: String) {
+    public login(mail: String, password: String) {
         return this.http.post(Config.BASEPATH + '/users/login', JSON.stringify({
                 mail: mail,
                 password: password
@@ -21,12 +24,12 @@ export class UserService {
             .map(res => res.json())
     }
 
-    logout() {
+    public logout() {
         return this.http.post(Config.BASEPATH + '/users/logout')
             .map(res => res.json())
     }
 
-    register(mail: String, password: String, name: String, surname: String) {
+    public register(mail: String, password: String, name: String, surname: String) {
         return this.http.post(Config.BASEPATH + '/users', JSON.stringify({
                 mail: mail,
                 password: password,
@@ -36,11 +39,20 @@ export class UserService {
             .map(res => res.json())
     }
 
-    getLocalMe() {
+    public getLocalMe() {
         return {
-            username: this.username,
-            currentSystem: this.currentSystem
+            user: this.currentUser,
+            systemId: this.currentSystemId
         }
+    }
+
+    public setUser(user: any) {
+        debugger;
+        this.currentUser = user;
+    }
+
+    public setSystem(systemId: string) {
+        this.currentSystemId = systemId;
     }
 
 }
