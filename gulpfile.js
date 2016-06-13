@@ -110,5 +110,5 @@ gulp.task('bump', function () {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('build', ['html', 'ts', 'scss', 'css', 'assets', 'json']);
+gulp.task('build', ['html', 'ts', 'tslib', 'scss', 'css', 'assets', 'json']);
 gulp.task('default', ['build']);
