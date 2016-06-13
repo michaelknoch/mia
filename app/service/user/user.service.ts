@@ -7,7 +7,11 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 @Injectable()
 export class UserService {
 
-    @LocalStorage() private currentSystemId: string = '';
+    @LocalStorage() private currentSystem: any = {
+        id: '',
+        name: ''
+    };
+
     @LocalStorage() private currentUser: any = {
         id: '',
         name: ''
@@ -25,7 +29,8 @@ export class UserService {
     }
 
     public logout() {
-        return this.http.post(Config.BASEPATH + '/users/logout', undefined)
+        this.currentUser.id = '';
+        return this.http.get(Config.BASEPATH + '/users/logout')
             .map(res => res.json())
     }
 
@@ -42,7 +47,7 @@ export class UserService {
     public getLocalMe() {
         return {
             user: this.currentUser,
-            systemId: this.currentSystemId
+            system: this.currentSystem
         }
     }
 
@@ -50,8 +55,8 @@ export class UserService {
         this.currentUser = user;
     }
 
-    public setSystem(systemId: string) {
-        this.currentSystemId = systemId;
+    public setSystem(system: any) {
+        this.currentSystem = system;
     }
 
 }
