@@ -85,12 +85,18 @@
 }
 
 .user-wrapper {
+    position: relative;
     position: absolute;
-    right: 0;
+    left: 0;
     z-index: 10;
     padding: 15px;
     padding-top: 0;
-    color: black;
+    background-color: #262626;
+    background-color: rgba(255,255,255,0.1);
+
+    color: white;
+
+    bottom: 0;
 
     img.thumb {
         width: 55px;
@@ -99,5 +105,13 @@
         float: left;
         margin-right: 10px;
         margin-top: -5px;
+    }
+
+    i.fa.fa-bars {
+        font-size: 25px;
+    }
+
+    .dropdown {
+        position: absolute;
     }
 }

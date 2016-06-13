@@ -33,10 +33,11 @@ export class SystemList implements OnInit {
         );
     }
 
-    selectSystem(company) {
-        this._systemService.selectSystem(company._id).subscribe(data => {
+    selectSystem(system) {
+
+        this._systemService.selectSystem(system._id).subscribe(data => {
             console.info('select company', data);
-            this._userService.setSystem(data.newSystemId);
+            this._userService.setSystem({name: system.name, id: data.newSystemId});
             this._router.navigate(['Root', {systemId: data.newSystemId}])
         });
     }

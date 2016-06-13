@@ -1,14 +1,5 @@
 <div class="container-fluid login-container">
 
-    <div class="user-wrapper">
-        <div class="user">
-            <!--  <img
-                  src="https://scontent-fra3-1.xx.fbcdn.net/hphotos-xfl1/v/t1.0-9/1474558_1207958742552423_6007711756409685465_n.jpg?oh=c8fdf7e6fc22db66300698252ae54270&oe=57B73E99"
-                  class="thumb"> -->
-            <h3 class="name">{{userData.name}}</h3>
-            <h4 class="company">{{userData.companyName}}</h4>
-        </div>
-    </div>
 
     <div class="row background">
 
@@ -57,6 +48,20 @@
                             <span>Settings</span>
                         </a>
                     </li>
+
+
+                    <div class="user-wrapper">
+                        <div class="user">
+                            <h5 class="name">{{username}} on {{systemname}}</h5>
+
+                            <div class="inner-menu">
+                                <li (click)="switchSystem()"><i class="fa fa-th-large"></i><span>Switch System</span></li>
+                                <li (click)="logout()"><i class="fa fa-sign-out"></i><span>Logout</span></li>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </ul>
             </div>
         </div>

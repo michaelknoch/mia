@@ -21,10 +21,10 @@ export class Login implements OnInit {
 
     ngOnInit() {
 
-        const system = this._userService.getLocalMe().systemId;
+        const system = this._userService.getLocalMe().system.id;
         const user = this._userService.getLocalMe().user.id;
 
-        if (system) {
+        if (user && system) {
             console.log('found local system, redirecting');
             this._router.navigate(['Root', {systemId: system}])
 

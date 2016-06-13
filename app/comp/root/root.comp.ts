@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {Dashboard} from '../dashboard/comp';
 import {Settings} from '../settings/comp';
@@ -8,6 +8,7 @@ import {ApplicationList} from "../applicationList/applicationList.comp";
 import {NewApplication} from "../newApplication/newApplication.comp";
 import {Metrics} from "../metrics/metrics.comp";
 import {Graph} from "../graph/graph.comp";
+import {UserService} from "../../service/user/user.service";
 
 
 @Component({
@@ -28,16 +29,29 @@ import {Graph} from "../graph/graph.comp";
 
 ])
 
-export class Root {
+export class Root implements OnInit {
 
-    userData = {
-        name: '',
-        companyName: ''
-    };
+    private username: string;
+    private systemname: string;
 
-    constructor(private _dataService: DataService, private _router: Router) {
-        /* this.userData.name = this._dataService.getData('current-user').name;
-         this.userData.companyName = this._dataService.getData('current-company').name;*/
+    ngOnInit() {
+        this.username = this._userService.getLocalMe().user.name;
+        this.systemname = this._userService.getLocalMe().system.name;
+
+    }
+
+    constructor(private _userService: UserService, private _router: Router) {
+
+    }
+
+    logout() {
+        this._userService.logout().subscribe(data => {
+            this._router.navigate(['Login']);
+        });
+    }
+
+    switchSystem() {
+        this._router.navigate(['System-list']);
     }
 
 
