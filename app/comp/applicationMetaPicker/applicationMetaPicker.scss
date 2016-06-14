@@ -27,14 +27,18 @@ li {
         background-color: $yellow;
     }
     &.headline {
-        width: 200px;
-        max-width: 100%;
-
         background: none;
         border-bottom: 3px solid #ecc64b;
         padding: 0;
         margin-bottom: 15px;
+        float: left;
     }
 
 }
 
+.dropdown {
+    .wrapper {
+        width: 100%;
+        float: left;
+    }
+}
