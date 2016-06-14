@@ -27,7 +27,15 @@ export class Metrics {
         chartLabels: [],
         chartOptions: {
             animation: false,
-            responsive: true
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    position: 'bottom',
+                    ticks: {
+                        maxRotation: 0
+                    }
+                }]
+            }
         }
     };
 
@@ -37,7 +45,14 @@ export class Metrics {
         chartOptions: {
             animation: false,
             responsive: true,
-            pointStyle: 'dash'
+            scales: {
+                xAxes: [{
+                    position: 'bottom',
+                    ticks: {
+                        maxRotation: 0
+                    }
+                }]
+            }
         }
     };
 
@@ -76,7 +91,7 @@ export class Metrics {
 
         if (data) {
 
-            for (var item of data) {
+            for (let item of data) {
 
                 labels.push(this.dateFormat(item.time));
                 meanValues.push(item.mean);
@@ -111,9 +126,7 @@ export class Metrics {
         if (data) {
 
             for (var item of data) {
-
                 labels.push(this.dateFormat(item.time));
-
                 heapTotalvalues.push(item.heapTotal);
                 heapUsedValues.push(item.heapUsed);
                 rssValues.push(item.rss);

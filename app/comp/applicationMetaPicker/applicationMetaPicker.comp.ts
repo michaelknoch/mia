@@ -3,6 +3,7 @@ import {
     Component, OnDestroy, OnInit, OnChanges, EventEmitter, ElementRef, Input,
     Output
 } from '@angular/core';
+import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 
 @Component({
     moduleId: module.id,
@@ -35,13 +36,25 @@ export class ApplicationMetaPicker {
 
     @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
 
-    private activePeriod: String;
-    private activeApp: String;
+    @LocalStorage() private activePeriod: String;
+    @LocalStorage() private activeApp: String;
 
     constructor(private _ApplicationMetaPickerService: ApplicationMetaPickerService) {
+
         this._ApplicationMetaPickerService.getApplications().subscribe(data => {
-            this.selectApplication(data[0]._id);
+
+            let appToSelect: string = '';
+            for (let app of data) {
+                if (app._id === this.activeApp) {
+                    appToSelect = this.activeApp;
+                    break;
+                }
+            }
+
+            this.selectApplication(appToSelect || data[0]._id);
+            this.selectQuery(this.activePeriod);
             this.applications = data;
+            this.emit()
         })
     }
 
