@@ -17,6 +17,22 @@ export class ApplicationMetaPicker {
     private selectedAppId: String;
     private selectedQuery: String;
 
+    private queries = {
+        '7d': '7 days',
+        '2d': '2 days',
+        '1d': '1 day',
+        '12h': '12 hours',
+        '6h': '6 hours',
+        '1h': '1 hour',
+        '30m': '30 minutes',
+        '15m': '15 minutes',
+        '5m': '5 minutes'
+    };
+
+    queryKeys(): Array<string> {
+        return Object.keys(this.queries);
+    }
+
 
     @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
 

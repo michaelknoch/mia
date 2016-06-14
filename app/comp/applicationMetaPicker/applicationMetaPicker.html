@@ -11,12 +11,20 @@
             </div>
 
             <div class="col-sm-4 timestamps">
-                <li (click)="selectQuery('?since=1d')">1D</li>
-                <li (click)="selectQuery('?since=1h')">1h</li>
-                <li (click)="selectQuery('?since=15m')">15m</li>
-                <li (click)="selectQuery('?since=5m')">5m</li>
-            </div>
+                <!--   <li (click)="selectQuery('?since=7d')">7 days</li>
+                   <li (click)="selectQuery('?since=2d')">2 days</li>
+                   <li (click)="selectQuery('?since=1d')">1 day</li>
+                   <li (click)="selectQuery('?since=12h')">12 hours</li>
+                   <li (click)="selectQuery('?since=6h')">6 hours</li>
+                   <li (click)="selectQuery('?since=3h')">3 hours</li>
+                   <li (click)="selectQuery('?since=1h')">1 hour</li>
+                   <li (click)="selectQuery('?since=30m')">30 minutes</li>
+                   <li (click)="selectQuery('?since=15m')">15 minutes</li>
+                   <li (click)="selectQuery('?since=5m')">5 minutes</li> -->
 
+                <li *ngFor='let key of queryKeys()' (click)="selectQuery('?since=' + key)">{{queries[key]}}</li>
+
+            </div>
         </div>
     </div>
 </div>
