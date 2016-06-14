@@ -23,12 +23,17 @@ li {
     cursor: pointer;
     margin-bottom: 3px;
     padding: 5px 10px;
-    &.active, &.headline {
+    &.active {
         background-color: $yellow;
     }
     &.headline {
         width: 200px;
         max-width: 100%;
+
+        background: none;
+        border-bottom: 3px solid #ecc64b;
+        padding: 0;
+        margin-bottom: 15px;
     }
 
 }
