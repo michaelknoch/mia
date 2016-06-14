@@ -33,8 +33,10 @@ export class ApplicationMetaPicker {
         return Object.keys(this.queries);
     }
 
-
     @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
+
+    private activePeriod: String;
+    private activeApp: String;
 
     constructor(private _ApplicationMetaPickerService: ApplicationMetaPickerService) {
         this._ApplicationMetaPickerService.getApplications().subscribe(data => {
@@ -45,11 +47,13 @@ export class ApplicationMetaPicker {
 
     public selectQuery(query: String) {
         this.selectedQuery = query;
+        this.activePeriod = query;
         this.emit()
     }
 
-    public selectApplication(id) {
-        this.selectedAppId = id;
+    public selectApplication(application) {
+        this.selectedAppId = application;
+        this.activeApp = application;
         this.emit();
     }
 

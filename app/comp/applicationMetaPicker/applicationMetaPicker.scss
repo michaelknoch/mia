@@ -23,5 +23,19 @@ li {
     cursor: pointer;
     margin-bottom: 3px;
     padding: 5px 10px;
+    &.active, &.headline {
+        background-color: $yellow;
+    }
+    &.headline {
+        width: 200px;
+        max-width: 100%;
+    }
 
+}
+
+.dropdown {
+    .wrapper {
+        width: 100%;
+        float: left;
+    }
 }

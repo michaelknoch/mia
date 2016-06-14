@@ -2,28 +2,31 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-4 dropdown">
+            <div class="dropdown col-sm-4">
 
-                <select (change)="selectApplication($event.target.value)" name="Applications">
-                    <option *ngFor="let item of applications; let i = index" value="{{item._id}}">{{item.name}}</option>
-                </select>
+                <span class="wrapper">
+                    <li class="headline">Service</li>
+                </span>
+                <ul class="application-picker">
+                    <li *ngFor="let item of applications; let i = index" (click)="selectApplication(item._id)"
+                        [ngClass]="{active: activeApp === item._id}">
+                        {{item.name}}
 
+                        {{item._id === activeApp}}
+                    </li>
+                </ul>
             </div>
 
-            <div class="col-sm-4 timestamps">
-                <!--   <li (click)="selectQuery('?since=7d')">7 days</li>
-                   <li (click)="selectQuery('?since=2d')">2 days</li>
-                   <li (click)="selectQuery('?since=1d')">1 day</li>
-                   <li (click)="selectQuery('?since=12h')">12 hours</li>
-                   <li (click)="selectQuery('?since=6h')">6 hours</li>
-                   <li (click)="selectQuery('?since=3h')">3 hours</li>
-                   <li (click)="selectQuery('?since=1h')">1 hour</li>
-                   <li (click)="selectQuery('?since=30m')">30 minutes</li>
-                   <li (click)="selectQuery('?since=15m')">15 minutes</li>
-                   <li (click)="selectQuery('?since=5m')">5 minutes</li> -->
-
-                <li *ngFor='let key of queryKeys()' (click)="selectQuery('?since=' + key)">{{queries[key]}}</li>
-
+            <div class="dropdown col-sm-4 timestamps">
+                <span class="wrapper">
+                    <li class="headline">Period</li>
+                </span>
+                <ul>
+                    <li *ngFor='let key of queryKeys()' (click)="selectQuery('?since=' + key)"
+                        [ngClass]="{active: activePeriod === '?since=' + key}">
+                        {{queries[key]}}
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
