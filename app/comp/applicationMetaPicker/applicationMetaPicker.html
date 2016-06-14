@@ -11,8 +11,6 @@
                     <li *ngFor="let item of applications; let i = index" (click)="selectApplication(item._id)"
                         [ngClass]="{active: activeApp === item._id}">
                         {{item.name}}
-
-                        {{item._id === activeApp}}
                     </li>
                 </ul>
             </div>
