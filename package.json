@@ -19,7 +19,7 @@
     "@angular/upgrade": "2.0.0-rc.1",
     "angular2-in-memory-web-api": "0.0.7",
     "angular2-jwt": "^0.1.15",
-    "angular2-localstorage": "^0.4.0",
+    "angular2-localstorage": "git+https://github.com/marcj/angular2-localstorage.git",
     "bootstrap": "^3.3.6",
     "chart.js": "^2.1.3",
     "cytoscape": "^2.7.2",
