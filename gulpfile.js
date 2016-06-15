@@ -6,27 +6,29 @@ const tscConfig = require('./tsconfig.json');
 const shell = require('gulp-shell');
 const tslint = require("gulp-tslint");
 const sourcemaps = require('gulp-sourcemaps');
+const inlineNg2Template = require('gulp-inline-ng2-template');
+const clean = require('gulp-clean');
 
 gulp.task('clean', function () {
     const del = require('del');
     return del('dist/**/*');
 });
 
-gulp.task('ts', function () {
-
-    //return gulp
-    //    .src('app/**/*.ts')
-    //   .pipe(typescript(tscConfig.compilerOptions))
-    //  .pipe(gulp.dest('dist'));
-
+gulp.task('ts', ['html', 'scss'], function () {
+    
     const tsResult = gulp.src('app/**/*.ts')
         .pipe(sourcemaps.init())
         .pipe(typescript(tscConfig.compilerOptions));
 
     return tsResult.js
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('dist'));
-
+        .pipe(gulp.dest('dist'))
+        .pipe(inlineNg2Template({
+            base: '/app',
+            useRelativePaths: true,
+            supportNonExistentFiles: false
+        }))
+        .pipe(gulp.dest('dist'))
 });
 
 gulp.task('tslib', function () {
@@ -49,6 +51,11 @@ gulp.task('html', function () {
 
 gulp.task('assets', function () {
     return gulp.src('app/assets/**/*').pipe(gulp.dest('dist/assets'));
+});
+
+gulp.task('clean.comp', ['ts'], function () {
+    gulp.src(['dist/comp/**/*.html', 'dist/comp/**/*.css'], {read: false})
+        .pipe(clean());
 });
 
 gulp.task('scss', function () {
@@ -110,5 +117,5 @@ gulp.task('bump', function () {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('build', ['html', 'ts', 'scss', 'css', 'assets', 'json']);
+gulp.task('build', ['html', 'ts', 'clean.comp', 'scss', 'css', 'assets', 'json']);
 gulp.task('default', ['build']);
