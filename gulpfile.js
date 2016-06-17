@@ -8,6 +8,7 @@ const tslint = require("gulp-tslint");
 const sourcemaps = require('gulp-sourcemaps');
 const inlineNg2Template = require('gulp-inline-ng2-template');
 const clean = require('gulp-clean');
+const merge = require('merge2');  // Require separate installation
 
 gulp.task('clean', function () {
     const del = require('del');
@@ -15,20 +16,22 @@ gulp.task('clean', function () {
 });
 
 gulp.task('ts', ['html', 'scss'], function () {
-    
+
     const tsResult = gulp.src('app/**/*.ts')
         .pipe(sourcemaps.init())
         .pipe(typescript(tscConfig.compilerOptions));
 
-    return tsResult.js
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('dist'))
-        .pipe(inlineNg2Template({
-            base: '/app',
-            useRelativePaths: true,
-            supportNonExistentFiles: false
-        }))
-        .pipe(gulp.dest('dist'))
+    return merge([
+        tsResult.js
+            .pipe(sourcemaps.write(".")).pipe(gulp.dest('dist'))
+            .pipe(inlineNg2Template({
+                base: '/app',
+                useRelativePaths: true,
+                supportNonExistentFiles: false
+            })).pipe(gulp.dest('dist')),
+        tsResult.dts.pipe(gulp.dest('dist'))
+    ]);
+
 });
 
 gulp.task('tslib', function () {
