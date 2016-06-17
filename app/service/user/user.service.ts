@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, HTTP_PROVIDERS} from '@angular/http';
-import 'rxjs/Rx';
+import {Observable} from 'rxjs/Rx';
 import {Config} from "../../app.config";
-import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+import {LocalStorage, SessionStorage} from "angular2-localstorage/dist";
 
 @Injectable()
 export class UserService {

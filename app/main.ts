@@ -27,7 +27,7 @@ import {
     from '@angular/common';
 
 import {ApplicationMetaPickerService} from "./comp/applicationMetaPicker/applicationMetaPicker.service";
-import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/LocalStorageEmitter';
+import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/dist';
 
 var appPromise = bootstrap(AppComponent, [
     ROUTER_PROVIDERS,

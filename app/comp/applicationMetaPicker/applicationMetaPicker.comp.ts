@@ -3,7 +3,7 @@ import {
     Component, OnDestroy, OnInit, OnChanges, EventEmitter, ElementRef, Input,
     Output
 } from '@angular/core';
-import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+import {LocalStorage, SessionStorage} from "angular2-localstorage/dist";
 
 @Component({
     moduleId: module.id,
@@ -36,8 +36,8 @@ export class ApplicationMetaPicker {
 
     @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
 
-    @LocalStorage() private activePeriod: String;
-    @LocalStorage() private activeApp: String;
+    @LocalStorage() private activePeriod: string;
+    @LocalStorage() private activeApp: string;
 
     constructor(private _ApplicationMetaPickerService: ApplicationMetaPickerService) {
 
@@ -58,7 +58,7 @@ export class ApplicationMetaPicker {
         })
     }
 
-    public selectQuery(query: String) {
+    public selectQuery(query: string) {
         this.selectedQuery = query;
         this.activePeriod = query;
         this.emit()
