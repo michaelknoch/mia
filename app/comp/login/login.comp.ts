@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router-deprecated';
 import {UserService} from "../../service/user/user.service";
-import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+import {LocalStorage, SessionStorage} from "angular2-localstorage/dist";
 import {LoginRegister} from "./loginRegister/loginRegister.comp";
 
 @Component({
