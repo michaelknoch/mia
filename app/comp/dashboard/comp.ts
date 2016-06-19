@@ -7,7 +7,8 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
     moduleId: module.id,
     directives: [CHART_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES],
     templateUrl: 'dashboard.html',
-    styleUrls: ['dashboard.css']
+    styleUrls: ['dashboard.css'],
+    selector: 'dashboard',
 })
 
 export class Dashboard {
