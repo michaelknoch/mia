@@ -8,7 +8,6 @@ import {LoginRegister} from "./loginRegister/loginRegister.comp";
     moduleId: module.id,
     templateUrl: 'login.html',
     styleUrls: ['login.css'],
-    providers: [UserService],
     directives: [LoginRegister]
 })
 
