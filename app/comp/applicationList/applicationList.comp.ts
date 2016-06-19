@@ -1,11 +1,9 @@
 import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {ApplicationService} from "../../service/application/application.service";
 
 @Component({
     moduleId: module.id,
     selector: 'costumer',
-    directives: [ROUTER_DIRECTIVES],
     templateUrl: 'applicationList.html',
     styleUrls: ['applicationList.css']
 })

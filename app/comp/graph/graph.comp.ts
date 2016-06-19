@@ -1,5 +1,4 @@
-import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Component} from '@angular/core';
 import {NgCytoscape} from "../ngCytoscape/ngCytoscape.comp";
 import {GraphService} from "../../service/graph.service";
 import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
@@ -7,7 +6,7 @@ import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPic
 @Component({
     moduleId: module.id,
     selector: 'graph',
-    directives: [ROUTER_DIRECTIVES, NgCytoscape, ApplicationMetaPicker],
+    directives: [NgCytoscape, ApplicationMetaPicker],
     templateUrl: 'graph.html',
     styleUrls: ['graph.css'],
 })

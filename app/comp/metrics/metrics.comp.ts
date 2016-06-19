@@ -1,5 +1,4 @@
 import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {ApplicationService} from "../../service/application/application.service";
 import {MetricService} from "../../service/metric/metric.service";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
@@ -8,7 +7,7 @@ import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPic
 @Component({
     moduleId: module.id,
     selector: 'metrics',
-    directives: [ROUTER_DIRECTIVES, CHART_DIRECTIVES, ApplicationMetaPicker],
+    directives: [CHART_DIRECTIVES, ApplicationMetaPicker],
     templateUrl: 'metrics.html',
     styleUrls: ['metrics.css'],
 })
