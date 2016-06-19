@@ -1,7 +1,10 @@
 <div class="container-fluid login-container">
     <div class="container">
         <div class="row">
-            <login-register (loginEvent)="loginHandler($event)"></login-register>
+            <div class="form-wrapper">
+                <img src="dist/assets/logo.png" class="logo">
+                <login-register (loginEvent)="loginHandler($event)"></login-register>
+            </div>
         </div>
     </div>
 </div>
