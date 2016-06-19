@@ -3,7 +3,7 @@ import {ApplicationService} from "../../service/application/application.service"
 
 @Component({
     moduleId: module.id,
-    selector: 'costumer',
+    selector: 'application-list',
     templateUrl: 'applicationList.html',
     styleUrls: ['applicationList.css']
 })
