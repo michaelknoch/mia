@@ -1,22 +1,7 @@
 <div class="container-fluid login-container">
     <div class="container">
 
-        <div class="row system-wrapper">
-            <div class="col-xs-12">
-                <h2>Welcome back <span>{{currentUserName}}</span></h2>
-                <h4>Select a System or create a new one</h4>
-                <p><br></p>
-            </div>
-            <div class="col-xs-3 company" (click)="selectSystem(item)" *ngFor="let item of systems; let i = index">
-                <div [ngStyle]="{'border-color': item.color}" class="inner-wrapper">
-                    <div class="color" [ngStyle]="{'background-color': item.color}"></div>
-                    <div class="content">
-                        <img src="{{item.logo}}" class="logo">
-                        <h4>{{item.name}}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <system-picker (update)="handleSystemPick($event)"></system-picker>
 
         <div class="row">
             <div class="col-xs-3">
