@@ -120,5 +120,17 @@ gulp.task('bump', function () {
         .pipe(gulp.dest('./'));
 });
 
+gulp.task('dist.deploy', ['build'], function () {
+    const bump = require('gulp-bump');
+    const stream = gulp.src('dist/package.json')
+        .pipe(bump())
+        .pipe(gulp.dest('dist'));
+
+    stream.on('end', function() {
+        console.info('publish');
+        shell.task('cd dist && npm publish');
+    });
+});
+
 gulp.task('build', ['html', 'ts', 'clean.comp', 'scss', 'css', 'assets', 'json']);
 gulp.task('default', ['build']);
