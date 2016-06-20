@@ -92,8 +92,8 @@ gulp.task('watch', ['build', 'web'], function () {
     const watch = require('gulp-watch');
     gulp.watch('app/**/*.ts', ['ts']);
     gulp.watch('app/**/*.css', ['css']);
-    gulp.watch('app/**/*.scss', ['scss']);
-    gulp.watch('app/**/*.html', ['html']);
+    gulp.watch('app/**/*.scss', ['ts']);
+    gulp.watch('app/**/*.html', ['ts']);
 });
 
 gulp.task('test', ['build'], function (done) {
