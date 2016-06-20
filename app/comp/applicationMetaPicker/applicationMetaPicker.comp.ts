@@ -23,7 +23,6 @@ export class ApplicationMetaPicker {
         '2d': '2 days',
         '1d': '1 day',
         '12h': '12 hours',
-        '6h': '6 hours',
         '1h': '1 hour',
         '30m': '30 minutes',
         '15m': '15 minutes',
