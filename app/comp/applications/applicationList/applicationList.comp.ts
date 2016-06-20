@@ -1,5 +1,5 @@
 import {Component} from '@angular/core'
-import {ApplicationService} from "../../service/application/application.service";
+import {ApplicationService} from "../../../service/application/application.service";
 
 @Component({
     moduleId: module.id,

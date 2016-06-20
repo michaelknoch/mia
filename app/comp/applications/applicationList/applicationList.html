@@ -1,4 +1,4 @@
-<h2>Applications</h2>
+
 <div class="row costumer-wrapper">
     <div class="col-xs-3 costumer" *ngFor="let item of applications; let i = index">
         <div [ngStyle]="{'border-color': item.color}" class="inner-wrapper">
@@ -15,14 +15,5 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
-<div class="row">
-    <div class="col-xs-3">
-        <a [routerLink]="['New-application']">
-            <i _ngcontent-prg-3="" aria-hidden="true" class="fa fa-plus-circle"></i>
-        </a>
-    </div>
-</div>
