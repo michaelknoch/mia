@@ -10,7 +10,7 @@ import {ApplicationService} from "../../../service/application/application.servi
 
 export class ApplicationList {
 
-    applications;
+    private applications;
 
     constructor(private _ApplicationService: ApplicationService) {
 
