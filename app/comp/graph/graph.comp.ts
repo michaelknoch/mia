@@ -2,11 +2,12 @@ import {Component} from '@angular/core';
 import {NgCytoscape} from "../ngCytoscape/ngCytoscape.comp";
 import {GraphService} from "../../service/graph.service";
 import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
+import {Loading} from "../loading/loading.comp";
 
 @Component({
     moduleId: module.id,
     selector: 'graph',
-    directives: [NgCytoscape, ApplicationMetaPicker],
+    directives: [NgCytoscape, ApplicationMetaPicker, Loading],
     templateUrl: 'graph.html',
     styleUrls: ['graph.css'],
 })
@@ -18,13 +19,17 @@ export class Graph {
         edges: []
     };
 
+    private loading: boolean;
+
     constructor(private _graphService: GraphService) {
         this.getData(undefined);
     }
 
     getData(query: String) {
+        this.loading = true;
         this._graphService.getGraph(query).subscribe(data => {
             this.graphData = this.processData(data);
+            this.loading = false;
             console.info(this.graphData);
         });
     }
@@ -71,6 +76,10 @@ export class Graph {
     public metaUpdate(e: any) {
         this.getData(e.query);
         console.log(e);
+    }
+
+    public stopLoading() {
+
     }
 
 }
