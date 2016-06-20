@@ -14,9 +14,13 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/dist";
 
 export class ApplicationMetaPicker {
 
-    public applications;
-    private selectedAppId: String;
-    private selectedQuery: String;
+    @Input() public hideApplication: boolean = false;
+    @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
+
+    @LocalStorage() private activePeriod: string;
+    @LocalStorage() private activeApp: string;
+
+    private applications;
 
     private queries = {
         '7d': '7 days',
@@ -33,11 +37,6 @@ export class ApplicationMetaPicker {
         return Object.keys(this.queries);
     }
 
-    @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
-
-    @LocalStorage() private activePeriod: string;
-    @LocalStorage() private activeApp: string;
-
     constructor(private _ApplicationMetaPickerService: ApplicationMetaPickerService) {
 
         this._ApplicationMetaPickerService.getApplications().subscribe(data => {
@@ -46,6 +45,9 @@ export class ApplicationMetaPicker {
             for (let app of data) {
                 if (app._id === this.activeApp) {
                     appToSelect = this.activeApp;
+                    if (!this.activePeriod) {
+                        this.selectQuery('2d');
+                    }
                     break;
                 }
             }
@@ -58,21 +60,19 @@ export class ApplicationMetaPicker {
     }
 
     public selectQuery(query: string) {
-        this.selectedQuery = query;
         this.activePeriod = query;
         this.emit()
     }
 
     public selectApplication(application) {
-        this.selectedAppId = application;
         this.activeApp = application;
         this.emit();
     }
 
     private emit() {
         this.metaUpdate.emit({
-            appId: this.selectedAppId,
-            query: this.selectedQuery
+            appId: this.activeApp,
+            query: this.activePeriod
         });
     }
 
