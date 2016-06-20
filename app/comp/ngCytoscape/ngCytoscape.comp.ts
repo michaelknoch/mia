@@ -4,6 +4,8 @@ import {
 } from '@angular/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
 
+declare var jQuery: any;
+declare var cytoscape: any;
 
 @Component({
     moduleId: module.id,
@@ -17,7 +19,8 @@ export class NgCytoscape implements OnChanges {
 
     @Input() public elements: any;
 
-    public constructor(private el: ElementRef) {}
+    public constructor(private el: ElementRef) {
+    }
 
     public ngOnChanges(): any {
         this.render();
