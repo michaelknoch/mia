@@ -29,7 +29,7 @@ import {NewSystem} from "./comp/newSystem/newSystem.comp";
         name: 'New-system'
     },
     {
-        path: '/root/:systemId/...',
+        path: '/root/...',
         component: Root,
         name: 'Root'
     }
