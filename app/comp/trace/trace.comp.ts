@@ -12,7 +12,6 @@ import {Router, RouteParams} from '@angular/router-deprecated';
 export class Trace implements OnInit {
 
     constructor(private _traceService: TraceService, private params: RouteParams) {
-        console.info('init');
     }
 
     ngOnInit() {
@@ -26,12 +25,32 @@ export class Trace implements OnInit {
 
     parse(data: any) {
         let entryPoint = this.getEntryPoint(data);
+        let childNodes = [];
+
+        let childs = this.getChilds(entryPoint.request.requestId, data);
+        while (childs.length) {
+            childNodes.push(childs);
+            childs = this.getChilds(childs[0].request.requestId, data)
+        }
 
         return {
             entry: entryPoint,
             start: entryPoint.request.timeSR,
-            end: entryPoint.response.timeSS
+            end: entryPoint.response.timeSS,
+            child: childNodes
         }
+    }
+
+    getChilds(id: String, data: any) {
+        let items = [];
+        for (let item of data) {
+            if (item.response.parentId === id) {
+                item.left = 0;
+                item.right = 0;
+                items.push(item);
+            }
+        }
+        return items;
     }
 
     getEntryPoint(data: any) {
@@ -42,7 +61,8 @@ export class Trace implements OnInit {
                     item.request.timeSR = item.request.timeCS;
                     item.response.timeSS = item.request.timeCR;
                 }
-
+                item.left = 0;
+                item.right = 0;
                 return item;
             }
         }
