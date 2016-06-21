@@ -39,7 +39,7 @@ gulp.task('clean', function () {
         .pipe(clean());
 });
 
-gulp.task('ts', ['html', 'scss'], function () {
+gulp.task('ts', function () {
 
     const tsResult = gulp.src('app/**/*.ts')
         .pipe(sourcemaps.init())
