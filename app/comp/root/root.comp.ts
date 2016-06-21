@@ -9,6 +9,7 @@ import {NewApplication} from "../newApplication/newApplication.comp";
 import {Metrics} from "../metrics/metrics.comp";
 import {Graph} from "../graph/graph.comp";
 import {UserService} from "../../service/user/user.service";
+import {Trace} from "../trace/trace.comp";
 
 
 @Component({
@@ -25,7 +26,8 @@ import {UserService} from "../../service/user/user.service";
     {path: '/feed', component: Feed, name: 'Feed'},
     {path: '/settings', component: Settings, name: 'Settings'},
     {path: '/metrics', component: Metrics, name: 'Metrics'},
-    {path: '/graph', component: Graph, name: 'Graph'}
+    {path: '/graph', component: Graph, name: 'Graph'},
+    {path: '/trace/:traceId', component: Trace, name: 'Trace'}
 
 ])
 
