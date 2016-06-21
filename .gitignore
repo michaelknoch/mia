@@ -9,5 +9,6 @@ Locator-darwin-x64
 bachelor.pem
 npm-debug.log
 
-!dist/package.json
-!dist/.npmignore
+distributed
+!distributed/package.json
+!distributed/.npmignore

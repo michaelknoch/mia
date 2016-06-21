@@ -9,10 +9,34 @@ const sourcemaps = require('gulp-sourcemaps');
 const inlineNg2Template = require('gulp-inline-ng2-template');
 const clean = require('gulp-clean');
 const merge = require('merge2');  // Require separate installation
+const Builder = require('systemjs-builder');
+
+/** then bundle */
+gulp.task('bundle', function () {
+    // optional constructor options
+    // sets the baseURL and loads the configuration file
+    var builder = new Builder('', 'systemjs.config.js');
+
+    /*
+     the parameters of the below buildStatic() method are:
+     - your transcompiled application boot file (the one wich would contain the bootstrap(MyApp, [PROVIDERS]) function - in my case 'dist/app/boot.js'
+     - the output (file into which it would output the bundled code)
+     - options {}
+     */
+    return builder
+        .buildStatic('dist/main.js', 'dist/bundle.js', {minify: true, sourceMaps: true})
+        .then(function () {
+            console.log('Build complete');
+        })
+        .catch(function (err) {
+            console.log('Build error');
+            console.log(err);
+        });
+});
 
 gulp.task('clean', function () {
-    const del = require('del');
-    return del('dist/**/*');
+    return gulp.src(['dist/*', 'distributed/*', '!distributed/.npmignore', '!distributed/package.json'], {read: false})
+        .pipe(clean());
 });
 
 gulp.task('ts', ['html', 'scss'], function () {
@@ -23,12 +47,7 @@ gulp.task('ts', ['html', 'scss'], function () {
 
     return merge([
         tsResult.js
-            .pipe(sourcemaps.write(".")).pipe(gulp.dest('dist'))
-            .pipe(inlineNg2Template({
-                base: '/app',
-                useRelativePaths: true,
-                supportNonExistentFiles: false
-            })).pipe(gulp.dest('dist')),
+            .pipe(sourcemaps.write(".")).pipe(gulp.dest('dist')),
         tsResult.dts.pipe(gulp.dest('dist'))
     ]);
 
@@ -57,7 +76,7 @@ gulp.task('assets', function () {
 });
 
 gulp.task('clean.comp', ['ts'], function () {
-    gulp.src(['dist/comp/**/*.html', 'dist/comp/**/*.css'], {read: false})
+    gulp.src(['mia-distributed/comp/**/*.html', 'mia-distributed/comp/**/*.css'], {read: false})
         .pipe(clean());
 });
 
@@ -91,19 +110,8 @@ gulp.task('web', ['build'], function () {
 gulp.task('watch', ['build', 'web'], function () {
     const watch = require('gulp-watch');
     gulp.watch('app/**/*.ts', ['ts']);
-    gulp.watch('app/**/*.css', ['css']);
-    gulp.watch('app/**/*.scss', ['ts']);
-    gulp.watch('app/**/*.html', ['ts']);
-});
-
-gulp.task('test', ['build'], function (done) {
-    const KarmaServer = require('karma').Server;
-    new KarmaServer({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, function () {
-        done();
-    }).start();
+    gulp.watch('app/**/*.scss', ['scss']);
+    gulp.watch('app/**/*.html', ['html']);
 });
 
 gulp.task('deploy', ['bump'], shell.task([
@@ -120,17 +128,29 @@ gulp.task('bump', function () {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('dist.deploy', ['build'], function () {
-    const bump = require('gulp-bump');
-    const stream = gulp.src('dist/package.json')
-        .pipe(bump())
-        .pipe(gulp.dest('dist'));
 
-    stream.on('end', function() {
-        console.info('publish');
-        shell.task('cd dist && npm publish');
+gulp.task('dist.copy', ['build'], function () {
+    gulp.src(['dist/**/*.d.ts', 'dist/**/*.js.map'])
+        .pipe(gulp.dest('distributed'));
+});
+
+gulp.task('dist.inline', ['build'], function () {
+    const stream = gulp.src('dist/**/*.js')
+        .pipe(inlineNg2Template({
+            base: '/app',
+            useRelativePaths: true,
+            supportNonExistentFiles: false
+        }))
+        .pipe(gulp.dest('distributed'));
+
+    stream.on('end', function () {
+        const bump = require('gulp-bump');
+        gulp.src('distributed/package.json')
+            .pipe(bump())
+            .pipe(gulp.dest('distributed'));
     });
 });
 
-gulp.task('build', ['html', 'ts', 'clean.comp', 'scss', 'css', 'assets', 'json']);
+gulp.task('dist.deploy', ['dist.inline', 'dist.copy']);
+gulp.task('build', ['html', 'ts', 'scss', 'css', 'assets', 'json']);
 gulp.task('default', ['build']);
