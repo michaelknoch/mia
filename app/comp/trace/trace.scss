@@ -7,6 +7,12 @@
         bottom: 0;
         background-color: $cyan;
         color: white;
+
+        &.inner {
+            line-height: 30px;
+            padding-left: 5px;
+            white-space: nowrap;
+        }
     }
 
     .trace-line {
