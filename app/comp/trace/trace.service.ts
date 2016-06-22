@@ -11,9 +11,14 @@ export class TraceService {
 
     }
 
-    getData(traceId: String) {
+    getTrace(traceId: String) {
         return this.http.get(Config.BASEPATH + '/traces/' + traceId)
-            .map(res => res.json())
+            .map(res => res.json());
+    }
+
+    getTraces() {
+        return this.http.get(Config.BASEPATH + '/traces')
+            .map(res => res.json());
     }
 
 

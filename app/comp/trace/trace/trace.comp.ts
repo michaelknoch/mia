@@ -28,13 +28,16 @@ export class Trace implements OnInit {
 
     parse(data: any) {
         let nodes = [];
-        nodes.push(this.getEntryPoint(data));
-
+        nodes.push(this.getEntryPoint(data, true, null));
         let calculationData = {
             basis_point: 100 / (nodes[0][0].response.timeCR - nodes[0][0].request.timeCS),
             start: nodes[0][0].request.timeCS,
             end: nodes[0][0].response.timeCR,
         };
+
+        nodes.push(this.getEntryPoint(data, false, calculationData));
+
+
 
         let childs = this.getChilds(nodes[0][0].request.requestId, data, calculationData);
         while (childs.length) {
@@ -50,18 +53,20 @@ export class Trace implements OnInit {
 
     getChilds(id: String, data: any, calculationData: any) {
         let items = [];
+
         for (let item of data) {
             if (item.response.parentId === id) {
-                item.left = (item.request.timeSR - calculationData.start) * calculationData.basis_point + '%';
+                item.left = (item.request.timeCR - calculationData.start) * calculationData.basis_point + '%';
                 //item.right = 100 - ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
                 item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
+                item.name = item.receiver.name;
                 items.push(item);
             }
         }
         return items;
     }
 
-    getEntryPoint(data: any) {
+    getEntryPoint(data: any, index: boolean, calculationData: any) {
         for (let item of data) {
             if (item.request.requestId === item.request.traceId) {
 
@@ -70,9 +75,20 @@ export class Trace implements OnInit {
                     item.request.timeCS = item.request.timeSR;
                     item.response.timeCR = item.response.timeSS;
                 }
-                item.left = 0;
-                item.right = 0;
-                item.width = '100%';
+                if (index) {
+                    debugger;
+                    item.left = 0;
+                    item.right = 0;
+                    item.width = '100%';
+                    item.name = item.sender.name;
+                } else {
+                    debugger;
+                    item.left = (item.request.timeSR - calculationData.start) * calculationData.basis_point + '%';
+                    //item.right = 100 - ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
+                    item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
+                    item.name = item.receiver.name;
+                }
+
                 return [item];
             }
         }

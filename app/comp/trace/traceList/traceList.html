@@ -1,0 +1,3 @@
+<div *ngFor="let trace of traces" class="trace pointer" [routerLink]="['Trace', {traceId:trace.request.traceId}]">
+    <h4>{{trace.receiver.name}} {{trace.request.name}} {{trace.request.duration.low}}ms</h4>
+</div>
