@@ -11,10 +11,7 @@ import {Router, RouteParams} from '@angular/router-deprecated';
 
 export class Trace implements OnInit {
 
-    private nodes = [[{left: '0%', right: '0%'}], [{left: '10%', right: '80%'}, {
-        left: '25%',
-        right: '40%'
-    }], [{left: '10%', right: '50%'}]];
+    private nodes = [];
 
     constructor(private _traceService: TraceService, private params: RouteParams) {
     }
@@ -24,7 +21,8 @@ export class Trace implements OnInit {
         this._traceService.getData(this.params.get('traceId')).subscribe(
             data => {
                 console.info('data:', data);
-                //this.nodes = this.parse(data).nodes;
+                this.nodes = this.parse(data).nodes;
+                console.info(this.nodes);
             })
     }
 
@@ -33,12 +31,12 @@ export class Trace implements OnInit {
         nodes.push(this.getEntryPoint(data));
 
         let calculationData = {
-            basis_point: 100 / (nodes[0].response.timeSS - nodes[0].request.timeSR),
-            start: nodes[0].request.timeSR,
-            end: nodes[0].response.timeSS,
+            basis_point: 100 / (nodes[0][0].response.timeCR - nodes[0][0].request.timeCS),
+            start: nodes[0][0].request.timeCS,
+            end: nodes[0][0].response.timeCR,
         };
 
-        let childs = this.getChilds(nodes[0].request.requestId, data, calculationData);
+        let childs = this.getChilds(nodes[0][0].request.requestId, data, calculationData);
         while (childs.length) {
             nodes.push(childs);
             childs = this.getChilds(childs[0].request.requestId, data, calculationData)
@@ -54,8 +52,9 @@ export class Trace implements OnInit {
         let items = [];
         for (let item of data) {
             if (item.response.parentId === id) {
-                item.left = (item.request.timeCS - calculationData.start) * calculationData.basis_point + '%';
-                item.right = 100 - ((calculationData.end - item.request.CR) * calculationData.basis_point) + '%';
+                item.left = (item.request.timeSR - calculationData.start) * calculationData.basis_point + '%';
+                //item.right = 100 - ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
+                item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
                 items.push(item);
             }
         }
@@ -66,15 +65,17 @@ export class Trace implements OnInit {
         for (let item of data) {
             if (item.request.requestId === item.request.traceId) {
 
-                if (!item.request.timeSR && !item.response.timeSS) {
-                    item.request.timeSR = item.request.timeCS;
-                    item.response.timeSS = item.request.timeCR;
+                if (!item.request.timeCS && !item.response.timeCR) {
+                    console.info('edgecase');
+                    item.request.timeCS = item.request.timeSR;
+                    item.response.timeCR = item.response.timeSS;
                 }
                 item.left = 0;
                 item.right = 0;
-                return item;
+                item.width = '100%';
+                return [item];
             }
         }
-        return null;
+        return [];
     }
 }
