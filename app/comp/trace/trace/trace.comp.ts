@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {TraceService} from "./trace.service";
+import {TraceService} from "../trace.service";
 import {Router, RouteParams} from '@angular/router-deprecated';
 
 @Component({
@@ -18,7 +18,7 @@ export class Trace implements OnInit {
 
     ngOnInit() {
         console.info(this.params.get('traceId'));
-        this._traceService.getData(this.params.get('traceId')).subscribe(
+        this._traceService.getTrace(this.params.get('traceId')).subscribe(
             data => {
                 console.info('data:', data);
                 this.nodes = this.parse(data).nodes;
@@ -28,16 +28,13 @@ export class Trace implements OnInit {
 
     parse(data: any) {
         let nodes = [];
-        nodes.push(this.getEntryPoint(data, true, null));
+        nodes.push(this.getEntryPoint(data));
+
         let calculationData = {
             basis_point: 100 / (nodes[0][0].response.timeCR - nodes[0][0].request.timeCS),
             start: nodes[0][0].request.timeCS,
             end: nodes[0][0].response.timeCR,
         };
-
-        nodes.push(this.getEntryPoint(data, false, calculationData));
-
-
 
         let childs = this.getChilds(nodes[0][0].request.requestId, data, calculationData);
         while (childs.length) {
@@ -56,7 +53,7 @@ export class Trace implements OnInit {
 
         for (let item of data) {
             if (item.response.parentId === id) {
-                item.left = (item.request.timeCR - calculationData.start) * calculationData.basis_point + '%';
+                item.left = (item.request.timeCS - calculationData.start) * calculationData.basis_point + '%';
                 //item.right = 100 - ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
                 item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
                 item.name = item.receiver.name;
@@ -66,7 +63,7 @@ export class Trace implements OnInit {
         return items;
     }
 
-    getEntryPoint(data: any, index: boolean, calculationData: any) {
+    getEntryPoint(data: any) {
         for (let item of data) {
             if (item.request.requestId === item.request.traceId) {
 
@@ -75,19 +72,11 @@ export class Trace implements OnInit {
                     item.request.timeCS = item.request.timeSR;
                     item.response.timeCR = item.response.timeSS;
                 }
-                if (index) {
-                    debugger;
-                    item.left = 0;
-                    item.right = 0;
-                    item.width = '100%';
-                    item.name = item.sender.name;
-                } else {
-                    debugger;
-                    item.left = (item.request.timeSR - calculationData.start) * calculationData.basis_point + '%';
-                    //item.right = 100 - ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
-                    item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
-                    item.name = item.receiver.name;
-                }
+
+                item.left = 0;
+                item.right = 0;
+                item.width = '100%';
+                item.name = item.sender.name;
 
                 return [item];
             }
