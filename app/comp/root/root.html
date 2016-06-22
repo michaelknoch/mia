@@ -9,11 +9,13 @@
 
                     <div class="user-wrapper">
                         <div class="user">
-                            <img class="thumb" src="https://scontent-fra3-1.xx.fbcdn.net/v/t1.0-1/p160x160/1474558_1207958742552423_6007711756409685465_n.jpg?oh=0eee20ff133ccba7335bcf6a9040fb74&oe=580A1AD8">
+                            <img class="thumb"
+                                 src="https://scontent-fra3-1.xx.fbcdn.net/v/t1.0-1/p160x160/1474558_1207958742552423_6007711756409685465_n.jpg?oh=0eee20ff133ccba7335bcf6a9040fb74&oe=580A1AD8">
                             <h5 class="name">{{username}} on {{systemname}}</h5>
 
                             <div class="inner-menu">
-                                <li (click)="switchSystem()"><i class="fa fa-th-large"></i><span>Switch System</span></li>
+                                <li (click)="switchSystem()"><i class="fa fa-th-large"></i><span>Switch System</span>
+                                </li>
                                 <li (click)="logout()"><i class="fa fa-sign-out"></i><span>Logout</span></li>
                             </div>
 
@@ -49,12 +51,11 @@
                     </li>
 
                     <li>
-                        <a [routerLink]="['Traces']">
+                        <a [routerLink]="['TraceList']">
                             <i class="fa fa-blind" aria-hidden="true"></i>
                             <span>Traces</span>
                         </a>
                     </li>
-
 
                     <li>
                         <a [routerLink]="['Feed']">
