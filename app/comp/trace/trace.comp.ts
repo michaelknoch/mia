@@ -11,6 +11,8 @@ import {Router, RouteParams} from '@angular/router-deprecated';
 
 export class Trace implements OnInit {
 
+    private nodes = [[{left: '0%', right: '0%'}], [{left: '10%', right: '80%'}, {left: '25%', right: '40%'}], [{left: '10%', right: '50%'}]];
+
     constructor(private _traceService: TraceService, private params: RouteParams) {
     }
 
@@ -19,25 +21,24 @@ export class Trace implements OnInit {
         this._traceService.getData(this.params.get('traceId')).subscribe(
             data => {
                 console.info('data:', data);
-                console.info(this.parse(data));
+                //this.nodes = this.parse(data).nodes;
             })
     }
 
     parse(data: any) {
-        let entryPoint = this.getEntryPoint(data);
-        let childNodes = [];
+        let nodes = [];
+        nodes.push(this.getEntryPoint(data));
 
-        let childs = this.getChilds(entryPoint.request.requestId, data);
+        let childs = this.getChilds(nodes[0].request.requestId, data);
         while (childs.length) {
-            childNodes.push(childs);
+            nodes.push(childs);
             childs = this.getChilds(childs[0].request.requestId, data)
         }
 
         return {
-            entry: entryPoint,
-            start: entryPoint.request.timeSR,
-            end: entryPoint.response.timeSS,
-            child: childNodes
+            start: nodes[0].request.timeSR,
+            end: nodes[0].response.timeSS,
+            nodes: nodes
         }
     }
 

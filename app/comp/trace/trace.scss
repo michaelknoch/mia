@@ -1,1 +1,23 @@
-// Gantt Component Styles
+@import '../../colors';
+
+.trace-wrapper {
+    .trace-item {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background-color: $cyan;
+        color: white;
+    }
+
+    .trace-line {
+        height: 30px;
+        background-color: rgba(0, 0, 0, 0.15);
+        margin-bottom: 5px;
+        &:first-child {
+            .trace-item {
+                background-color: $blue;
+            }
+        }
+    }
+
+}
