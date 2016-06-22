@@ -11,7 +11,10 @@ import {Router, RouteParams} from '@angular/router-deprecated';
 
 export class Trace implements OnInit {
 
-    private nodes = [[{left: '0%', right: '0%'}], [{left: '10%', right: '80%'}, {left: '25%', right: '40%'}], [{left: '10%', right: '50%'}]];
+    private nodes = [[{left: '0%', right: '0%'}], [{left: '10%', right: '80%'}, {
+        left: '25%',
+        right: '40%'
+    }], [{left: '10%', right: '50%'}]];
 
     constructor(private _traceService: TraceService, private params: RouteParams) {
     }
@@ -29,25 +32,30 @@ export class Trace implements OnInit {
         let nodes = [];
         nodes.push(this.getEntryPoint(data));
 
-        let childs = this.getChilds(nodes[0].request.requestId, data);
+        let calculationData = {
+            basis_point: 100 / (nodes[0].response.timeSS - nodes[0].request.timeSR),
+            start: nodes[0].request.timeSR,
+            end: nodes[0].response.timeSS,
+        };
+
+        let childs = this.getChilds(nodes[0].request.requestId, data, calculationData);
         while (childs.length) {
             nodes.push(childs);
-            childs = this.getChilds(childs[0].request.requestId, data)
+            childs = this.getChilds(childs[0].request.requestId, data, calculationData)
         }
 
         return {
-            start: nodes[0].request.timeSR,
-            end: nodes[0].response.timeSS,
+            calc: calculationData,
             nodes: nodes
         }
     }
 
-    getChilds(id: String, data: any) {
+    getChilds(id: String, data: any, calculationData: any) {
         let items = [];
         for (let item of data) {
             if (item.response.parentId === id) {
-                item.left = 0;
-                item.right = 0;
+                item.left = (item.request.timeCS - calculationData.start) * calculationData.basis_point + '%';
+                item.right = 100 - ((calculationData.end - item.request.CR) * calculationData.basis_point) + '%';
                 items.push(item);
             }
         }
