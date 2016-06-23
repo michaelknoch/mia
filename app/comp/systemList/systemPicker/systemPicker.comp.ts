@@ -33,9 +33,8 @@ export class SystemPicker implements OnInit {
     }
 
     selectSystem(system) {
-        this._systemService.selectSystem(system._id).subscribe(data => {
+        this._systemService.selectSystem(system._id, system.name).subscribe(data => {
             console.info('select company', data);
-            this._userService.setSystem({name: system.name, id: data.newSystemId});
             this.update.emit({name: system.name, id: data.newSystemId})
         });
     }
