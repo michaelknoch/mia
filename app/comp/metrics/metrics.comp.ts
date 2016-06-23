@@ -93,8 +93,8 @@ export class Metrics {
             for (let item of data) {
 
                 labels.push(this.dateFormat(item.time));
-                meanValues.push(item.mean);
-                medianValues.push(item.median);
+                meanValues.push(item.value_mean);
+                medianValues.push(item.value_median);
 
             }
 
@@ -104,8 +104,8 @@ export class Metrics {
 
         var result = {
             data: [
-                {data: meanValues, label: 'mean'},
-                {data: medianValues, label: 'median'}
+                {data: meanValues, label: 'Average Load'},
+                {data: medianValues, label: 'Median Load'}
             ],
             labels: labels
         };
@@ -126,9 +126,9 @@ export class Metrics {
 
             for (var item of data) {
                 labels.push(this.dateFormat(item.time));
-                heapTotalvalues.push(item.heapTotal);
-                heapUsedValues.push(item.heapUsed);
-                rssValues.push(item.rss);
+                heapTotalvalues.push(item.heapTotal_mean);
+                heapUsedValues.push(item.heapUsed_mean);
+                rssValues.push(item.rss_mean);
 
             }
 
@@ -138,9 +138,9 @@ export class Metrics {
 
         var result = {
             data: [
-                {data: heapTotalvalues, label: 'heapTotal'},
-                {data: heapUsedValues, label: 'heapUsed'},
-                {data: rssValues, label: 'rss'}
+                {data: heapTotalvalues, label: 'Average Total Heap'},
+                {data: heapUsedValues, label: 'Average Used Heap'},
+                {data: rssValues, label: 'Resident Set Size'}
             ],
             labels: labels
         };
