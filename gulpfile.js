@@ -75,6 +75,10 @@ gulp.task('assets', function () {
     return gulp.src('app/assets/**/*').pipe(gulp.dest('dist/assets'));
 });
 
+gulp.task('font', function () {
+    return gulp.src('app/font/**/*').pipe(gulp.dest('dist/font'));
+});
+
 gulp.task('clean.comp', ['ts'], function () {
     gulp.src(['mia-distributed/comp/**/*.html', 'mia-distributed/comp/**/*.css'], {read: false})
         .pipe(clean());
@@ -152,5 +156,5 @@ gulp.task('dist.inline', ['build'], function () {
 });
 
 gulp.task('dist.deploy', ['dist.inline', 'dist.copy']);
-gulp.task('build', ['html', 'ts', 'scss', 'css', 'assets', 'json']);
+gulp.task('build', ['html', 'ts', 'scss', 'css', 'assets', 'json', 'font']);
 gulp.task('default', ['build']);
