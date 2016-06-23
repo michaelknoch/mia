@@ -1,6 +1,5 @@
-
 <div class="row costumer-wrapper">
-    <div class="col-xs-12 col-sm-3 costumer" *ngFor="let item of applications; let i = index">
+    <div class="col-xs-12 col-sm-4 col-md-3 costumer" *ngFor="let item of applications; let i = index">
         <div [ngStyle]="{'border-color': item.color}" class="inner-wrapper">
             <div class="color" [ngStyle]="{'background-color': item.color}"></div>
             <div class="content">
@@ -16,8 +15,19 @@
         </div>
     </div>
 
-    <div *ngIf="!applications.length" class="placeholder col-xs-12 col-sm-3">
+    <div *ngIf="applications.length" (click)="_newApplicationModal.show()" class="col-xs-12 col-md-3 col-sm-4 costumer create pointer">
+        <div class="inner-wrapper">
+            <div class="content">
+                <h3>Create New Application</h3>
+            </div>
+        </div>
+    </div>
+
+    <div (click)="_newApplicationModal.show()" *ngIf="!applications.length"
+         class="pointer placeholder col-xs-12 col-sm-3">
         <h4>There are no applications for your system, create one</h4>
     </div>
 </div>
 
+
+<new-application (update)="update($event)"></new-application>
