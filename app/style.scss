@@ -1,3 +1,9 @@
+@import 'font/fontface';
+
+@include font-face('OpenSans-Regular', 'font/OpenSans-Regular-webfont');
+@include font-face('OpenSans-Semibold', 'font/OpenSans-Semibold-webfont');
+@include font-face('OpenSans-Light', 'font/OpenSans-Light-webfont');
+
 @import 'colors';
 
 *:focus {
@@ -11,10 +17,7 @@ ul {
 }
 
 .container-fluid {
-    background-color: #F4F4F4;
     min-height: 100vh;
-    color: white;
-
     &.asphalt {
         background-color: $asphalt;
     }
@@ -88,16 +91,12 @@ ul {
 }
 
 a {
-    color: #FFFFFF;
+    color: $darkgrey;
     text-decoration: none;
 }
 
 .content a {
     color: $darkgrey;
-}
-
-h2, h3 {
-    color: white;
 }
 
 .chart-height {
@@ -111,6 +110,10 @@ h2, h3 {
 
 .space-top {
     margin-top: 50px;
+}
+
+.space-bottom {
+    margin-bottom: 50px;
 }
 
 .spinner {
@@ -180,7 +183,9 @@ h2, h3 {
 }
 
 body {
-    background-color: $asphalt;
+    background-color: whitesmoke;
+    font-family: 'OpenSans-Light';
+    background-color: rgba(38, 38, 38, 0.4);
 }
 
 .loading {
@@ -192,4 +197,12 @@ body {
         padding-left: 29px;
         text-transform: uppercase;
     }
+}
+
+h2 {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: 'OpenSans-Semibold';
+    font-size: 40px;
+    margin-bottom: 30px;
 }
