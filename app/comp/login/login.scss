@@ -3,7 +3,6 @@
 .login-container {
     min-height: 100vh;
     z-index: 10;
-    background: none;
 }
 
 .background-wrapper {
@@ -27,6 +26,11 @@
         opacity: 0;
         -webkit-filter: grayscale(50%);
         filter: grayscale(50%);
+    }
+    50% {
+        opacity: 0.3;
+        -webkit-filter: grayscale(20%);
+        filter: grayscale(20%);
     }
     100% {
         opacity: 0.5;
@@ -56,10 +60,11 @@
     animation-name: fadein;
     animation-duration: 1.3s;
     animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
 }
 
 @keyframes fadein {
-    0%, 30% {
+    0%, 20% {
         top: -200%;
         opacity: 0;
     }
