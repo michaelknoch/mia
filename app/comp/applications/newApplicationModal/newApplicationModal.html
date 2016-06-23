@@ -1,4 +1,5 @@
-<div [ngClass]="{visible: visible}" class="overlay">
+<div class="full-wrapper" [ngClass]="{visible: visible}">
+    <div class="overlay" (click)="hide()"></div>
     <div class="modal-wrapper">
         <div class="row">
             <div class="col-xs-12">
