@@ -26,7 +26,7 @@ export class NewSystem {
             data => {
                 console.info('create company success');
                 this._userService.setSystem(data.newSystemId);
-                this._router.navigate(['Root', {systemId: data.newSystemId}])
+                this._router.navigate(['Root'])
             },
             err => this.err(err)
         )
