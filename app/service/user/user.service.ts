@@ -26,13 +26,22 @@ export class UserService {
                 mail: mail,
                 password: password
             }))
-            .map(res => res.json())
+            .map((res) => {
+                let data = res.json();
+                this.currentUser.name = data.name;
+                this.currentSystem.id = data._id;
+                return data;
+            })
     }
 
     public logout() {
         this.currentUser.id = '';
         return this.http.get(Config.BASEPATH + '/users/logout')
-            .map(res => res.json())
+            .map(res => {
+                this.currentUser.name = '';
+                this.currentSystem.id = '';
+                return res.json()
+            })
     }
 
     public register(mail: String, password: String, name: String, surname: String) {
@@ -42,7 +51,12 @@ export class UserService {
                 name: name,
                 surname: surname
             }))
-            .map(res => res.json())
+            .map(res => {
+                let data = res.json();
+                this.currentUser.name = data.name;
+                this.currentSystem.id = data._id;
+                return data;
+            })
     }
 
     public getLocalMe() {
