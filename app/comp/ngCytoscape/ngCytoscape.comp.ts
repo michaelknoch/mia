@@ -41,7 +41,7 @@ export class NgCytoscape implements OnChanges {
                     'content': 'data(name)',
                     'text-valign': 'center',
                     'background-color': 'data(faveColor)',
-                    'color': '#fff'
+                    'color': 'black'
                 })
                 .selector(':selected')
                 .css({
