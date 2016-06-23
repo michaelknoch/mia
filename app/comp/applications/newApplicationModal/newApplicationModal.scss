@@ -1,0 +1,30 @@
+.modal-wrapper {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    background-color: whitesmoke;
+    z-index: 100;
+    border: 3px solid black;
+    padding: 15px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
