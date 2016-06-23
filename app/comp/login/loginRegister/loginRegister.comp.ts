@@ -44,7 +44,6 @@ export class LoginRegister {
     }
 
     private emit(data) {
-        this._userService.setUser({name: data.name, id: data._id});
         this.loginEvent.emit({
             name: data.name,
             id: data._id,
