@@ -12,7 +12,7 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/dist";
     styleUrls: ['applicationMetaPicker.css'],
 })
 
-export class ApplicationMetaPicker {
+export class ApplicationMetaPicker implements OnInit {
 
     @Input() public hideApplication: boolean = false;
     @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
@@ -38,7 +38,9 @@ export class ApplicationMetaPicker {
     }
 
     constructor(private _ApplicationMetaPickerService: ApplicationMetaPickerService) {
+    }
 
+    ngOnInit() {
         this._ApplicationMetaPickerService.getApplications().subscribe(data => {
 
             let appToSelect: string = '';
