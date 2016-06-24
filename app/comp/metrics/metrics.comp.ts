@@ -42,6 +42,7 @@ export class Metrics {
         chartData: [{data: [], label: 'Series A'}],
         chartLabels: [],
         chartOptions: {
+            scaleShowVerticalLines: false,
             animation: false,
             responsive: true,
             scales: {
@@ -61,7 +62,6 @@ export class Metrics {
         _ApplicationService.getApplications().subscribe(data => {
             this.applications = data;
             console.info(this.applications);
-
             this.getData(this.applications[0]._id, undefined)
         });
 
@@ -151,7 +151,7 @@ export class Metrics {
 
     dateFormat(isoDate: string) {
         let date = new Date(isoDate);
-        return date.getHours() + ':' + date.getMinutes();
+        return date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     }
 
     public metaUpdate(e: any) {
