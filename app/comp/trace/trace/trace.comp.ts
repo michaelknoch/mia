@@ -42,12 +42,11 @@ export class Trace implements OnInit {
             name: entryPoint[0].receiver.name,
             left: (entryPoint[0].request.timeSR - calculationData.start) * calculationData.basis_point + '%',
             right: ((calculationData.end - entryPoint[0].response.timeSS) * calculationData.basis_point) + '%',
-            request: {duration: {low: entryPoint[0].response.duration.low}}
+            duration: entryPoint[0].request.duration.low
         }]);
 
         let childs = this.getChilds(entryPoint, data, calculationData);
         while (childs.length) {
-            debugger;
             nodes.push(childs);
             childs = this.getChilds(childs, data, calculationData)
         }
@@ -62,7 +61,6 @@ export class Trace implements OnInit {
         let items = [];
 
         for (let child of childs) {
-            debugger;
             let id = child.request.requestId
 
             for (let item of data) {
@@ -71,6 +69,7 @@ export class Trace implements OnInit {
                     item.right = ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
                     //item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
                     item.name = item.receiver.name;
+                    item.duration = item.request.duration.low;
                     items.push(item);
                 }
             }
@@ -92,6 +91,7 @@ export class Trace implements OnInit {
                 item.right = 0;
                 item.width = '100%';
                 item.name = item.sender.name;
+                item.duration = item.response.duration.low;
 
                 return [item];
             }
