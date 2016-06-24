@@ -1,5 +1,6 @@
 import {Component, Output, EventEmitter} from '@angular/core'
 import {ApplicationService} from "../../../service/application/application.service";
+import {AbstractModal} from "../../../abstractionModel/abstractModal";
 
 @Component({
     moduleId: module.id,
@@ -8,29 +9,20 @@ import {ApplicationService} from "../../../service/application/application.servi
     styleUrls: ['newApplicationModal.css'],
 })
 
-export class NewApplicationModal {
+export class NewApplicationModal extends AbstractModal {
 
-    private visible: boolean = false;
     private name: String;
     private description: String;
-    @Output() public update: EventEmitter<any> = new EventEmitter();
 
     constructor(private _ApplicationService: ApplicationService) {
-    }
-
-    public show() {
-        this.visible = true;
-    }
-
-    public hide() {
-        this.visible = false;
+        super();
     }
 
     newApplication() {
         this._ApplicationService.createApplication(this.name, this.description).subscribe(
             data => {
                 console.info('create company success');
-                this.visible = false;
+                this.hide();
                 this.update.emit(data);
             },
             err => console.info(err)

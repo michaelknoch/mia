@@ -1,6 +1,7 @@
 <div class="full-wrapper" [ngClass]="{visible: visible}">
     <div class="overlay" (click)="hide()"></div>
     <div class="modal-wrapper">
+        <i (click)="hide()" class="fa fa-times close pointer" aria-hidden="true"></i>
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="">New Application</h2>
