@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
-import {Dashboard} from '../dashboard/comp';
+import {Dashboard} from '../dashboard/dashboard.comp';
 import {Settings} from '../settings/comp';
 import {Feed} from "../feed/feed.comp";
 import {DataService} from "../../service/data.service";
