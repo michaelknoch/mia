@@ -15,18 +15,11 @@ import {NewSystemModal} from "./newSystemModal/newSystemModal.comp";
 })
 
 export class SystemList {
-
-
-
+    
     constructor(private _router: Router) {
     }
 
     handleSystemPick(system) {
-        this._router.navigate(['Root', {systemId: system.id}])
+        this._router.navigate(['Root'])
     }
-
-    private update(data: any) {
-
-    }
-
 }
