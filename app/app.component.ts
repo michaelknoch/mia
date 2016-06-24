@@ -3,7 +3,6 @@ import {Router, RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from '@angular
 import {Login} from './comp/login/login.comp';
 import {Root} from './comp/root/root.comp';
 import {SystemList} from "./comp/systemList/systemList.comp";
-import {NewSystem} from "./comp/newSystem/newSystem.comp";
 
 @Component({
     moduleId: module.id,
@@ -22,11 +21,6 @@ import {NewSystem} from "./comp/newSystem/newSystem.comp";
         path: '/system-list',
         component: SystemList,
         name: 'System-list'
-    },
-    {
-        path: '/new-system',
-        component: NewSystem,
-        name: 'New-system'
     },
     {
         path: '/root/...',
