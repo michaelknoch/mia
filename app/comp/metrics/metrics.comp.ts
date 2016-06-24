@@ -93,8 +93,8 @@ export class Metrics {
             for (let item of data) {
 
                 labels.push(this.dateFormat(item.time));
-                meanValues.push(item.value_mean);
-                medianValues.push(item.value_median);
+                meanValues.push(item.value_mean.toFixed(3));
+                medianValues.push(item.value_median.toFixed(3));
 
             }
 
@@ -126,9 +126,9 @@ export class Metrics {
 
             for (var item of data) {
                 labels.push(this.dateFormat(item.time));
-                heapTotalvalues.push(item.heapTotal_mean);
-                heapUsedValues.push(item.heapUsed_mean);
-                rssValues.push(item.rss_mean);
+                heapTotalvalues.push(item.heapTotal_mean.toFixed(3));
+                heapUsedValues.push(item.heapUsed_mean.toFixed(3));
+                rssValues.push(item.rss_mean.toFixed(3));
 
             }
 
