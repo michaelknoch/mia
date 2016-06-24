@@ -28,7 +28,9 @@ export class Trace implements OnInit {
 
     parse(data: any) {
         let nodes = [];
-        nodes.push(this.getEntryPoint(data));
+
+        let entryPoint = this.getEntryPoint(data)
+        nodes.push(entryPoint);
 
         let calculationData = {
             basis_point: 100 / (nodes[0][0].response.timeCR - nodes[0][0].request.timeCS),
@@ -36,10 +38,18 @@ export class Trace implements OnInit {
             end: nodes[0][0].response.timeCR,
         };
 
-        let childs = this.getChilds(nodes[0][0].request.requestId, data, calculationData);
+        nodes.push([{
+            name: entryPoint[0].receiver.name,
+            left: (entryPoint[0].request.timeSR - calculationData.start) * calculationData.basis_point + '%',
+            right: ((calculationData.end - entryPoint[0].response.timeSS) * calculationData.basis_point) + '%',
+            request: {duration: {low: entryPoint[0].response.duration.low}}
+        }]);
+
+        let childs = this.getChilds(entryPoint, data, calculationData);
         while (childs.length) {
+            debugger;
             nodes.push(childs);
-            childs = this.getChilds(childs[0].request.requestId, data, calculationData)
+            childs = this.getChilds(childs, data, calculationData)
         }
 
         return {
@@ -48,16 +58,21 @@ export class Trace implements OnInit {
         }
     }
 
-    getChilds(id: String, data: any, calculationData: any) {
+    getChilds(childs: any, data: any, calculationData: any) {
         let items = [];
 
-        for (let item of data) {
-            if (item.response.parentId === id) {
-                item.left = (item.request.timeCS - calculationData.start) * calculationData.basis_point + '%';
-                //item.right = 100 - ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
-                item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
-                item.name = item.receiver.name;
-                items.push(item);
+        for (let child of childs) {
+            debugger;
+            let id = child.request.requestId
+
+            for (let item of data) {
+                if (item.response.parentId === id) {
+                    item.left = (item.request.timeCS - calculationData.start) * calculationData.basis_point + '%';
+                    item.right = ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
+                    //item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
+                    item.name = item.receiver.name;
+                    items.push(item);
+                }
             }
         }
         return items;
