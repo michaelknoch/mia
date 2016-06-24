@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="appCount" class="row">
     <div class="col-xs-12 col-sm-10 dashboard-text space-top">
         <h2 *ngIf="systemName" class="text"><span class="">{{systemName}}</span> is running <span class="yellow">{{appCount}}</span>
             Applications and has an uptime of <span class="green">2 Days and 3 Hours.</span>
@@ -6,6 +6,11 @@
         </h2>
         <h2 *ngIf="apps" class="text"><span class="">{{apps[0].name}}</span> crashed <span
                 class="red">1 hour ago</span></h2>
+    </div>
+</div>
 
+<div *ngIf="!appCount" class="row">
+    <div class="col-xs-12 col-sm-10 dashboard-text space-top">
+        <h2 *ngIf="systemName" class="text">{{systemName}} has no Applications</h2>
     </div>
 </div>

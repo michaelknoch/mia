@@ -1,10 +1,10 @@
-<div class="container-fluid asphalt">
-
-    <div class="container">
-
+<div class="full-wrapper" [ngClass]="{visible: visible}">
+    <div class="overlay" (click)="hide()"></div>
+    <div class="modal-wrapper">
+        <i (click)="hide()" class="fa fa-times close pointer" aria-hidden="true"></i>
         <div class="row">
             <h2 class="col-xs-12">New System</h2>
-            <div class="form-wrapper col-sm-4">
+            <div class="form-wrapper col-sm-8">
                 <input [(ngModel)]="name" type="text" class="form-control" placeholder="Name"
                        aria-describedby="basic-addon1">
 
@@ -16,5 +16,4 @@
             </div>
         </div>
     </div>
-
 </div>

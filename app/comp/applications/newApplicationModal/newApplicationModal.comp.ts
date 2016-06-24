@@ -5,8 +5,7 @@ import {AbstractModal} from "../../../abstractionModel/abstractModal";
 @Component({
     moduleId: module.id,
     selector: 'new-application',
-    templateUrl: 'newApplicationModal.html',
-    styleUrls: ['newApplicationModal.css'],
+    templateUrl: 'newApplicationModal.html'
 })
 
 export class NewApplicationModal extends AbstractModal {

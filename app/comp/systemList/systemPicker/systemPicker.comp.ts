@@ -1,12 +1,14 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core'
+import {Component, OnInit, Output, EventEmitter, ViewChild} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {SystemService} from "../../../service/system/system.service";
 import {DataService} from "../../../service/data.service";
 import {UserService} from "../../../service/user/user.service";
+import {NewSystemModal} from "../newSystemModal/newSystemModal.comp";
 
 @Component({
     moduleId: module.id,
     selector: 'system-picker',
+    directives: [NewSystemModal],
     templateUrl: 'systemPicker.html',
     styleUrls: ['systemPicker.css'],
 })
@@ -15,6 +17,8 @@ export class SystemPicker implements OnInit {
 
     private systems;
     private currentUserName;
+
+    @ViewChild(NewSystemModal) _newSystemModal;
     @Output() public update: EventEmitter<any> = new EventEmitter();
 
     ngOnInit() {
@@ -23,7 +27,11 @@ export class SystemPicker implements OnInit {
 
     constructor(private _systemService: SystemService, private _userService: UserService) {
 
-        _systemService.getSystems().subscribe(
+        this.getData();
+    }
+
+    private getData() {
+        this._systemService.getSystems().subscribe(
             data => {
                 this.systems = data;
                 console.info(data);

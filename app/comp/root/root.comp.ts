@@ -5,7 +5,6 @@ import {Settings} from '../settings/comp';
 import {Feed} from "../feed/feed.comp";
 import {DataService} from "../../service/data.service";
 import {Applications} from "../applications/applications.comp";
-import {NewApplication} from "../newApplication/newApplication.comp";
 import {Metrics} from "../metrics/metrics.comp";
 import {Graph} from "../graph/graph.comp";
 import {UserService} from "../../service/user/user.service";
@@ -22,8 +21,7 @@ import {TraceList} from "../trace/traceList/traceList.comp";
 
 @RouteConfig([
     {path: '/dashboard', component: Dashboard, name: 'Dashboard', useAsDefault: true},
-    {path: '/applications', component: Applications, name: 'Applications',},
-    {path: '/new-application', component: NewApplication, name: 'New-application',},
+    {path: '/applications', component: Applications, name: 'Applications'},
     {path: '/feed', component: Feed, name: 'Feed'},
     {path: '/settings', component: Settings, name: 'Settings'},
     {path: '/metrics', component: Metrics, name: 'Metrics'},

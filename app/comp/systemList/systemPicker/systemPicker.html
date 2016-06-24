@@ -13,5 +13,19 @@
             </div>
         </div>
     </div>
+
+    <div (click)="_newSystemModal.show()" class="col-xs-12 col-sm-3 company create">
+        <div class="inner-wrapper">
+            <div class="color">
+                <div class="content">
+                    <h3>Create New System</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
+
+<new-system (update)="getData()"></new-system>
 

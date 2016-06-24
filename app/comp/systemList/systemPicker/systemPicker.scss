@@ -1,8 +1,5 @@
 @import '../../../colors';
 
-.container-fluid {
-    background-color: $asphalt;
-}
 
 .system-wrapper {
     padding-top: 20vh;
@@ -30,10 +27,10 @@
 
     .inner-wrapper {
         padding: 15px;
-        background-color: white;
+        background-color: whitesmoke;
         border-left: 5px solid #446CB3;
         background-size: cover;
-        height: 40px;
+        height: 100px;
         position: relative;
         color: black;
 
@@ -43,7 +40,6 @@
             bottom: 0;
             right: 0;
             position: absolute;
-            opacity: 0.3;
         }
     }
 
@@ -55,4 +51,8 @@
         margin-top: 5px;
     }
 
+}
+
+.company.create .color {
+    background-color: rgba(68, 108, 179, 0.3);
 }
