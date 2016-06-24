@@ -1,13 +1,11 @@
 <div class="row">
-    <div class="col-md-6 chart-height">
-        <base-chart class="chart"
-                    [datasets]="lineChartData"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColours"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></base-chart>
+    <div class="col-xs-12 col-sm-10 dashboard-text space-top">
+        <h2 *ngIf="systemName" class="text"><span class="">{{systemName}}</span> is running <span class="yellow">{{appCount}}</span>
+            Applications and has an uptime of <span class="green">2 Days and 3 Hours.</span>
+            <br>current all-time uptime is 2 Weeks.
+        </h2>
+        <h2 *ngIf="apps" class="text"><span class="">{{apps[0].name}}</span> crashed <span
+                class="red">1 hour ago</span></h2>
+
     </div>
 </div>
