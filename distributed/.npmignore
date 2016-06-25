@@ -3,4 +3,5 @@
 !/assets/
 !/comp/
 !/service/
+!/abstractionModel/
 !app.config.*
