@@ -5,7 +5,7 @@
 @include font-face('OpenSans-Light', 'font/OpenSans-Light-webfont');
 
 @import 'colors';
-@import 'modal';
+@import 'shared';
 
 *:focus {
     outline: none !important;
