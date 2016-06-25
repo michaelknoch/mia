@@ -118,11 +118,11 @@ gulp.task('watch', ['build', 'web'], function () {
     gulp.watch('app/**/*.html', ['html']);
 });
 
-gulp.task('deploy', ['bump'], shell.task([
-    'rm -rf Locator-darwin-x64',
-    './node_modules/.bin/electron-packager . Locator --platform=darwin --arch=x64 --ignore "node_modules/remap-istanbul" --ignore "node_modules/gulp-*" --ignore "node_modules/http-server" --ignore "node_modules/karma-*" --ignore "node_modules/electron-*" --ignore "node_modules/jasmine-*" --ignore "node_modules/lite-server" --overwrite',
-    'codesign --deep --force --verbose --sign ' + process.env.identity + ' Locator-darwin-x64/Locator.app',
-    './node_modules/.bin/electron-release --app Locator-darwin-x64/Locator.app --token ' + process.env.token + ' --repo michaelknoch/mia'
+gulp.task('deploy', ['build', 'bump'], shell.task([
+    'rm -rf mia-darwin-x64',
+    './node_modules/.bin/electron-packager . mia --platform=darwin --arch=x64 --ignore "node_modules/remap-istanbul" --ignore "node_modules/gulp-*" --ignore "node_modules/http-server" --ignore "node_modules/karma-*" --ignore "node_modules/electron-*" --ignore "node_modules/jasmine-*" --ignore "node_modules/lite-server" --overwrite',
+    'codesign --deep --force --verbose --sign ' + process.env.identity + ' mia-darwin-x64/mia.app',
+    './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + process.env.token + ' --repo michaelknoch/mia'
 ]));
 
 gulp.task('bump', function () {
