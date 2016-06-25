@@ -134,7 +134,7 @@ gulp.task('bump', function () {
 
 
 gulp.task('dist.copy', ['build'], function () {
-    gulp.src(['dist/**/*.d.ts', 'dist/**/*.js.map'])
+    gulp.src(['dist/**/*.d.ts', 'dist/**/*.js.map', 'app/shared.scss', 'app/colors.scss'])
         .pipe(gulp.dest('distributed'));
 });
 
