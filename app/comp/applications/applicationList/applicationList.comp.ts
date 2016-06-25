@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core'
 import {ApplicationService} from '../../../service/application/application.service';
-import {NewApplicationModal} from '../../../../dist/comp/applications/newApplicationModal/newApplicationModal.comp';
+import {NewApplicationModal} from '../../applications/newApplicationModal/newApplicationModal.comp';
 
 @Component({
     moduleId: module.id,
