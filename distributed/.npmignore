@@ -4,6 +4,6 @@
 !/comp/
 !/service/
 !/abstractionModel/
-!modal.scss
+!shared.scss
 !colors.scss
 !app.config.*
