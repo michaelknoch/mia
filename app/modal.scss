@@ -1,0 +1,54 @@
+// modal start
+.modal-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    background-color: whitesmoke;
+    z-index: 100;
+    border: 3px solid black;
+    padding: 15px;
+
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 30;
+}
+
+.full-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.full-wrapper.visible {
+    opacity: 1;
+    visibility: visible;
+    .modal-wrapper {
+        top: 20%;
+    }
+}
+// modal end
