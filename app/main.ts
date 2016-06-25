@@ -1,5 +1,6 @@
 ///<reference path="../typings/browser.d.ts" />
 ///<reference path="../typings/jquery/jquery.d.ts" />
+///<reference path="../typings/socket.io-client/socket.io-client.d.ts"/>
 
 import {AppComponent} from './app.component';
 import {provide} from '@angular/core';
