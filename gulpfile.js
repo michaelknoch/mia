@@ -10,6 +10,9 @@ const inlineNg2Template = require('gulp-inline-ng2-template');
 const clean = require('gulp-clean');
 const merge = require('merge2');  // Require separate installation
 const Builder = require('systemjs-builder');
+const fs = require('fs');
+const env = JSON.parse(fs.readFileSync('.env', 'utf-8'));
+
 
 /** then bundle */
 gulp.task('bundle', function () {
@@ -121,8 +124,8 @@ gulp.task('watch', ['build', 'web'], function () {
 gulp.task('deploy', ['build', 'bump'], shell.task([
     'rm -rf mia-darwin-x64',
     './node_modules/.bin/electron-packager . mia --platform=darwin --arch=x64 --ignore "node_modules/remap-istanbul" --ignore "node_modules/gulp-*" --ignore "node_modules/http-server" --ignore "node_modules/karma-*" --ignore "node_modules/electron-*" --ignore "node_modules/jasmine-*" --ignore "node_modules/lite-server" --overwrite',
-    'codesign --deep --force --verbose --sign ' + process.env.identity + ' mia-darwin-x64/mia.app',
-    './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + process.env.token + ' --repo michaelknoch/mia'
+    'codesign --deep --force --verbose --sign ' + env.identity + ' mia-darwin-x64/mia.app',
+    './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + env.token + ' --repo michaelknoch/mia'
 ]));
 
 gulp.task('bump', function () {
