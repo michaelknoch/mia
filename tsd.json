@@ -4,5 +4,12 @@
   "ref": "master",
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
-  "installed": {}
+  "installed": {
+    "socket.io-client/socket.io-client.d.ts": {
+      "commit": "c5711897d69a8db12b201685ba3e4aec32298214"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "c5711897d69a8db12b201685ba3e4aec32298214"
+    }
+  }
 }
