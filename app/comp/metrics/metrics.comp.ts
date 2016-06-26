@@ -212,10 +212,10 @@ export class Metrics {
 
             for (var item of data) {
                 obj[item.type].labels.push(this.dateFormat(item.time));
-                obj[item.type].duration_mean.push(item.duration_mean);
-                obj[item.type].duration_median.push(item.duration_median);
-                obj[item.type].duration_percentile_95.push(item.duration_percentile_95);
-                obj[item.type].duration_percentile_99.push(item.duration_percentile_99);
+                obj[item.type].duration_mean.push(item.duration_mean / 1000);
+                obj[item.type].duration_median.push(item.duration_median / 1000);
+                obj[item.type].duration_percentile_95.push(item.duration_percentile_95 / 1000);
+                obj[item.type].duration_percentile_99.push(item.duration_percentile_99 / 1000);
             }
 
         } else {
