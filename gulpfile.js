@@ -123,7 +123,7 @@ gulp.task('watch', ['build', 'web'], function () {
 
 gulp.task('deploy', ['build', 'bump'], shell.task([
     'rm -rf mia-darwin-x64',
-    './node_modules/.bin/electron-packager . mia --platform=darwin --arch=x64 --ignore "node_modules/remap-istanbul" --ignore "node_modules/gulp-*" --ignore "node_modules/http-server" --ignore "node_modules/karma-*" --ignore "node_modules/electron-*" --ignore "node_modules/jasmine-*" --ignore "node_modules/lite-server" --overwrite',
+    './node_modules/.bin/electron-packager . mia --platform=darwin --arch=x64 --ignore "node_modules/remap-istanbul" --ignore "node_modules/gulp-*" --ignore "node_modules/http-server" --ignore "node_modules/karma-*" --ignore "node_modules/electron-*" --ignore "node_modules/jasmine-*" --ignore "node_modules/lite-server" --ignore "node_modules/typescript" --ignore "node_modules/tslint"  --ignore "node_modules/systemjs-builder" --overwrite',
     'codesign --deep --force --verbose --sign ' + env.identity + ' mia-darwin-x64/mia.app',
     './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + env.token + ' --repo michaelknoch/mia'
 ]));
