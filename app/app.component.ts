@@ -35,13 +35,16 @@ export class AppComponent {
     socket = null;
 
     constructor(private _router: Router) {
-        console.info('code rennt');
+
+        /*
         this.socket = io('http://localhost:4000');
 
         this.socket.on('hey', () => {
             console.log('hey electron');
             this.socket.emit('cu');
         });
+
+        */
     }
 
 
