@@ -29,7 +29,7 @@ export class UserService {
             .map((res) => {
                 let data = res.json();
                 this.currentUser.name = data.name;
-                this.currentSystem.id = data._id;
+                this.currentUser.id = data._id;
                 return data;
             })
     }
@@ -39,7 +39,7 @@ export class UserService {
         return this.http.get(Config.BASEPATH + '/users/logout')
             .map(res => {
                 this.currentUser.name = '';
-                this.currentSystem.id = '';
+                this.currentUser.id = '';
                 return res.json()
             })
     }
@@ -54,7 +54,7 @@ export class UserService {
             .map(res => {
                 let data = res.json();
                 this.currentUser.name = data.name;
-                this.currentSystem.id = data._id;
+                this.currentUser.id = data._id;
                 return data;
             })
     }
