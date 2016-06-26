@@ -45,14 +45,31 @@
 
 <div class="row">
 
-    <h2 class="col-xs-12 space-top">Requests</h2>
+    <h2 class="col-xs-12 space-top">Requests CS</h2>
 
     <div class="col-xs-12 col-sm-10 space-bottom">
 
         <base-chart class="chart"
-                    [datasets]="requests.chartData"
-                    [labels]="requests.chartLabels"
-                    [options]="requests.chartOptions"
+                    [datasets]="requestsCS.chartData"
+                    [labels]="requestsCS.chartLabels"
+                    [options]="requestsCS.chartOptions"
+                    [legend]="chartLegend"
+                    [chartType]="chartType">
+        </base-chart>
+
+    </div>
+</div>
+
+<div class="row">
+
+    <h2 class="col-xs-12 space-top">Requests SR</h2>
+
+    <div class="col-xs-12 col-sm-10 space-bottom">
+
+        <base-chart class="chart"
+                    [datasets]="requestsSR.chartData"
+                    [labels]="requestsSR.chartLabels"
+                    [options]="requestsSR.chartOptions"
                     [legend]="chartLegend"
                     [chartType]="chartType">
         </base-chart>

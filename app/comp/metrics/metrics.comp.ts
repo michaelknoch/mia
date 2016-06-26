@@ -56,7 +56,25 @@ export class Metrics {
         }
     };
 
-    public requests = {
+    public requestsCS = {
+        chartData: [{data: [], label: 'Series A'}],
+        chartLabels: [],
+        chartOptions: {
+            scaleShowVerticalLines: false,
+            animation: false,
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    position: 'bottom',
+                    ticks: {
+                        maxRotation: 0
+                    }
+                }]
+            }
+        }
+    };
+
+    public requestsSR = {
         chartData: [{data: [], label: 'Series A'}],
         chartLabels: [],
         chartOptions: {
@@ -98,9 +116,10 @@ export class Metrics {
             this.memory.chartLabels = memoryData.labels;
 
             const requestData = this.processRequestsData(data.requests);
-            this.requests.chartData = requestData.data;
-            this.requests.chartLabels = requestData.labels;
-
+            this.requestsCS.chartData = requestData.CS.data;
+            this.requestsCS.chartLabels = requestData.CS.labels;
+            this.requestsSR.chartData = requestData.SR.data;
+            this.requestsSR.chartLabels = requestData.SR.labels;
         })
     }
 
@@ -124,7 +143,7 @@ export class Metrics {
             console.info('no data available');
         }
 
-        var result = {
+        let result = {
             data: [
                 {data: meanValues, label: 'Average Load'},
                 {data: medianValues, label: 'Median Load'}
@@ -158,7 +177,7 @@ export class Metrics {
             console.info('no data available');
         }
 
-        var result = {
+        let result = {
             data: [
                 {data: heapTotalvalues, label: 'Average Total Heap'},
                 {data: heapUsedValues, label: 'Average Used Heap'},
@@ -172,36 +191,59 @@ export class Metrics {
 
     processRequestsData(data: any) {
 
-        var labels = [];
-        var duration_mean = [];
-        var duration_median = [];
-        var duration_percentile_95 = [];
-        var duration_percentile_99 = [];
+        let obj = {
+            CS: {
+                labels: [],
+                duration_mean: [],
+                duration_median: [],
+                duration_percentile_95: [],
+                duration_percentile_99: [],
+            },
+            SR: {
+                labels: [],
+                duration_mean: [],
+                duration_median: [],
+                duration_percentile_95: [],
+                duration_percentile_99: [],
+            }
+        };
 
         if (data) {
 
             for (var item of data) {
-                labels.push(this.dateFormat(item.time));
-                duration_mean.push(item.duration_mean);
-                duration_median.push(item.duration_median);
-                duration_percentile_95.push(item.duration_percentile_95);
-                duration_percentile_99.push(item.duration_percentile_99);
+                obj[item.type].labels.push(this.dateFormat(item.time));
+                obj[item.type].duration_mean.push(item.duration_mean);
+                obj[item.type].duration_median.push(item.duration_median);
+                obj[item.type].duration_percentile_95.push(item.duration_percentile_95);
+                obj[item.type].duration_percentile_99.push(item.duration_percentile_99);
             }
 
         } else {
             console.info('no data available');
         }
 
-        var result = {
-            data: [
-                {data: duration_mean, label: 'Duration Mean'},
-                {data: duration_median, label: 'Duration Median'},
-                {data: duration_percentile_95, label: 'duration_percentile_95'},
-                {data: duration_percentile_99, label: 'duration_percentile_99'}
-            ],
-            labels: labels
-        };
+        let result = {
 
+            CS: {
+                data: [
+                    {data: obj.CS.duration_mean, label: 'Duration Mean'},
+                    {data: obj.CS.duration_median, label: 'Duration Median'},
+                    {data: obj.CS.duration_percentile_95, label: 'duration_percentile_95'},
+                    {data: obj.CS.duration_percentile_99, label: 'duration_percentile_99'}
+                ],
+                labels: obj.CS.labels
+            },
+            SR: {
+                data: [
+                    {data: obj.SR.duration_mean, label: 'Duration Mean'},
+                    {data: obj.SR.duration_median, label: 'Duration Median'},
+                    {data: obj.SR.duration_percentile_95, label: 'duration_percentile_95'},
+                    {data: obj.SR.duration_percentile_99, label: 'duration_percentile_99'}
+                ],
+                labels: obj.SR.labels
+            },
+        };
+        debugger;
         return result;
     }
 
