@@ -56,6 +56,24 @@ export class Metrics {
         }
     };
 
+    public requests = {
+        chartData: [{data: [], label: 'Series A'}],
+        chartLabels: [],
+        chartOptions: {
+            scaleShowVerticalLines: false,
+            animation: false,
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    position: 'bottom',
+                    ticks: {
+                        maxRotation: 0
+                    }
+                }]
+            }
+        }
+    };
+
 
     constructor(private _ApplicationService: ApplicationService, private _MetricService: MetricService) {
 
@@ -75,10 +93,14 @@ export class Metrics {
             this.loadAvg.chartData = loadData.data;
             this.loadAvg.chartLabels = loadData.labels;
 
-
             const memoryData = this.processMemoryData(data.memory);
             this.memory.chartData = memoryData.data;
             this.memory.chartLabels = memoryData.labels;
+
+            const requestData = this.processRequestsData(data.requests);
+            this.requests.chartData = requestData.data;
+            this.requests.chartLabels = requestData.labels;
+
         })
     }
 
@@ -145,9 +167,44 @@ export class Metrics {
             labels: labels
         };
 
-        console.info(result);
         return result;
     }
+
+    processRequestsData(data: any) {
+
+        var labels = [];
+        var duration_mean = [];
+        var duration_median = [];
+        var duration_percentile_95 = [];
+        var duration_percentile_99 = [];
+
+        if (data) {
+
+            for (var item of data) {
+                labels.push(this.dateFormat(item.time));
+                duration_mean.push(item.duration_mean);
+                duration_median.push(item.duration_median);
+                duration_percentile_95.push(item.duration_percentile_95);
+                duration_percentile_99.push(item.duration_percentile_99);
+            }
+
+        } else {
+            console.info('no data available');
+        }
+
+        var result = {
+            data: [
+                {data: duration_mean, label: 'Duration Mean'},
+                {data: duration_median, label: 'Duration Median'},
+                {data: duration_percentile_95, label: 'duration_percentile_95'},
+                {data: duration_percentile_99, label: 'duration_percentile_99'}
+            ],
+            labels: labels
+        };
+
+        return result;
+    }
+
 
     dateFormat(isoDate: string) {
         let date = new Date(isoDate);
