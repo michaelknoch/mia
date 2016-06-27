@@ -5,7 +5,6 @@ import {UserService} from "../../../service/user/user.service";
     moduleId: module.id,
     selector: 'login-register',
     templateUrl: 'loginRegister.html',
-    providers: [UserService],
     styleUrls: ['loginRegister.css'],
 })
 
