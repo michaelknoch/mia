@@ -38,27 +38,25 @@ export class ApplicationMetaPicker implements OnInit {
     }
 
     constructor(private _ApplicationMetaPickerService: ApplicationMetaPickerService) {
-    }
-
-    ngOnInit() {
         this._ApplicationMetaPickerService.getApplications().subscribe(data => {
 
             let appToSelect: string = '';
             for (let app of data) {
                 if (app._id === this.activeApp) {
                     appToSelect = this.activeApp;
-                    if (!this.activePeriod) {
-                        this.selectQuery('2d');
-                    }
                     break;
                 }
             }
-
-            this.selectApplication(appToSelect || data[0]._id);
-            this.selectQuery(this.activePeriod);
+            this.activeApp = appToSelect || data[0]._id;
             this.applications = data;
+            this.activePeriod = this.activePeriod = '?since=2d';
             this.emit()
         })
+
+    }
+
+    ngOnInit() {
+
     }
 
     public selectQuery(query: string) {
