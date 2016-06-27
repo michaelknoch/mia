@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {ApplicationService} from "../../service/application/application.service";
 import {MetricService} from "../../service/metric/metric.service";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
@@ -12,7 +12,7 @@ import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPic
     styleUrls: ['metrics.css'],
 })
 
-export class Metrics {
+export class Metrics implements OnInit {
 
     public applications;
 
@@ -94,13 +94,14 @@ export class Metrics {
 
 
     constructor(private _ApplicationService: ApplicationService, private _MetricService: MetricService) {
+    }
 
-        _ApplicationService.getApplications().subscribe(data => {
+    ngOnInit() {
+        this._ApplicationService.getApplications().subscribe(data => {
             this.applications = data;
             console.info(this.applications);
             this.getData(this.applications[0]._id, undefined)
         });
-
     }
 
 
@@ -243,7 +244,6 @@ export class Metrics {
                 labels: obj.SR.labels
             },
         };
-        debugger;
         return result;
     }
 
