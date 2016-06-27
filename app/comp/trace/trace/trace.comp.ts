@@ -29,7 +29,7 @@ export class Trace implements OnInit {
     parse(data: any) {
         let nodes = [];
 
-        let entryPoint = this.getEntryPoint(data)
+        let entryPoint = this.getEntryPoint(data);
         nodes.push(entryPoint);
 
         let calculationData = {
@@ -65,8 +65,8 @@ export class Trace implements OnInit {
 
             for (let item of data) {
                 if (item.response.parentId === id) {
-                    item.left = (item.request.timeCS - calculationData.start) * calculationData.basis_point + '%';
-                    item.right = ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%';
+                    item.left = (item.request.timeSR - calculationData.start) * calculationData.basis_point + '%';
+                    item.right = ((calculationData.end - item.response.timeSS) * calculationData.basis_point) + '%';
                     //item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
                     item.name = item.receiver.name;
                     item.duration = item.request.duration.low;
@@ -89,7 +89,7 @@ export class Trace implements OnInit {
 
                 item.left = 0;
                 item.right = 0;
-                item.width = '100%';
+
                 item.name = item.sender.name;
                 item.duration = item.response.duration.low;
 
