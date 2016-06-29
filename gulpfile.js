@@ -121,18 +121,20 @@ gulp.task('watch', ['build', 'web'], function () {
     gulp.watch('app/**/*.html', ['html']);
 });
 
-gulp.task('deploy', ['build', 'bump'], shell.task([
+gulp.task('electron.deploy', ['production', 'bump'], shell.task([
     'rm -rf mia-darwin-x64',
-    './node_modules/.bin/electron-packager . mia --platform=darwin --arch=x64 --ignore "node_modules/remap-istanbul" --ignore "node_modules/gulp-*" --ignore "node_modules/http-server" --ignore "node_modules/karma-*" --ignore "node_modules/electron-*" --ignore "node_modules/jasmine-*" --ignore "node_modules/lite-server" --ignore "node_modules/typescript" --ignore "node_modules/tslint"  --ignore "node_modules/systemjs-builder" --overwrite',
+    './node_modules/.bin/electron-packager production mia --platform=darwin --arch=x64 --ignore "node_modules/remap-istanbul" --ignore "node_modules/gulp-*" --ignore "node_modules/http-server" --ignore "node_modules/karma-*" --ignore "node_modules/electron-*" --ignore "node_modules/jasmine-*" --ignore "node_modules/lite-server" --ignore "node_modules/typescript" --ignore "node_modules/tslint"  --ignore "node_modules/systemjs-builder" --overwrite',
     'codesign --deep --force --verbose --sign ' + env.identity + ' mia-darwin-x64/mia.app',
     './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + env.token + ' --repo michaelknoch/mia'
-]));
+], {
+    ignoreErrors: true
+}));
 
 gulp.task('bump', function () {
     const bump = require('gulp-bump');
-    gulp.src('./package.json')
+    gulp.src('./production/package.json')
         .pipe(bump())
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./production'));
 });
 
 
@@ -170,6 +172,9 @@ gulp.task('production', ['build'], function () {
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css'
     ]
+
+    gulp.src('electron.js')
+        .pipe(gulp.dest('production'));
 
     gulp.src('dist/assets/**/*')
         .pipe(gulp.dest('production/dist/assets/'));
