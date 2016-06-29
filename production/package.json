@@ -3,5 +3,8 @@
   "repository": "https://github.com/michaelknoch/mia",
   "version": "0.0.1",
   "main": "electron.js",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.5"
+  }
 }
