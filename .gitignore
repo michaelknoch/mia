@@ -12,3 +12,6 @@ npm-debug.log
 distributed
 !distributed/package.json
 !distributed/.npmignore
+
+production/**/*
+!production/index.html
