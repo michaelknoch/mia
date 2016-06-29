@@ -158,6 +158,44 @@ gulp.task('dist.inline', ['build'], function () {
     });
 });
 
+
+gulp.task('production', ['build'], function () {
+    const browserifyBuild = require('gulp-browserify-js-inline');
+
+    let modules = [
+        'node_modules/core-js/client/shim.min.js',
+        'node_modules/zone.js/dist/zone.js',
+        'node_modules/reflect-metadata/Reflect.js',
+        'node_modules/chart.js/dist/Chart.js',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/font-awesome/css/font-awesome.min.css'
+    ]
+
+    gulp.src('dist/assets/**/*')
+        .pipe(gulp.dest('production/dist/assets/'));
+
+    gulp.src(['dist/font/*', '!dist/font/fontface.scss'])
+        .pipe(gulp.dest('production/font'));
+
+    gulp.src('dist/style.css')
+        .pipe(gulp.dest('production'));
+
+    gulp.src(modules)
+        .pipe(gulp.dest('production/dependencies'));
+
+    return browserifyBuild({
+        outputPath: 'production',
+        outputFile: 'app.bundle.js',
+        minify: false,
+        browserifyOptions: {
+            debug: false,
+            cache: {},
+            packageCache: {}
+        },
+        src: 'dist/main.js'
+    });
+});
+
 gulp.task('dist.deploy', ['dist.inline', 'dist.copy']);
 gulp.task('build', ['html', 'ts', 'scss', 'css', 'assets', 'json', 'font']);
 gulp.task('default', ['build']);
