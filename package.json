@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "typings install && tsd reinstall",
     "typings": "typings",
-    "deploy": "gulp build",
+    "deploy": "gulp production",
     "publish": "gulp dist.deploy && cd distributed && npm publish"
   },
   "license": "ISC",
