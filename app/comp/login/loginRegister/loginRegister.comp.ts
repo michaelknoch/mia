@@ -35,10 +35,10 @@ export class LoginRegister {
             data => {
                 this.emit(data);
             },
-            err => err(err));
+            err => this.onErr(err));
     }
 
-    static err(msg) {
+    onErr(msg) {
         console.error(msg);
     }
 
