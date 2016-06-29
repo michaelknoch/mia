@@ -132,9 +132,9 @@ gulp.task('electron.deploy', ['production', 'bump'], shell.task([
 
 gulp.task('bump', function () {
     const bump = require('gulp-bump');
-    gulp.src('./production/package.json')
+    gulp.src('package.json')
         .pipe(bump())
-        .pipe(gulp.dest('./production'));
+        .pipe(gulp.dest('.'));
 });
 
 
