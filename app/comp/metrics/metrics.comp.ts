@@ -250,7 +250,7 @@ export class Metrics implements OnInit {
 
     dateFormat(isoDate: string) {
         let date = new Date(isoDate);
-        return date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+        return '      ' + date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + '      ';
     }
 
     public metaUpdate(e: any) {
