@@ -17,9 +17,6 @@ export class ApplicationMetaPicker implements OnInit {
     @Input() public hideApplication: boolean = false;
     @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
 
-    @LocalStorage() private activePeriod: string;
-    @LocalStorage() private activeApp: string;
-
     private applications;
 
     private queries = {
@@ -37,19 +34,19 @@ export class ApplicationMetaPicker implements OnInit {
         return Object.keys(this.queries);
     }
 
-    constructor(private _ApplicationMetaPickerService: ApplicationMetaPickerService) {
-        this._ApplicationMetaPickerService.getApplications().subscribe(data => {
+    constructor(private _applicationMetaPickerService: ApplicationMetaPickerService) {
+
+        this._applicationMetaPickerService.getApplications().subscribe(data => {
 
             let appToSelect: string = '';
             for (let app of data) {
-                if (app._id === this.activeApp) {
-                    appToSelect = this.activeApp;
+                if (app._id === _applicationMetaPickerService.activeApp) {
+                    appToSelect = _applicationMetaPickerService.activeApp;
                     break;
                 }
             }
-            this.activeApp = appToSelect || data[0]._id;
+            _applicationMetaPickerService.activeApp = appToSelect || data[0]._id;
             this.applications = data;
-            this.activePeriod = this.activePeriod = '?since=2d';
             this.emit()
         })
 
@@ -60,19 +57,19 @@ export class ApplicationMetaPicker implements OnInit {
     }
 
     public selectQuery(query: string) {
-        this.activePeriod = query;
+        this._applicationMetaPickerService.activePeriod = query;
         this.emit()
     }
 
     public selectApplication(application) {
-        this.activeApp = application;
+        this._applicationMetaPickerService.activeApp = application;
         this.emit();
     }
 
     private emit() {
         this.metaUpdate.emit({
-            appId: this.activeApp,
-            query: this.activePeriod
+            appId: this._applicationMetaPickerService.activeApp,
+            query: this._applicationMetaPickerService.activePeriod
         });
     }
 
