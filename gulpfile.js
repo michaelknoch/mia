@@ -9,36 +9,18 @@ const sourcemaps = require('gulp-sourcemaps');
 const inlineNg2Template = require('gulp-inline-ng2-template');
 const clean = require('gulp-clean');
 const merge = require('merge2');  // Require separate installation
-const Builder = require('systemjs-builder');
 const fs = require('fs');
 const env = JSON.parse(fs.readFileSync('.env', 'utf-8'));
 
-
-/** then bundle */
-gulp.task('bundle', function () {
-    // optional constructor options
-    // sets the baseURL and loads the configuration file
-    var builder = new Builder('', 'systemjs.config.js');
-
-    /*
-     the parameters of the below buildStatic() method are:
-     - your transcompiled application boot file (the one wich would contain the bootstrap(MyApp, [PROVIDERS]) function - in my case 'dist/app/boot.js'
-     - the output (file into which it would output the bundled code)
-     - options {}
-     */
-    return builder
-        .buildStatic('dist/main.js', 'dist/bundle.js', {minify: true, sourceMaps: true})
-        .then(function () {
-            console.log('Build complete');
-        })
-        .catch(function (err) {
-            console.log('Build error');
-            console.log(err);
-        });
-});
-
 gulp.task('clean', function () {
-    return gulp.src(['dist/*', 'distributed/*', '!distributed/.npmignore', '!distributed/package.json'], {read: false})
+    return gulp.src(['production/*',
+            'dist/*',
+            'distributed/*',
+            '!production/index.html',
+            '!production/package.json',
+            '!distributed/.npmignore',
+            '!distributed/package.json'],
+        {read: false})
         .pipe(clean());
 });
 
