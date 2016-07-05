@@ -152,7 +152,8 @@ gulp.task('production', ['build'], function () {
         'node_modules/reflect-metadata/Reflect.js',
         'node_modules/chart.js/dist/Chart.js',
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
-        'node_modules/font-awesome/**/*'
+        'node_modules/font-awesome/**/*',
+        'node_modules/moment/min/moment.min.js'
     ]
 
     gulp.src('electron.js')
