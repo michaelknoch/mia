@@ -51,7 +51,7 @@ export class NgCytoscape implements OnChanges {
                 .selector('edge')
                 .css({
                     'label': 'data(label)',
-                    'color': 'white',
+                    'color': 'black',
                     'curve-style': 'bezier',
                     'opacity': 0.666,
                     'width': 'mapData(strength, 70, 100, 2, 6)',
