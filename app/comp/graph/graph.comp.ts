@@ -39,7 +39,7 @@ export class Graph {
         var edges = [];
 
         for (var node of data.nodes) {
-            node.faveColor = '#24506b';
+            node.faveColor = '#089ba3';
             nodes.push({
                 data: node, position: {x: 1, y: 1}
             });

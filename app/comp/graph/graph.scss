@@ -1,6 +1,7 @@
 ng-cytoscape {
-    min-height: 90vh;
+    height: calc(100vh - 210px);
     float: left;
     width: 100%;
     position: relative;
+    margin-top: 50px;
 }
