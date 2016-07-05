@@ -4,13 +4,24 @@
             <div class="color" [ngStyle]="{'background-color': item.color}"></div>
             <div class="content">
                 <h4>{{item.name}}</h4>
-                <span [ngClass]="getApplicationStatus(item.last_mem_data).status" class="last-seen">Last Seen: {{getApplicationStatus(item.last_mem_data).moment}}</span>
+
+                <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'red'" class="last-seen green">Online</span>
+                <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'green'"
+                      [ngClass]="getApplicationStatus(item.last_mem_data).status" class="last-seen">Last Seen: {{getApplicationStatus(item.last_mem_data).moment}}</span>
 
                 <div class="actions">
-                    <a class="pointer"><i _ngcontent-kkc-3="" aria-hidden="true" class="fa fa-pencil"></i>Edit</a>
-                    <a class="pointer" (click)="copyToken(app_token)">
-                        <i _ngcontent-kkc-3="" aria-hidden="true"
-                           class="pointer fa fa-files-o"></i>Copytoken</a>
+                    <a class="pointer"><i aria-hidden="true" class="fa fa-pencil"></i>Edit</a>
+                    <a [hidden]="!hideTokenExample" (click)="hideTokenExample=false" class="pointer"><i aria-hidden="true" class="fa fa-bars"></i>Show Token Code</a>
+                    <a [hidden]="hideTokenExample" (click)="hideTokenExample=true" class="pointer"><i aria-hidden="true" class="fa fa-times"></i>Hide Token Code</a>
+
+                    <a [hidden]="hideTokenExample" class="pointer" (click)="copyToken($event)">
+                        <textarea type="text" name="token" id="apptoken">{{prepareToken(item.app_token)}}</textarea>
+                        <span class="fullwidth">
+                            <i aria-hidden="true"
+                               class="pointer fa fa-files-o">
+                            </i>Copytoken </span>
+                    </a>
+
                 </div>
             </div>
         </div>

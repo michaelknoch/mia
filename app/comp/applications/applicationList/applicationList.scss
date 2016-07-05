@@ -1,5 +1,9 @@
+@import '../../../colors';
+
 .costumer-wrapper {
     padding-bottom: 15px;
+    float: left;
+    width: 100%;
 }
 
 .costumer {
@@ -8,12 +12,10 @@
 
     .content {
         overflow: hidden;
-        position: absolute;
         z-index: 5;
-        height: 100%;
         top: 0;
         left: 15px;
-        right: 0;
+        right: 15px;
     }
 
     .inner-wrapper {
@@ -21,27 +23,40 @@
         background-color: whitesmoke;
         border-left: 5px solid #446CB3;
         background-size: cover;
-        height: 100px;
         position: relative;
 
+        float: left;
+        width: 100%;
+
+        a {
+            font-family: 'OpenSans-Semibold';
+        }
+
+        h4 {
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'OpenSans-Semibold';
+        }
+
+        span.last-seen {
+            float: left;
+            width: 100%;
+            text-align: center;
+            font-family: 'OpenSans-Semibold';
+        }
+
         .color {
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            position: absolute;
             opacity: 0.3;
         }
     }
 
     .actions {
         visibility: visible;
-        bottom: 0;
-        float: right;
+        float: left;
+        width: 100%;
         padding-bottom: 5px;
         padding-top: 5px;
         font-size: 20px;
-        position: absolute;
         color: rgb(34, 34, 34);
         font-size: 20px;
         transition-duration: 0.3s;
@@ -74,6 +89,10 @@
 
 }
 
+i.fa {
+    width: 20px;
+}
+
 .costumer.create .inner-wrapper {
     background-color: rgba(68, 108, 179, 0.3);
 }
@@ -82,4 +101,17 @@
     background-color: whitesmoke;
     padding: 15px;
     font-size: 25px;
+}
+
+textarea#apptoken {
+    float: left;
+    width: 100%;
+    background: whitesmoke;
+    border: 1px solid #c7d3e8;
+    padding: 5px;
+    margin: 15px 0;
+    white-space: nowrap;
+    height: 100px;
+    color: white;
+    background-color: $darkgrey;
 }

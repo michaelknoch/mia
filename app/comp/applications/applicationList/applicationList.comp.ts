@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core'
 import {ApplicationService} from '../../../service/application/application.service';
 import {NewApplicationModal} from '../../applications/newApplicationModal/newApplicationModal.comp';
+import {LocalStorage} from "angular2-localstorage/dist";
 declare var moment: any;
 
 @Component({
@@ -14,6 +15,8 @@ declare var moment: any;
 export class ApplicationList {
 
     private applications = [];
+    @LocalStorage() private hideTokenExample: boolean;
+
     @ViewChild(NewApplicationModal) _newApplicationModal;
 
     constructor(private _ApplicationService: ApplicationService) {
@@ -44,6 +47,19 @@ export class ApplicationList {
             status: status,
             moment: moment(date).fromNow()
         }
+    }
+
+    copyToken(element: any) {
+        let _elem = element.currentTarget.childNodes[1];
+        if (_elem) {
+            _elem.select();
+        }
+        document.execCommand('copy');
+    }
+
+    prepareToken(token: string) {
+        let string = "require('shimmingtest').start({\n\t'app_token': '" + token + "'\n});";
+        return string;
     }
 
 }
