@@ -118,6 +118,11 @@ gulp.task('bump', function () {
     gulp.src('package.json')
         .pipe(bump())
         .pipe(gulp.dest('.'));
+
+    gulp.src('production/package.json')
+        .pipe(bump())
+        .pipe(gulp.dest('./production'));
+
 });
 
 
