@@ -2,15 +2,19 @@
 
 const electron = require('electron');
 // Module to control application life.
-const {app} = electron;
+const {app, ipcMain} = electron;
 // Module to create native browser window.
 const {BrowserWindow} = electron;
+const autoUpdater = electron.autoUpdater;
+const appVersion = require('./package.json').version;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
 function createWindow() {
+
+
 
     // Create the browser window.
     win = new BrowserWindow({width: 1100, height: 700, minWidth: 800, minHeight: 600});
@@ -19,7 +23,7 @@ function createWindow() {
     win.loadURL(`file://${__dirname}/index.html`);
 
     // Open the DevTools.
-    win.webContents.openDevTools();
+    //win.webContents.openDevTools();
 
     // Emitted when the window is closed.
     win.on('closed', () => {
@@ -28,6 +32,8 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null;
     });
+
+    registerUpdater();
 }
 
 // This method will be called when Electron has finished
@@ -52,24 +58,41 @@ app.on('activate', () => {
     }
 });
 
-/*
-var Hapi = require('hapi');
-var server = new Hapi.Server();
-server.connection({port: 4000});
-var io = require('socket.io')(server.listener);
+function registerUpdater() {
 
-io.on('connection', function (socket) {
-    socket.emit('hey');
-    socket.on('cu', function () {
-        console.info('Excuse you!');
+    let updateFeed = 'http://52.58.175.11:3000/release';
+    autoUpdater.setFeedURL(updateFeed + '?v=' + appVersion);
+    autoUpdater.checkForUpdates();
+
+    win.on('update-available', () => {
+        console.info('update-available');
+        win.webContents.send('update-available');
     });
-});
 
-server.start((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('Server running at:', server.info.uri);
-});
+    win.on('update-downloaded', () => {
+        console.info('update-downloaded');
+        win.webContents.send('update-downloaded');
+    });
+}
 
-    */
+/*
+ var Hapi = require('hapi');
+ var server = new Hapi.Server();
+ server.connection({port: 4000});
+ var io = require('socket.io')(server.listener);
+
+ io.on('connection', function (socket) {
+ socket.emit('hey');
+ socket.on('cu', function () {
+ console.info('Excuse you!');
+ });
+ });
+
+ server.start((err) => {
+ if (err) {
+ throw err;
+ }
+ console.log('Server running at:', server.info.uri);
+ });
+
+ */

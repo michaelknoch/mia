@@ -16,3 +16,4 @@ distributed
 production/**/*
 !production/index.html
 !production/package.json
+!production/electron.js

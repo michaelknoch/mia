@@ -1,13 +1,14 @@
 {
   "name": "MIA",
   "repository": "https://github.com/michaelknoch/mia",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "electron.js",
   "scripts": {
     "postinstall": "typings install && tsd reinstall",
     "typings": "typings",
     "deploy": "gulp production",
-    "publish": "gulp dist.deploy && cd distributed && npm publish"
+    "publish": "gulp dist.deploy && cd distributed && npm publish",
+    "electron": "./node_modules/.bin/electron production electron.js"
   },
   "license": "ISC",
   "dependencies": {

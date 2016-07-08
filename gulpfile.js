@@ -19,6 +19,7 @@ gulp.task('clean', function () {
             '!production/index.html',
             '!production/package.json',
             '!distributed/.npmignore',
+            '!production/electron.js',
             '!distributed/package.json'],
         {read: false})
         .pipe(clean());
@@ -155,9 +156,6 @@ gulp.task('production', ['build'], function () {
         'node_modules/font-awesome/**/*',
         'node_modules/moment/min/moment.min.js'
     ]
-
-    gulp.src('electron.js')
-        .pipe(gulp.dest('production'));
 
     gulp.src('dist/assets/**/*')
         .pipe(gulp.dest('production/dist/assets/'));
