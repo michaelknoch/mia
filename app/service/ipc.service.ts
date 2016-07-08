@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 declare var electron: any;
+declare var Notification: any;
 
 @Injectable()
 export class IpcService {
@@ -27,6 +28,13 @@ export class IpcService {
             electron.ipcRenderer.on('version-receive', (event, version) => {
                 this.versionEmitter.emit({version: version});
                 console.info('version-receive', version);
+
+                let myNotification = new Notification('Appversion', {
+                    body: 'Version: ' + version,
+                    silent: true
+                });
+                new Audio('dist/assets/sounds/message.mp3').play();
+
             });
 
             electron.ipcRenderer.send('version-request');

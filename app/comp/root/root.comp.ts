@@ -56,8 +56,8 @@ export class Root implements OnInit {
 
     logout() {
         this._userService.logout().subscribe(data => {
-            this._router.navigate(['Login']);
         });
+        this._router.navigate(['Login']);
     }
 
     switchSystem() {
