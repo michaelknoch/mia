@@ -37,14 +37,17 @@ export class AppComponent {
     constructor(private _router: Router) {
 
         /*
-        this.socket = io('http://localhost:4000');
+         this.socket = io('http://localhost:4000');
 
-        this.socket.on('hey', () => {
-            console.log('hey electron');
-            this.socket.emit('cu');
-        });
+         this.socket.on('hey', () => {
+         console.log('hey electron');
+         this.socket.emit('cu');
+         });
 
-        */
+         */
+
+
+
     }
 
 
