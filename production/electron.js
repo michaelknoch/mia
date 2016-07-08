@@ -2,7 +2,7 @@
 
 const electron = require('electron');
 // Module to control application life.
-const {app} = electron;
+const {app, ipcMain} = electron;
 // Module to create native browser window.
 const {BrowserWindow} = electron;
 const autoUpdater = electron.autoUpdater;
@@ -13,6 +13,8 @@ const appVersion = require('./package.json').version;
 let win;
 
 function createWindow() {
+
+
 
     // Create the browser window.
     win = new BrowserWindow({width: 1100, height: 700, minWidth: 800, minHeight: 600});
@@ -57,16 +59,19 @@ app.on('activate', () => {
 });
 
 function registerUpdater() {
+
     let updateFeed = 'http://52.58.175.11:3000/release';
     autoUpdater.setFeedURL(updateFeed + '?v=' + appVersion);
     autoUpdater.checkForUpdates();
 
     win.on('update-available', () => {
         console.info('update-available');
+        win.webContents.send('update-available');
     });
 
     win.on('update-downloaded', () => {
         console.info('update-downloaded');
+        win.webContents.send('update-downloaded');
     });
 }
 
