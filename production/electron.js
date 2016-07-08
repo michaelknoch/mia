@@ -14,8 +14,6 @@ let win;
 
 function createWindow() {
 
-
-
     // Create the browser window.
     win = new BrowserWindow({width: 1100, height: 700, minWidth: 800, minHeight: 600});
 
@@ -60,13 +58,15 @@ app.on('activate', () => {
 
 function registerUpdater() {
 
+    ipcMain.on('version-request', () => {
+        win.webContents.send('version-receive', appVersion);
+    });
     console.info('appversion', appVersion);
 
     let updateFeed = 'http://52.58.175.11:3000/release';
     autoUpdater.setFeedURL(updateFeed + '?version=' + appVersion);
-
-
     autoUpdater.checkForUpdates();
+
 
     win.on('update-available', () => {
         console.info('update-available');
@@ -79,24 +79,3 @@ function registerUpdater() {
     });
 }
 
-/*
- var Hapi = require('hapi');
- var server = new Hapi.Server();
- server.connection({port: 4000});
- var io = require('socket.io')(server.listener);
-
- io.on('connection', function (socket) {
- socket.emit('hey');
- socket.on('cu', function () {
- console.info('Excuse you!');
- });
- });
-
- server.start((err) => {
- if (err) {
- throw err;
- }
- console.log('Server running at:', server.info.uri);
- });
-
- */

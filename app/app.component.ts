@@ -1,11 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Login} from './comp/login/login.comp';
 import {Root} from './comp/root/root.comp';
 import {SystemList} from "./comp/systemList/systemList.comp";
 import {IpcService} from "./service/ipc.service";
-
-declare var electron: any;
 
 @Component({
     moduleId: module.id,
@@ -35,10 +33,7 @@ declare var electron: any;
 
 export class AppComponent {
 
-    socket = null;
-
-    constructor(private _router: Router, private _ipc: IpcService) {
-
+    constructor(private _ipc: IpcService) {
     }
 
 

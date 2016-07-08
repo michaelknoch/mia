@@ -8,9 +8,10 @@ declare var electron: any;
 export class IpcService {
 
     public mainProcessEvents = new EventEmitter();
+    public versionEmitter = new EventEmitter();
 
     constructor() {
-        
+
         if ('undefined' !== typeof electron) {
 
             electron.ipcRenderer.on('update-available', () => {
@@ -22,6 +23,13 @@ export class IpcService {
                 this.mainProcessEvents.emit('update-downloaded');
                 console.info('update-downloaded');
             });
+
+            electron.ipcRenderer.on('version-receive', (event, version) => {
+                this.versionEmitter.emit({version: version});
+                console.info('version-receive', version);
+            });
+
+            electron.ipcRenderer.send('version-request');
 
         }
     }
