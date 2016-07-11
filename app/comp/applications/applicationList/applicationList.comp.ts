@@ -2,35 +2,84 @@ import {Component, ViewChild} from '@angular/core'
 import {ApplicationService} from '../../../service/application/application.service';
 import {NewApplicationModal} from '../../applications/newApplicationModal/newApplicationModal.comp';
 import {LocalStorage} from "angular2-localstorage/dist";
+import {CHART_DIRECTIVES} from "ng2-charts/ng2-charts";
+import {BaseChartComponent} from "ng2-charts/ng2-charts";
+import {UtilService} from "../../../service/util.service";
 declare var moment: any;
 
 @Component({
     moduleId: module.id,
     selector: 'application-list',
-    directives: [NewApplicationModal],
+    directives: [NewApplicationModal, CHART_DIRECTIVES],
     templateUrl: 'applicationList.html',
     styleUrls: ['applicationList.css']
 })
 
 export class ApplicationList {
+    private chart = {
+        options: {
+            animation: false,
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        min: 0,
+                        stepSize: 1
+                    }
+                }]
+            }
+        },
+        data: [{data: [], label: 'running Apps'}],
+        labels: [],
+    };
 
     private applications = [];
     @LocalStorage() private hideTokenExample: boolean;
+    @ViewChild(NewApplicationModal) private _newApplicationModal;
+    @ViewChild(BaseChartComponent) private _chart;
 
-    @ViewChild(NewApplicationModal) _newApplicationModal;
-
-    constructor(private _ApplicationService: ApplicationService) {
+    constructor(private _ApplicationService: ApplicationService, private _utilService: UtilService) {
         this.getData()
     }
 
     getData() {
-        this._ApplicationService.getApplications().subscribe(
+        this._ApplicationService.getApplicationsPolling().subscribe(
             data => {
                 this.applications = data;
                 console.info(data);
+                this.chart.data[0].data.push(this.getActiveAppCount(data));
+                this.chart.labels.push(this._utilService.realDateFormat(new Date()));
+                this.chart.options.scales.yAxes[0].ticks = {min: 0, max: data.length, stepSize: 1};
+                this._chart.ngOnChanges();
+
+
+                console.info(this.chart);
             },
             err => console.error(err)
         );
+    }
+
+    private getActiveAppCount(data: any) {
+
+        let count = 0;
+        for (let app of data) {
+
+            let date = new Date(app.last_mem_data);
+            let now = new Date();
+
+            if ((now.getTime() - date.getTime()) < 30000) {
+                count++;
+            }
+        }
+        return count;
     }
 
     update(data: any) {
@@ -41,7 +90,7 @@ export class ApplicationList {
     getApplicationStatus(isoString: string) {
         let date = new Date(isoString);
         let now = new Date();
-        let status: string = ((now.getTime() - date.getTime()) > 3600000) ? 'red' : 'green';
+        let status: string = ((now.getTime() - date.getTime()) > 30000) ? 'red' : 'green';
 
         return {
             status: status,
