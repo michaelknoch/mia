@@ -11,17 +11,17 @@ export class MetricService {
 
     }
 
-    getLoadAvg(id: String) {
+    getLoadAvg(id: string) {
         return this.http.get(Config.BASEPATH + '/metrics/applications/' + id + '/loadavg?aggregate_fn=mean&group_by_value=5&group_by_unit=m&period=3h')
             .map(res => res.json())
     }
 
-    getMemory(id: String) {
+    getMemory(id: string) {
         return this.http.get(Config.BASEPATH + '/metrics/applications/' + id + '/memory?aggregate_fn=mean&group_by_value=5&group_by_unit=m&period=3h')
             .map(res => res.json())
     }
 
-    getMetrics(id: String, query: String) {
+    getMetrics(id: string, query: string) {
         var _query = query || '?since=1h';
         return this.http.get(Config.BASEPATH + '/metrics/applications/' + id + _query)
             .map(res => res.json())
