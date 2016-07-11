@@ -1,6 +1,12 @@
 @import '../../../colors';
 
 .nav {
+
+    li {
+        width: 100%;
+        margin: 0;
+    }
+
     li + li {
         margin-left: 5px;
     }
