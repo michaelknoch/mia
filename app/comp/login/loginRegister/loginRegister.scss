@@ -3,8 +3,8 @@
 .nav {
 
     li {
-        width: 100%;
-        margin: 0;
+        width: 50%;
+        margin: 0 !important;
     }
 
     li + li {
@@ -14,7 +14,6 @@
     li {
         a {
             background-color: $grey;
-            color: white;
             border-radius: 0;
             padding: 0 15px;
             line-height: 32px;

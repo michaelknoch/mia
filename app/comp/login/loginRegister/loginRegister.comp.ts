@@ -27,7 +27,7 @@ export class LoginRegister {
             data => {
                 this.emit(data);
             },
-            err => err(err));
+            err => this.onErr(err));
     }
 
     private register() {
