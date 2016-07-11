@@ -7,15 +7,18 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApplicationService {
 
-    http;
+    constructor(private http: Http) {
+    }
 
-    constructor(http: Http) {
-        this.http = http;
+    getApplicationsPolling() {
+        return Observable.timer(0, 5000)
+            .switchMap(() => this.http.get(Config.BASEPATH + '/applications')
+                .map(response => response.json()))
     }
 
     getApplications() {
         return this.http.get(Config.BASEPATH + '/applications')
-            .map((res: Response) => res.json())
+            .map(response => response.json())
     }
 
     createApplication(name: String, description: String) {
