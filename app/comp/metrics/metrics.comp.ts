@@ -3,6 +3,7 @@ import {ApplicationService} from "../../service/application/application.service"
 import {MetricService} from "../../service/metric/metric.service";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
+import {UtilService} from "../../service/util.service";
 
 @Component({
     moduleId: module.id,
@@ -93,7 +94,9 @@ export class Metrics implements OnInit {
     };
 
 
-    constructor(private _ApplicationService: ApplicationService, private _MetricService: MetricService) {
+    constructor(private _ApplicationService: ApplicationService,
+                private _MetricService: MetricService,
+                private _utilService: UtilService) {
     }
 
     ngOnInit() {
@@ -134,7 +137,7 @@ export class Metrics implements OnInit {
 
             for (let item of data) {
 
-                labels.push(this.dateFormat(item.time));
+                labels.push(this._utilService.dateFormat(item.time));
                 meanValues.push(item.value_mean.toFixed(3));
                 medianValues.push(item.value_median.toFixed(3));
 
@@ -167,7 +170,7 @@ export class Metrics implements OnInit {
         if (data) {
 
             for (var item of data) {
-                labels.push(this.dateFormat(item.time));
+                labels.push(this._utilService.dateFormat(item.time));
                 heapTotalvalues.push(item.heapTotal_mean.toFixed(3));
                 heapUsedValues.push(item.heapUsed_mean.toFixed(3));
                 rssValues.push(item.rss_mean.toFixed(3));
@@ -212,7 +215,7 @@ export class Metrics implements OnInit {
         if (data) {
 
             for (var item of data) {
-                obj[item.type].labels.push(this.dateFormat(item.time));
+                obj[item.type].labels.push(this._utilService.dateFormat(item.time));
                 obj[item.type].duration_mean.push(item.duration_mean / 1000);
                 obj[item.type].duration_median.push(item.duration_median / 1000);
                 obj[item.type].duration_percentile_95.push(item.duration_percentile_95 / 1000);
@@ -245,12 +248,6 @@ export class Metrics implements OnInit {
             },
         };
         return result;
-    }
-
-
-    dateFormat(isoDate: string) {
-        let date = new Date(isoDate);
-        return '      ' + date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + '      ';
     }
 
     public metaUpdate(e: any) {

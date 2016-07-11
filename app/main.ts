@@ -31,6 +31,7 @@ import {ApplicationMetaPickerService} from "./comp/applicationMetaPicker/applica
 import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/dist';
 import {TraceService} from "./comp/trace/trace.service";
 import {IpcService} from "./service/ipc.service";
+import {UtilService} from "../dist/service/util.service";
 
 var appPromise = bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
@@ -48,7 +49,8 @@ var appPromise = bootstrap(AppComponent, [
     ApplicationMetaPickerService,
     LocalStorageService,
     TraceService,
-    IpcService
+    IpcService,
+    UtilService
 ]);
 
 LocalStorageSubscriber(appPromise);
