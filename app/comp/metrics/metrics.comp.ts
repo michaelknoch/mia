@@ -108,7 +108,7 @@ export class Metrics implements OnInit {
     }
 
 
-    getData(id: String, query: string) {
+    getData(id: string, query: string) {
         console.log('Select Application:', id);
         this._MetricService.getMetrics(id, query).subscribe(data => {
             const loadData = this.processLoadData(data.load);
