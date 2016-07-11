@@ -5,6 +5,7 @@ import {LocalStorage} from "angular2-localstorage/dist";
 import {CHART_DIRECTIVES} from "ng2-charts/ng2-charts";
 import {BaseChartComponent} from "ng2-charts/ng2-charts";
 import {UtilService} from "../../../service/util.service";
+import {MetricService} from "../../../../dist/service/metric/metric.service";
 declare var moment: any;
 
 @Component({
@@ -46,11 +47,15 @@ export class ApplicationList {
     @ViewChild(NewApplicationModal) private _newApplicationModal;
     @ViewChild(BaseChartComponent) private _chart;
 
-    constructor(private _ApplicationService: ApplicationService, private _utilService: UtilService) {
+    constructor(private _ApplicationService: ApplicationService,
+                private _utilService: UtilService,
+                private _metricSerice: MetricService) {
+
         this.getData()
     }
 
     getData() {
+
         this._ApplicationService.getApplicationsPolling().subscribe(
             data => {
                 this.applications = data;
@@ -68,7 +73,6 @@ export class ApplicationList {
     }
 
     private getActiveAppCount(data: any) {
-
         let count = 0;
         for (let app of data) {
 

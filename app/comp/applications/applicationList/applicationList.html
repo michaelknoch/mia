@@ -1,14 +1,3 @@
-<div class="row">
-    <div class="col-xs-12 col-sm-10">
-        <base-chart class="chart"
-                    [datasets]="chart.data"
-                    [labels]="chart.labels"
-                    [options]="chart.options"
-                    [legend]="'false'"
-                    [chartType]="'bar'">
-        </base-chart>
-    </div>
-</div>
 
 <div class="row costumer-wrapper space-top space-bottom">
     <div class="col-xs-12 col-sm-4 costumer" *ngFor="let item of applications; let i = index">
@@ -17,9 +6,9 @@
             <div class="content">
                 <h4>{{item.name}}</h4>
 
-                <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'red'" class="last-seen green">Online</span>
+                <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'red'" class="last-seen green">last seen: now</span>
                 <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'green'"
-                      [ngClass]="getApplicationStatus(item.last_mem_data).status" class="last-seen">Last Seen: {{getApplicationStatus(item.last_mem_data).moment}}</span>
+                      [ngClass]="getApplicationStatus(item.last_mem_data).status" class="last-seen">last seen: {{getApplicationStatus(item.last_mem_data).moment}}</span>
 
                 <div class="actions">
                     <a class="pointer"><i aria-hidden="true" class="fa fa-pencil"></i>Edit</a>
@@ -54,6 +43,18 @@
     <div (click)="_newApplicationModal.show()" *ngIf="!applications.length"
          class="pointer placeholder col-xs-12 col-sm-5">
         <span>There are no applications for your system, create one</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-10">
+        <base-chart class="chart"
+                    [datasets]="chart.data"
+                    [labels]="chart.labels"
+                    [options]="chart.options"
+                    [legend]="'false'"
+                    [chartType]="'bar'">
+        </base-chart>
     </div>
 </div>
 
