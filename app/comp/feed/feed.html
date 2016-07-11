@@ -7,10 +7,18 @@
 </div>
 
 <div class="row space-top space-bottom">
+
+    <div *ngIf="!startStops.length" class="placeholder col-xs-12 col-sm-5">No Data Available, select another service or period</div>
+
     <div [ngClass]="{'startup': item.isStartup, 'shutdown': item.isShutdown}" *ngFor="let item of startStops"
          class="col-xs-12 col-sm-8 startStop-item">
-        <div class="fullwidth">{{getMoment(item.time)}} | Pid: {{item.pid}}
+        <div class="fullwidth"><span class="bold" *ngIf="item.isStartup">Start</span>
+            <span class="bold"
+                  *ngIf="!item.isStartup">Stop</span>
+            on {{getMoment(item.time)}} with
+            <span class="bold">Pid: {{item.pid}}</span>
         </div>
         <div class="fullwidth"> cwd: {{item.cwd}}</div>
     </div>
 </div>
+
