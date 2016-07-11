@@ -1,1 +1,16 @@
-<h2>feed Component</h2>
+<h2>Journal</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <application-meta-picker (metaUpdate)="metaUpdate($event)"></application-meta-picker>
+    </div>
+</div>
+
+<div class="row space-top space-bottom">
+    <div [ngClass]="{'startup': item.isStartup, 'shutdown': item.isShutdown}" *ngFor="let item of startStops"
+         class="col-xs-12 col-sm-8 startStop-item">
+        <div class="fullwidth">{{getMoment(item.time)}} | Pid: {{item.pid}}
+        </div>
+        <div class="fullwidth"> cwd: {{item.cwd}}</div>
+    </div>
+</div>

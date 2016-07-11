@@ -1,0 +1,18 @@
+@import '../../colors';
+
+.startStop-item {
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: whitesmoke;
+
+    &.startup {
+        border-left: 2px solid $green;
+        background-color: rgba(39, 174, 96, 0.2);
+    }
+
+    &.shutdown {
+        border-left: 2px solid $red;
+        background: rgba(231, 76, 60, 0.2);
+    }
+}
