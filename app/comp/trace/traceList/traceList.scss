@@ -1,7 +1,10 @@
 @import '../../../colors';
 
-.trace h4 {
-    max-width: 450px;
-    padding: 10px 15px;
-    background-color: whitesmoke;
+.trace {
+    padding: 15px;
+    background-color: $green_opac;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-left: 2px solid $green;
 }
