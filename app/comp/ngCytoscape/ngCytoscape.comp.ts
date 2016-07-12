@@ -30,17 +30,21 @@ export class NgCytoscape implements OnChanges {
 
         let cy = jQuery(this.el.nativeElement).cytoscape({
             layout: {
-                name: 'breadthfirst',
+                name: 'grid',
                 directed: true,
-                padding: 15
+                padding: 20
             },
-
+            minZoom: -2,
+            maxZoom: 1,
             style: cytoscape.stylesheet()
                 .selector('node')
                 .css({
                     'content': 'data(name)',
+                    'shape': 'rectangle',
                     'text-valign': 'center',
                     'background-color': 'data(faveColor)',
+                    'width': '200px',
+                    'height': '100px',
                     'color': 'black'
                 })
                 .selector(':selected')

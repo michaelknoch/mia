@@ -1,4 +1,6 @@
-<application-meta-picker [hideApplication]=true (metaUpdate)="metaUpdate($event)"></application-meta-picker>
+<div class="col-xs-12">
+    <application-meta-picker [hideApplication]=true (metaUpdate)="metaUpdate($event)"></application-meta-picker>
+</div>
 
 <loading [spinning]="loading"></loading>
 <ng-cytoscape [elements]="graphData"></ng-cytoscape>

@@ -39,7 +39,7 @@ export class Graph {
         var edges = [];
 
         for (var node of data.nodes) {
-            node.faveColor = '#089ba3';
+            node.faveColor = 'whitesmoke';
             nodes.push({
                 data: node, position: {x: 1, y: 1}
             });
@@ -56,7 +56,7 @@ export class Graph {
             edge.faveColor = '#27ae60';
 
             if (edge.avgDuration > 1000) {
-                edge.faveColor = '#c0392b';
+                edge.faveColor = '#e74c3c';
             } else if (edge.avgDuration > 100) {
                 edge.faveColor = '#e67e22';
             }
