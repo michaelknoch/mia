@@ -81,9 +81,10 @@ ul {
     color: white;
     text-transform: uppercase;
     border: none;
-    transition-duration: 0.3s;
+    transition-duration: 0.1s;
     &:hover {
-        background-color: #DFBA2E;
+        color: white;
+        background-color: $red;
     }
 }
 
@@ -121,7 +122,7 @@ a {
 }
 
 .cube1, .cube2 {
-    background-color: $cyan;
+    background-color: $green;
     width: 15px;
     height: 15px;
     position: absolute;
@@ -133,7 +134,7 @@ a {
 }
 
 .cube2 {
-    background-color: $yellow;
+    background-color: $red;
 }
 
 .cube2 {
@@ -182,7 +183,6 @@ a {
 body {
     background-color: whitesmoke;
     font-family: 'OpenSans-Light';
-    background-color: rgba(38, 38, 38, 0.4);
 }
 
 .loading {
@@ -225,4 +225,8 @@ h2 {
 .placeholder {
     padding: 15px;
     background-color: whitesmoke;
+}
+
+.clear-height {
+    min-height: auto;
 }
