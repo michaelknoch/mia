@@ -36,24 +36,22 @@ export class ApplicationMetaPicker implements OnInit {
 
     constructor(private _applicationMetaPickerService: ApplicationMetaPickerService) {
 
+    }
+
+    ngOnInit() {
         this._applicationMetaPickerService.getApplications().subscribe(data => {
 
             let appToSelect: string = '';
             for (let app of data) {
-                if (app._id === _applicationMetaPickerService.activeApp) {
-                    appToSelect = _applicationMetaPickerService.activeApp;
+                if (app._id === this._applicationMetaPickerService.activeApp) {
+                    appToSelect = this._applicationMetaPickerService.activeApp;
                     break;
                 }
             }
-            _applicationMetaPickerService.activeApp = appToSelect || data[0]._id;
+            this._applicationMetaPickerService.activeApp = appToSelect || data[0]._id;
             this.applications = data;
             this.emit()
         })
-
-    }
-
-    ngOnInit() {
-
     }
 
     public selectQuery(query: string) {
@@ -67,6 +65,7 @@ export class ApplicationMetaPicker implements OnInit {
     }
 
     private emit() {
+        console.info('emit!');
         this.metaUpdate.emit({
             appId: this._applicationMetaPickerService.activeApp,
             query: this._applicationMetaPickerService.activePeriod

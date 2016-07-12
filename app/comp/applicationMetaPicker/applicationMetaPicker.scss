@@ -17,17 +17,19 @@ li {
     float: left;
     margin-right: 5px;
     list-style: none;
-    background-color: $cyan;
+    background-color: white;
     text-transform: uppercase;
     cursor: pointer;
     margin-bottom: 3px;
     padding: 5px 10px;
-    &.active {
-        background-color: $yellow;
+    transition-duration: 0.2s;
+    &.active, &:hover {
+        background-color: black;
+        color: white;
     }
     &.headline {
         background: none;
-        border-bottom: 3px solid #ecc64b;
+        border-bottom: 3px solid black;
         padding: 0;
         margin-bottom: 15px;
         float: left;
