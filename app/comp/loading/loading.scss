@@ -8,6 +8,7 @@
     top: 0;
     left: 50%;
     margin-left: -50px;
+    z-index: 1000;
 }
 
 .loading.spinning {
@@ -23,7 +24,7 @@
 }
 
 .cube1, .cube2 {
-    background-color: $cyan;
+    background-color: $red;
     width: 15px;
     height: 15px;
     position: absolute;
@@ -35,7 +36,7 @@
 }
 
 .cube2 {
-    background-color: $yellow;
+    background-color: $green;
 }
 
 .cube2 {
