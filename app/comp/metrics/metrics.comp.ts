@@ -102,7 +102,6 @@ export class Metrics implements OnInit {
     ngOnInit() {
         this._ApplicationService.getApplications().subscribe(data => {
             this.applications = data;
-            console.info(this.applications);
             this.getData(this.applications[0]._id, undefined)
         });
     }
