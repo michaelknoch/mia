@@ -1,5 +1,5 @@
 import {Component, Output, EventEmitter} from '@angular/core'
-import {ApplicationService} from "../../../service/application/application.service";
+import {ApplicationService} from "../application.service";
 import {AbstractModal} from "../../../abstractionModel/abstractModal";
 
 @Component({

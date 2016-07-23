@@ -2,12 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {Dashboard} from '../dashboard/dashboard.comp';
 import {Settings} from '../settings/comp';
-import {Feed} from "../feed/feed.comp";
-import {DataService} from "../../service/data.service";
+import {Journal} from "../journal/journal.comp";
 import {Applications} from "../applications/applications.comp";
 import {Metrics} from "../metrics/metrics.comp";
 import {Graph} from "../graph/graph.comp";
-import {UserService} from "../../service/user/user.service";
+import {UserService} from "../../sharedServices/user.service";
 import {Trace} from "../trace/trace/trace.comp";
 import {TraceList} from "../trace/traceList/traceList.comp";
 
@@ -22,7 +21,7 @@ import {TraceList} from "../trace/traceList/traceList.comp";
 @RouteConfig([
     {path: '/dashboard', component: Dashboard, name: 'Dashboard', useAsDefault: true},
     {path: '/applications', component: Applications, name: 'Applications'},
-    {path: '/feed', component: Feed, name: 'Feed'},
+    {path: '/journal', component: Journal, name: 'Journal'},
     {path: '/settings', component: Settings, name: 'Settings'},
     {path: '/metrics', component: Metrics, name: 'Metrics'},
     {path: '/graph', component: Graph, name: 'Graph'},

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core'
-import {ApplicationService} from "../../service/application/application.service";
-import {MetricService} from "../../service/metric/metric.service";
+import {ApplicationService} from "../applications/application.service";
+import {MetricService} from "../../sharedServices/metric.service";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
-import {UtilService} from "../../service/util.service";
+import {UtilService} from "../../sharedServices/util.service";
 
 @Component({
     moduleId: module.id,

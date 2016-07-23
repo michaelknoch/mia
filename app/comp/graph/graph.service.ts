@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, Response,  HTTP_PROVIDERS} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
-import {Config} from "../app.config";
-import 'rxjs/add/operator/map';
+import {Config} from "../../app.config";
+
 
 @Injectable()
 export class GraphService {

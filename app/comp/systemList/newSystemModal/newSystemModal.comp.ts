@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
-import {SystemService} from "../../../service/system/system.service";
-import {UserService} from "../../../service/user/user.service";
+import {SystemService} from "../system.service";
+import {UserService} from "../../../sharedServices/user.service";
 import {AbstractModal} from "../../../abstractionModel/abstractModal";
 
 
