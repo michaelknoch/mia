@@ -8,15 +8,13 @@ import {bootstrap}    from '@angular/platform-browser-dynamic';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 import {HTTP_PROVIDERS, BrowserXhr} from '@angular/http';
-import {ApplicationService} from './service/application/application.service';
-import {UserService} from "./service/user/user.service";
-
-import {SystemService} from "./service/system/system.service";
-import {DataService} from "./service/data.service";
+import {ApplicationService} from './comp/applications/application.service';
+import {UserService} from "./sharedServices/user.service";
+import {SystemService} from "./comp/systemList/system.service";
 import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
-import {CustomBrowserXhr} from "./service/CustomBrowserXhr";
-import {MetricService} from "./service/metric/metric.service";
-import {GraphService} from "./service/graph.service";
+import {CustomBrowserXhr} from "./sharedServices/CustomBrowserXhr";
+import {MetricService} from "./sharedServices/metric.service";
+import {GraphService} from "./comp/graph/graph.service";
 
 import {
     PlatformLocation,
@@ -30,8 +28,8 @@ import {
 import {ApplicationMetaPickerService} from "./comp/applicationMetaPicker/applicationMetaPicker.service";
 import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/dist';
 import {TraceService} from "./comp/trace/trace.service";
-import {IpcService} from "./service/ipc.service";
-import {UtilService} from "./service/util.service";
+import {IpcService} from "./sharedServices/ipc.service";
+import {UtilService} from "./sharedServices/util.service";
 
 var appPromise = bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
@@ -39,7 +37,6 @@ var appPromise = bootstrap(AppComponent, [
     ApplicationService,
     UserService,
     SystemService,
-    DataService,
     provide(LocationStrategy, {useClass: HashLocationStrategy}),
     provide(APP_BASE_HREF, {useValue: '/'}),
     AUTH_PROVIDERS,

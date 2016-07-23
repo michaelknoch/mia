@@ -1,5 +1,5 @@
 import {Component, Output, EventEmitter} from '@angular/core'
-import {UserService} from "../../../service/user/user.service";
+import {UserService} from "../../../sharedServices/user.service";
 
 @Component({
     moduleId: module.id,

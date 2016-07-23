@@ -1,8 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, ViewChild} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {SystemService} from "../../../service/system/system.service";
-import {DataService} from "../../../service/data.service";
-import {UserService} from "../../../service/user/user.service";
+import {SystemService} from "../system.service";
+import {UserService} from "../../../sharedServices/user.service";
 import {NewSystemModal} from "../newSystemModal/newSystemModal.comp";
 
 @Component({

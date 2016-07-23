@@ -3,7 +3,7 @@ import {Router, RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from '@angular
 import {Login} from './comp/login/login.comp';
 import {Root} from './comp/root/root.comp';
 import {SystemList} from "./comp/systemList/systemList.comp";
-import {IpcService} from "./service/ipc.service";
+import {IpcService} from "./sharedServices/ipc.service";
 
 @Component({
     moduleId: module.id,

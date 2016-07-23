@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgCytoscape} from "../ngCytoscape/ngCytoscape.comp";
-import {GraphService} from "../../service/graph.service";
+import {GraphService} from "./graph.service";
 import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
 import {Loading} from "../loading/loading.comp";
 

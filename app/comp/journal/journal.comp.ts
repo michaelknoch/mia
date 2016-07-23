@@ -1,19 +1,19 @@
 import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {MetricService} from "../../service/metric/metric.service";
+import {MetricService} from "../../sharedServices/metric.service";
 import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
 
 declare var moment;
 
 @Component({
     moduleId: module.id,
-    selector: 'feed',
+    selector: 'journal',
     directives: [ROUTER_DIRECTIVES, ApplicationMetaPicker],
-    templateUrl: 'feed.html',
-    styleUrls: ['feed.css'],
+    templateUrl: 'journal.html',
+    styleUrls: ['journal.css'],
 })
 
-export class Feed {
+export class Journal {
 
     private startStops = [];
 

@@ -1,11 +1,11 @@
 import {Component, ViewChild} from '@angular/core'
-import {ApplicationService} from '../../../service/application/application.service';
+import {ApplicationService} from '../application.service';
 import {NewApplicationModal} from '../../applications/newApplicationModal/newApplicationModal.comp';
 import {LocalStorage} from "angular2-localstorage/dist";
 import {CHART_DIRECTIVES} from "ng2-charts/ng2-charts";
 import {BaseChartComponent} from "ng2-charts/ng2-charts";
-import {UtilService} from "../../../service/util.service";
-import {MetricService} from "../../../../dist/service/metric/metric.service";
+import {UtilService} from "../../../sharedServices/util.service";
+import {MetricService} from "../../../sharedServices/metric.service";
 declare var moment: any;
 
 @Component({
