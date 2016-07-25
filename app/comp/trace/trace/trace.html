@@ -1,5 +1,7 @@
 <div class="trace-wrapper">
     <div class="relative trace-line col-xs-12" *ngFor="let node of nodes">
-        <span *ngFor="let inner of node" [ngStyle]="{left: inner.left, right: inner.right}" class="trace-item inner">{{inner.name}} | {{inner.duration / 1000}}ms</span>
+        <span *ngFor="let inner of node" [ngStyle]="{left: inner.left, right: inner.right}" class="trace-item inner" [ngClass]="{'cs': inner.cs}">{{inner.name}} | {{inner.duration / 1000}}ms</span>
     </div>
 </div>
+
+<loading [spinning]="loading"></loading>

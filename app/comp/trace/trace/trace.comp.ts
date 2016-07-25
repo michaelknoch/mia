@@ -1,17 +1,20 @@
 import {Component, OnInit} from '@angular/core'
 import {TraceService} from "../trace.service";
 import {Router, RouteParams} from '@angular/router-deprecated';
+import {Loading} from "../../loading/loading.comp";
 
 @Component({
     moduleId: module.id,
     selector: 'trace',
     templateUrl: 'trace.html',
     styleUrls: ['trace.css'],
+    directives: [Loading]
 })
 
 export class Trace implements OnInit {
 
     private nodes = [];
+    private loading: boolean = true;
 
     constructor(private _traceService: TraceService, private params: RouteParams) {
     }
@@ -20,9 +23,9 @@ export class Trace implements OnInit {
         console.info(this.params.get('traceId'));
         this._traceService.getTrace(this.params.get('traceId')).subscribe(
             data => {
-                console.info('data:', data);
                 this.nodes = this.parse(data).nodes;
                 console.info(this.nodes);
+                this.loading = false;
             })
     }
 
@@ -61,16 +64,28 @@ export class Trace implements OnInit {
         let items = [];
 
         for (let child of childs) {
-            let id = child.request.requestId
+            if (!child.request) {
+                return [];
+            }
+            const id = child.request.requestId;
 
             for (let item of data) {
                 if (item.response.parentId === id) {
+
                     item.left = (item.request.timeSR - calculationData.start) * calculationData.basis_point + '%';
                     item.right = ((calculationData.end - item.response.timeSS) * calculationData.basis_point) + '%';
-                    //item.width = (item.request.duration.low / 1000) * calculationData.basis_point + '%';
+
                     item.name = item.receiver.name;
                     item.duration = item.request.duration.low;
                     items.push(item);
+
+                    let inner = {
+                        left: (item.request.timeCS - calculationData.start) * calculationData.basis_point + '%',
+                        right: ((calculationData.end - item.response.timeCR) * calculationData.basis_point) + '%',
+                        cs: true
+                    };
+
+                    items.push(inner);
                 }
             }
         }
