@@ -23,6 +23,7 @@ export class Trace implements OnInit {
         console.info(this.params.get('traceId'));
         this._traceService.getTrace(this.params.get('traceId')).subscribe(
             data => {
+                console.info(data);
                 this.nodes = this.parse(data).nodes;
                 console.info(this.nodes);
                 this.loading = false;
@@ -46,7 +47,12 @@ export class Trace implements OnInit {
             left: (entryPoint[0].request.timeSR - calculationData.start) * calculationData.basis_point + '%',
             right: ((calculationData.end - entryPoint[0].response.timeSS) * calculationData.basis_point) + '%',
             duration: entryPoint[0].request.duration.low
+        }, {
+            left: (entryPoint[0].request.timeCS - calculationData.start) * calculationData.basis_point + '%',
+            right: ((calculationData.end - entryPoint[0].response.timeCR) * calculationData.basis_point) + '%',
+            cs: true
         }]);
+
 
         let childs = this.getChilds(entryPoint, data, calculationData);
         while (childs.length) {
@@ -65,7 +71,7 @@ export class Trace implements OnInit {
 
         for (let child of childs) {
             if (!child.request) {
-                return [];
+                continue;
             }
             const id = child.request.requestId;
 
