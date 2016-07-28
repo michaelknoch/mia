@@ -2,7 +2,7 @@
 /*/
 !/assets/
 !/comp/
-!/service/
+!/sharedServices/
 !/abstractionModel/
 !shared.scss
 !colors.scss
