@@ -5,11 +5,11 @@
 import {AppComponent} from './app.component';
 import {provide} from '@angular/core';
 import {bootstrap}    from '@angular/platform-browser-dynamic';
-import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
+import {ROUTER_PROVIDERS, Router} from '@angular/router-deprecated';
 
 import {HTTP_PROVIDERS, BrowserXhr} from '@angular/http';
 import {ApplicationService} from './comp/applications/application.service';
-import {UserService} from "./sharedServices/user.service";
+
 import {SystemService} from "./comp/systemList/system.service";
 import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 import {CustomBrowserXhr} from "./sharedServices/CustomBrowserXhr";
@@ -30,12 +30,16 @@ import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage
 import {TraceService} from "./comp/trace/trace.service";
 import {IpcService} from "./sharedServices/ipc.service";
 import {UtilService} from "./sharedServices/util.service";
+import {UserService} from "./sharedServices/user.service";
+import {IUserService} from "./sharedServices/user.service.interface";
+import {HttpInterceptor} from "./sharedServices/httpInterceptor"
+import {Http, XHRBackend, RequestOptions} from "@angular/http"
 
 var appPromise = bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     ApplicationService,
-    UserService,
+    provide(UserService, {useClass: UserService}),
     SystemService,
     provide(LocationStrategy, {useClass: HashLocationStrategy}),
     provide(APP_BASE_HREF, {useValue: '/'}),
@@ -47,7 +51,11 @@ var appPromise = bootstrap(AppComponent, [
     LocalStorageService,
     TraceService,
     IpcService,
-    UtilService
+    UtilService,
+    provide(Http, {
+        useFactory: (xhrBackend: XHRBackend, requestOptions: RequestOptions, router: Router) => new HttpInterceptor(xhrBackend, requestOptions, router),
+        deps: [XHRBackend, RequestOptions, Router]
+    })
 ]);
 
 LocalStorageSubscriber(appPromise);
