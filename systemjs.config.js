@@ -9,7 +9,8 @@
         "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js",
         'ng2-charts': 'node_modules/ng2-charts',
         'ng2-cytoscape/dist': 'node_modules/ng2-cytoscape/dist',
-        'angular2-localstorage/dist': 'node_modules/angular2-localstorage/dist'
+        'angular2-localstorage/dist': 'node_modules/angular2-localstorage/dist',
+        'lodash': 'node_modules/lodash/lodash.js'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
