@@ -3,9 +3,10 @@ import {Http, Response, HTTP_PROVIDERS} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {Config} from "../app.config";
 import {LocalStorage, SessionStorage} from "angular2-localstorage/dist";
+import {IUserService} from "./user.service.interface";
 
 @Injectable()
-export class UserService {
+export class UserService implements IUserService {
 
     @LocalStorage() private currentSystem: any = {
         id: '',
@@ -58,7 +59,7 @@ export class UserService {
             })
     }
 
-    public getLocalMe() {
+    public getLocalMe(): any {
         return {
             user: this.currentUser,
             system: this.currentSystem
