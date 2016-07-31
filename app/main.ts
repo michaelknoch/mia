@@ -25,7 +25,7 @@ import {
     APP_BASE_HREF }
     from '@angular/common';
 
-import {ApplicationMetaPickerService} from "./comp/applicationMetaPicker/applicationMetaPicker.service";
+import {MetaPickerService} from "./comp/metaPicker/metaPicker.service";
 import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/dist';
 import {TraceService} from "./comp/trace/trace.service";
 import {IpcService} from "./sharedServices/ipc.service";
@@ -47,7 +47,7 @@ var appPromise = bootstrap(AppComponent, [
     provide(BrowserXhr, {useClass: CustomBrowserXhr}),
     MetricService,
     GraphService,
-    ApplicationMetaPickerService,
+    MetaPickerService,
     LocalStorageService,
     TraceService,
     IpcService,

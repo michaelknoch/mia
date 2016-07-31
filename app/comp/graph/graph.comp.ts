@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {NgCytoscape} from "ng2-cytoscape/dist";
 import {GraphService} from "./graph.service";
-import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
 import {Loading} from "../loading/loading.comp";
+import {MetaPicker} from "../metaPicker/metaPicker.comp";
 
 declare var cytoscape: any;
 
 @Component({
     moduleId: module.id,
     selector: 'graph',
-    directives: [NgCytoscape, ApplicationMetaPicker, Loading],
+    directives: [NgCytoscape, MetaPicker, Loading],
     templateUrl: 'graph.html',
     styleUrls: ['graph.css'],
 })

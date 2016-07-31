@@ -5,7 +5,7 @@ import {Config} from "../../app.config";
 import {LocalStorage} from "angular2-localstorage/dist";
 
 @Injectable()
-export class ApplicationMetaPickerService {
+export class MetaPickerService {
 
     @LocalStorage() public activePeriod: string;
     @LocalStorage() public activeApp: string;

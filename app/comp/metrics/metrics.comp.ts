@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core'
 import {ApplicationService} from "../applications/application.service";
 import {MetricService} from "../../sharedServices/metric.service";
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
-import {ApplicationMetaPicker} from "../applicationMetaPicker/applicationMetaPicker.comp";
+import {MetaPicker} from "../metaPicker/metaPicker.comp";
 import {UtilService} from "../../sharedServices/util.service";
 
 @Component({
     moduleId: module.id,
     selector: 'metrics',
-    directives: [CHART_DIRECTIVES, ApplicationMetaPicker],
+    directives: [CHART_DIRECTIVES, MetaPicker],
     templateUrl: 'metrics.html',
     styleUrls: ['metrics.css'],
 })

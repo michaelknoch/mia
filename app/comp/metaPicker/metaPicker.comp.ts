@@ -1,4 +1,4 @@
-import {ApplicationMetaPickerService} from "./applicationMetaPicker.service";
+import {MetaPickerService} from "./metaPicker.service";
 import {
     Component, OnDestroy, OnInit, OnChanges, EventEmitter, ElementRef, Input,
     Output
@@ -7,12 +7,12 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/dist";
 
 @Component({
     moduleId: module.id,
-    selector: 'application-meta-picker',
-    templateUrl: 'applicationMetaPicker.html',
-    styleUrls: ['applicationMetaPicker.css'],
+    selector: 'meta-picker',
+    templateUrl: 'metaPicker.html',
+    styleUrls: ['metaPicker.css'],
 })
 
-export class ApplicationMetaPicker implements OnInit {
+export class MetaPicker implements OnInit {
 
     @Input() public hideApplication: boolean = false;
     @Output() public metaUpdate: EventEmitter<any> = new EventEmitter();
@@ -34,41 +34,41 @@ export class ApplicationMetaPicker implements OnInit {
         return Object.keys(this.queries);
     }
 
-    constructor(private _applicationMetaPickerService: ApplicationMetaPickerService) {
+    constructor(private _metaPickerService: MetaPickerService) {
 
     }
 
     ngOnInit() {
-        this._applicationMetaPickerService.getApplications().subscribe(data => {
+        this._metaPickerService.getApplications().subscribe(data => {
 
             let appToSelect: string = '';
             for (let app of data) {
-                if (app._id === this._applicationMetaPickerService.activeApp) {
-                    appToSelect = this._applicationMetaPickerService.activeApp;
+                if (app._id === this._metaPickerService.activeApp) {
+                    appToSelect = this._metaPickerService.activeApp;
                     break;
                 }
             }
-            this._applicationMetaPickerService.activeApp = appToSelect || data[0]._id;
+            this._metaPickerService.activeApp = appToSelect || data[0]._id;
             this.applications = data;
             this.emit()
         })
     }
 
     public selectQuery(query: string) {
-        this._applicationMetaPickerService.activePeriod = query;
+        this._metaPickerService.activePeriod = query;
         this.emit()
     }
 
     public selectApplication(application) {
-        this._applicationMetaPickerService.activeApp = application;
+        this._metaPickerService.activeApp = application;
         this.emit();
     }
 
     private emit() {
         console.info('emit!');
         this.metaUpdate.emit({
-            appId: this._applicationMetaPickerService.activeApp,
-            query: this._applicationMetaPickerService.activePeriod
+            appId: this._metaPickerService.activeApp,
+            query: this._metaPickerService.activePeriod
         });
     }
 

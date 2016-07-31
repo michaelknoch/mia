@@ -9,7 +9,7 @@
                 </span>
                 <ul class="application-picker">
                     <li *ngFor="let item of applications; let i = index" (click)="selectApplication(item._id)"
-                        [ngClass]="{active: _applicationMetaPickerService.activeApp === item._id}">
+                        [ngClass]="{active: _metaPickerService.activeApp === item._id}">
                         {{item.name}}
                     </li>
                 </ul>
@@ -21,7 +21,7 @@
                 </span>
                 <ul>
                     <li *ngFor='let key of queryKeys()' (click)="selectQuery('?since=' + key)"
-                        [ngClass]="{active: _applicationMetaPickerService.activePeriod === '?since=' + key}">
+                        [ngClass]="{active: _metaPickerService.activePeriod === '?since=' + key}">
                         {{queries[key]}}
                     </li>
                 </ul>
