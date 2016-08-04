@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core'
 import {TraceService} from "../trace.service";
 import {Router, RouteParams} from '@angular/router-deprecated';
 import {Loading} from "../../loading/loading.comp";
+import {SimpleGantt} from "../simpleGantt/simpleGantt.comp";
 
 @Component({
     moduleId: module.id,
     selector: 'trace',
     templateUrl: 'trace.html',
     styleUrls: ['trace.css'],
-    directives: [Loading]
+    directives: [Loading, SimpleGantt]
 })
 
 export class Trace implements OnInit {
@@ -44,6 +45,7 @@ export class Trace implements OnInit {
 
         nodes.push([{
             name: entryPoint[0].receiver.name,
+            role: entryPoint[0].request.name,
             left: (entryPoint[0].request.timeSR - calculationData.start) * calculationData.basis_point + '%',
             right: ((calculationData.end - entryPoint[0].response.timeSS) * calculationData.basis_point) + '%',
             duration: entryPoint[0].request.duration.low
@@ -82,6 +84,7 @@ export class Trace implements OnInit {
                     item.right = ((calculationData.end - item.response.timeSS) * calculationData.basis_point) + '%';
 
                     item.name = item.receiver.name;
+                    item.role = item.request.name;
                     item.duration = item.request.duration.low;
                     items.push(item);
 
@@ -112,6 +115,7 @@ export class Trace implements OnInit {
                 item.right = 0;
 
                 item.name = item.sender.name;
+                item.role = item.request.name;
                 item.duration = item.response.duration.low;
 
                 return [item];
