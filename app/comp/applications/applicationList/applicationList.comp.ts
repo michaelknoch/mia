@@ -56,7 +56,7 @@ export class ApplicationList {
 
     getData() {
 
-        this._ApplicationService.getApplicationsPolling().subscribe(
+        this._ApplicationService.getApplications().subscribe(
             data => {
                 this.applications = data;
                 console.info(data);
