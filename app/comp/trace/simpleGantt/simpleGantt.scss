@@ -1,0 +1,43 @@
+
+.trace-wrapper {
+    .trace-item {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background-color: #079aa2;
+        color: white;
+
+        &.inner {
+            line-height: 30px;
+            padding-left: 5px;
+            white-space: nowrap;
+            z-index: 100;
+
+            &.cs {
+                opacity: 0.5;
+                color: rgba(0,0,0,0);
+                z-index: 1;
+                border-left: 1px solid rgba(0,0,0,0);
+            }
+        }
+
+        span.role.fullwidth {
+            opacity: 0.5;
+            margin-top: -6px;
+        }
+
+
+    }
+
+    .trace-line {
+        height: 60px;
+        background-color: rgba(0, 0, 0, 0.15);
+        margin-bottom: 15px;
+        &:first-child {
+            .trace-item {
+                background-color: #4593c1;
+            }
+        }
+    }
+
+}
