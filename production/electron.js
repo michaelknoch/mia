@@ -68,12 +68,12 @@ function registerUpdater() {
     autoUpdater.checkForUpdates();
 
 
-    win.on('update-available', () => {
+    autoUpdater.on('update-available', () => {
         console.info('update-available');
         win.webContents.send('update-available');
     });
 
-    win.on('update-downloaded', () => {
+    autoUpdater.on('update-downloaded', () => {
         console.info('update-downloaded');
         win.webContents.send('update-downloaded');
     });
