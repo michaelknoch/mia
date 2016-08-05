@@ -9,6 +9,7 @@
         "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js",
         'ng2-charts': 'node_modules/ng2-charts',
         'ng2-cytoscape/dist': 'node_modules/ng2-cytoscape/dist',
+        'ng2-simplegantt/dist': 'node_modules/ng2-simplegantt/dist',
         'angular2-localstorage/dist': 'node_modules/angular2-localstorage/dist',
         'lodash': 'node_modules/lodash/lodash.js'
     };
@@ -20,7 +21,8 @@
         'angular2-in-memory-web-api': {defaultExtension: 'js'},
         'ng2-charts': {defaultExtension: 'js'},
         'angular2-localstorage/dist': {main: 'index.js', defaultExtension: 'js'},
-        'ng2-cytoscape/dist': {main: 'index.js', defaultExtension: 'js'}
+        'ng2-cytoscape/dist': {main: 'index.js', defaultExtension: 'js'},
+        'ng2-simplegantt/dist': {main: 'index.js', defaultExtension: 'js'}
     };
 
     var packageNames = [

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core'
 import {TraceService} from "../trace.service";
 import {Router, RouteParams} from '@angular/router-deprecated';
 import {Loading} from "../../loading/loading.comp";
-import {SimpleGantt} from "../simpleGantt/simpleGantt.comp";
+import {SimpleGantt} from 'ng2-simplegantt/dist';
 
 @Component({
     moduleId: module.id,
