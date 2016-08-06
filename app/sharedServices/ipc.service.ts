@@ -24,7 +24,7 @@ export class IpcService {
             electron.ipcRenderer.on('update-downloaded', () => {
                 this.mainProcessEvents.emit('update-downloaded');
                 console.info('update-downloaded');
-                this.notification('update-downloaded, click for restart');
+                this.notification('Update downloaded, click for restart');
             });
 
             electron.ipcRenderer.on('version-receive', (event, version) => {
