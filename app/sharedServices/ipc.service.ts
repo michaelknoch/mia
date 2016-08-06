@@ -18,19 +18,19 @@ export class IpcService {
             electron.ipcRenderer.on('update-available', () => {
                 this.mainProcessEvents.emit('update-available');
                 console.info('update-available');
-                this.notification('update available', 'Update')
+                this.notification('update available')
             });
 
             electron.ipcRenderer.on('update-downloaded', () => {
                 this.mainProcessEvents.emit('update-downloaded');
                 console.info('update-downloaded');
-                this.notification('update downloaded', 'Update')
+                this.notification('update downloaded')
             });
 
             electron.ipcRenderer.on('version-receive', (event, version) => {
                 this.versionEmitter.emit({version: version});
                 console.info('version-receive', version);
-                this.notification('Version: ' + version, 'Appversion')
+                this.notification('Version: ' + version)
             });
 
             electron.ipcRenderer.send('version-request');
@@ -38,11 +38,18 @@ export class IpcService {
         }
     }
 
-    private notification(body: string, title: string) {
-        let myNotification = new Notification(title, {
+    private notification(body: string, title: string = 'MIA') {
+        let notification = new Notification(title, {
             body: body,
             silent: true
         });
         new Audio('dist/assets/sounds/message.mp3').play();
+
+        if (body === 'update-downloaded') {
+            notification.onclick = () => {
+                console.info('force-restart');
+                electron.ipcRenderer.send('force-restart');
+            };
+        }
     }
 }
