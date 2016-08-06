@@ -1,5 +1,4 @@
 import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {MetricService} from "../../sharedServices/metric.service";
 import {MetaPicker} from "../metaPicker/metaPicker.comp";
 
@@ -8,7 +7,7 @@ declare var moment;
 @Component({
     moduleId: module.id,
     selector: 'journal',
-    directives: [ROUTER_DIRECTIVES, MetaPicker],
+    directives: [MetaPicker],
     templateUrl: 'journal.html',
     styleUrls: ['journal.css'],
 })
