@@ -13,7 +13,7 @@ export class IpcService {
 
     constructor() {
 
-        if ('undefined' !== typeof electron) {
+        if (typeof electron !== 'undefined') {
 
             electron.ipcRenderer.on('update-available', () => {
                 this.mainProcessEvents.emit('update-available');
