@@ -21,6 +21,12 @@ export class Graph {
         edges: []
     };
 
+    layout = {
+        name: 'breadthfirst',
+        directed: true,
+        padding: 0
+    };
+
     private loading: boolean;
 
     constructor(private _graphService: GraphService) {
