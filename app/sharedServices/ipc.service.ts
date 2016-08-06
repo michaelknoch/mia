@@ -24,7 +24,7 @@ export class IpcService {
             electron.ipcRenderer.on('update-downloaded', () => {
                 this.mainProcessEvents.emit('update-downloaded');
                 console.info('update-downloaded');
-                this.notification('update downloaded')
+                this.notification('update-downloaded, click for restart');
             });
 
             electron.ipcRenderer.on('version-receive', (event, version) => {
@@ -45,7 +45,7 @@ export class IpcService {
         });
         new Audio('dist/assets/sounds/message.mp3').play();
 
-        if (body === 'update-downloaded') {
+        if (body === 'update-downloaded, click for restart') {
             notification.onclick = () => {
                 console.info('force-restart');
                 electron.ipcRenderer.send('force-restart');
