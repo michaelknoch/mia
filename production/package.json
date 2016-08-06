@@ -2,7 +2,7 @@
   "name": "mia-electron",
   "repository": "https://github.com/michaelknoch/mia",
   "main": "electron.js",
-  "version": "0.0.14",
+  "version": "0.0.17",
   "license": "ISC",
   "devDependencies": {
     "electron-prebuilt": "^1.2.5"
