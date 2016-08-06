@@ -77,5 +77,10 @@ function registerUpdater() {
         console.info('update-downloaded');
         win.webContents.send('update-downloaded');
     });
+
+    ipcMain.on('force-restart', () => {
+        console.info('force-restart');
+        autoUpdater.quitAndInstall();
+    });
 }
 
