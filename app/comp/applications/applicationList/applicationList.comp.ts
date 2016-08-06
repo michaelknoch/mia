@@ -60,13 +60,10 @@ export class ApplicationList {
             data => {
                 this.applications = data;
                 console.info(data);
-                this.chart.data[0].data.push(this.getActiveAppCount(data));
+                /*this.chart.data[0].data.push(this.getActiveAppCount(data));
                 this.chart.labels.push(this._utilService.realDateFormat(new Date()));
                 this.chart.options.scales.yAxes[0].ticks = {min: 0, stepSize: 1};
-                this._chart.ngOnChanges();
-
-
-                console.info(this.chart);
+                this._chart.ngOnChanges();*/
             },
             err => console.error(err)
         );
