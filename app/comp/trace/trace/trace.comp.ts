@@ -48,7 +48,7 @@ export class Trace implements OnInit {
             role: entryPoint[0].request.name,
             left: (entryPoint[0].request.timeSR - calculationData.start) * calculationData.basis_point + '%',
             right: ((calculationData.end - entryPoint[0].response.timeSS) * calculationData.basis_point) + '%',
-            duration: entryPoint[0].request.duration.low
+            duration: entryPoint[0].request.duration
         }, {
             left: (entryPoint[0].request.timeCS - calculationData.start) * calculationData.basis_point + '%',
             right: ((calculationData.end - entryPoint[0].response.timeCR) * calculationData.basis_point) + '%',
@@ -85,7 +85,7 @@ export class Trace implements OnInit {
 
                     item.name = item.receiver.name;
                     item.role = item.request.name;
-                    item.duration = item.request.duration.low;
+                    item.duration = item.request.duration;
                     items.push(item);
 
                     let inner = {
@@ -116,7 +116,7 @@ export class Trace implements OnInit {
 
                 item.name = item.sender.name;
                 item.role = item.request.name;
-                item.duration = item.response.duration.low;
+                item.duration = item.response.duration;
 
                 return [item];
             }
