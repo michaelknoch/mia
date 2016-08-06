@@ -106,7 +106,7 @@ gulp.task('watch', ['build', 'web'], function () {
 
 gulp.task('electron.deploy', ['production', 'bump'], shell.task([
     'rm -rf mia-darwin-x64',
-    './node_modules/.bin/electron-packager production mia --platform=darwin --arch=x64 --overwrite',
+    './node_modules/.bin/electron-packager production mia --platform=darwin --arch=x64 --icon icon.icns --overwrite',
     'codesign --deep --force --verbose --sign ' + env.identity + ' mia-darwin-x64/mia.app',
     './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + env.token + ' --repo michaelknoch/mia'
 ], {
