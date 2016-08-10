@@ -2,14 +2,24 @@
 
 .modal-wrapper {
     position: absolute;
-    top: 10%;
-    left: 20%;
+    top: 15%;
+    left: 25%;
     z-index: 100;
     border-left: 3px solid $green;
     padding: 15px;
     background-color: white;
     transition-duration: 0.2s;
     transition-timing-function: ease-out;
+
+    h4 {
+        line-height: 150%;
+    }
+
+    max-width: 40vw;
+
+    &.error {
+        border-left: 3px solid $red;
+    }
 
     input, textarea {
         background-color: whitesmoke;
