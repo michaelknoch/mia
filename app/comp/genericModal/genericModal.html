@@ -1,0 +1,16 @@
+<div class="full-wrapper" [ngClass]="{visible: getModal().open}">
+    <div class="overlay" (click)="hide()"></div>
+    <div class="modal-wrapper error">
+        <i (click)="hide()" class="fa fa-times close pointer" aria-hidden="true"></i>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{{getModal().title}}</h2>
+                <h4>{{getModal().body}}</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
