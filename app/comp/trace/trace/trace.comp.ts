@@ -121,6 +121,7 @@ export class Trace implements OnInit {
                 return [item];
             }
         }
+        console.error('no Entry Point found');
         return [];
     }
 }
