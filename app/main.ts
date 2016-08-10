@@ -34,6 +34,7 @@ import {UserService} from "./sharedServices/user.service";
 import {IUserService} from "./sharedServices/user.service.interface";
 import {HttpInterceptor} from "./sharedServices/httpInterceptor"
 import {Http, XHRBackend, RequestOptions} from "@angular/http"
+import {GenericModalService} from "./comp/genericModal/genericModal.service";
 
 var appPromise = bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
@@ -51,6 +52,7 @@ var appPromise = bootstrap(AppComponent, [
     LocalStorageService,
     TraceService,
     IpcService,
+    GenericModalService,
     UtilService,
     provide(Http, {
         useFactory: (xhrBackend: XHRBackend, requestOptions: RequestOptions, router: Router) => new HttpInterceptor(xhrBackend, requestOptions, router),
