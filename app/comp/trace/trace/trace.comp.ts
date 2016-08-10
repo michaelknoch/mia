@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnInit, Input} from '@angular/core'
 import {TraceService} from "../trace.service";
-import {Router, RouteParams} from '@angular/router-deprecated';
 import {Loading} from "../../loading/loading.comp";
 import {SimpleGantt} from 'ng2-simplegantt/dist';
 
@@ -14,15 +13,16 @@ import {SimpleGantt} from 'ng2-simplegantt/dist';
 
 export class Trace implements OnInit {
 
+    @Input() private id:string;
     private nodes = [];
     private loading: boolean = true;
 
-    constructor(private _traceService: TraceService, private params: RouteParams) {
+    constructor(private _traceService: TraceService) {
     }
 
     ngOnInit() {
-        console.info(this.params.get('traceId'));
-        this._traceService.getTrace(this.params.get('traceId')).subscribe(
+        console.info(this.id);
+        this._traceService.getTrace(this.id).subscribe(
             data => {
                 console.info(data);
                 this.nodes = this.parse(data).nodes;

@@ -1,2 +1,9 @@
+<h2>Trace {{id}}</h2>
+
 <simple-gantt [nodes]="nodes"></simple-gantt>
 <loading [spinning]="loading"></loading>
+
+<div *ngIf="!nodes.length"
+     class="pointer placeholder col-xs-12 col-sm-5">
+    <span>Error during trace visualisation</span>
+</div>

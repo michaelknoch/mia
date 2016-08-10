@@ -7,8 +7,8 @@ import {Applications} from "../applications/applications.comp";
 import {Metrics} from "../metrics/metrics.comp";
 import {Graph} from "../graph/graph.comp";
 import {UserService} from "../../sharedServices/user.service";
-import {Trace} from "../trace/trace/trace.comp";
 import {TraceList} from "../trace/traceList/traceList.comp";
+import {TraceView} from "../trace/traceView/traceView.comp";
 
 
 @Component({
@@ -26,7 +26,7 @@ import {TraceList} from "../trace/traceList/traceList.comp";
     {path: '/metrics', component: Metrics, name: 'Metrics'},
     {path: '/graph', component: Graph, name: 'Graph'},
     {path: '/traces', component: TraceList, name: 'TraceList'},
-    {path: '/trace/:traceId', component: Trace, name: 'Trace'}
+    {path: '/trace/:traceId', component: TraceView, name: 'Trace'}
 
 ])
 
