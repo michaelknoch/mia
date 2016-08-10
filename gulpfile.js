@@ -117,26 +117,26 @@ gulp.task('electron.deploy', ['production', 'bump'], function () {
     });
 });
 
-gulp.task('electron.windows.build', ['production'], function() {
+gulp.task('electron.windows.build', ['production'], function () {
 
-  shell.task([
-      'rm -rf mia-win32-x64',
-      './node_modules/.bin/electron-packager production mia --platform=win32 --arch=x64 --icon icon.icns --overwrite'], {ignoreErrors: true})
+    shell.task([
+        'rm -rf mia-win32-x64',
+        './node_modules/.bin/electron-packager production mia --platform=win32 --arch=x64 --icon icon.icns --overwrite'], {ignoreErrors: true})
 
 });
 
-gulp.task('electron.windows.setup', ['electron.windows.build'], function() {
+gulp.task('electron.windows.setup', ['electron.windows.build'], function () {
     var electronInstaller = require('electron-winstaller');
     var resultPromise = electronInstaller.createWindowsInstaller({
-      appDirectory: 'mia-win32-x64',
-      outputDirectory: 'out/win',
-      authors: 'Michael Knoch',
-      owners: 'Michael Knoch',
-      exe: 'mia.exe',
-      title: '123mia',
-      setupExe: '123mia_setup.exe',
-      description: 'Mia Frontend installer',
-      arch: 'x64'
+        appDirectory: 'mia-win32-x64',
+        outputDirectory: 'out/win',
+        authors: 'Michael Knoch',
+        owners: 'Michael Knoch',
+        exe: 'mia.exe',
+        title: '123mia',
+        setupExe: '123mia_setup.exe',
+        description: 'Mia Frontend installer',
+        arch: 'x64'
     });
     resultPromise.then(() => console.log("It worked!"), (e) => console.log(`No dice: ${e.message}`));
 
