@@ -6,6 +6,8 @@
     </li>
 </ul>
 
+<div [ngClass]="{active: err}" class="error">{{err}}</div>
+
 <div class="login" [ngClass]="{hidden: !loginState}">
     <input [(ngModel)]="mail" type="email" class="form-control" placeholder="Mail"
            aria-describedby="basic-addon1">
@@ -23,7 +25,8 @@
            aria-describedby="basic-addon1">
     <input [(ngModel)]="mail" type="email" class="form-control" placeholder="Mail"
            aria-describedby="basic-addon1">
-    <input (keydown.enter)="register()" [(ngModel)]="password" type="password" class="form-control" placeholder="Password"
+    <input (keydown.enter)="register()" [(ngModel)]="password" type="password" class="form-control"
+           placeholder="Password"
            aria-describedby="basic-addon1">
     <button (click)="register()" type="submit" class="pointer btn btn-default">Register
     </button>

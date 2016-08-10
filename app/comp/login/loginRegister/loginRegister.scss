@@ -1,5 +1,18 @@
 @import '../../../colors';
 
+.error {
+    background-color: $red;
+    margin-top: 5px;
+    color: white;
+    height: 0;
+    transition-duration: 0.2s;
+    &.active {
+        height: 50px;
+        padding: 5px;
+    }
+}
+
+
 .nav {
 
     li {

@@ -12,6 +12,7 @@ export class LoginRegister {
 
     @Output() public loginEvent: EventEmitter<any> = new EventEmitter();
 
+    private err: string;
     private loginState: Boolean = true;
     private password: String;
     private mail: String;
@@ -40,9 +41,11 @@ export class LoginRegister {
 
     onErr(msg) {
         console.error(msg);
+        this.err = msg;
     }
 
     private emit(data) {
+        this.err = '';
         this.loginEvent.emit({
             name: data.name,
             id: data._id,
