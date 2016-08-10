@@ -21,7 +21,7 @@ export class Login implements OnInit {
         const localMe = this._userService.getLocalMe();
         if (localMe.user.id && localMe.system.id) {
             console.log('found local system, redirecting');
-            this._router.navigate(['Root', {systemId: localMe.system.id}])
+            this._router.navigate(['Root'])
 
         } else if (!localMe.system.id && localMe.user.id) {
             this._router.navigate(['System-list']);
