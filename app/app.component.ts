@@ -4,12 +4,13 @@ import {Login} from './comp/login/login.comp';
 import {Root} from './comp/root/root.comp';
 import {SystemList} from "./comp/systemList/systemList.comp";
 import {IpcService} from "./sharedServices/ipc.service";
+import {GenericModal} from "./comp/genericModal/genericModal.comp";
 
 @Component({
     moduleId: module.id,
     selector: 'dash',
     templateUrl: 'app.html',
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, GenericModal]
 })
 
 @RouteConfig([

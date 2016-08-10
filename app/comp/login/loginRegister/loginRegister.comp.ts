@@ -1,5 +1,6 @@
 import {Component, Output, EventEmitter} from '@angular/core'
 import {UserService} from "../../../sharedServices/user.service";
+import {GenericModalService} from "../../../../dist/comp/genericModal/genericModal.service";
 
 @Component({
     moduleId: module.id,
@@ -14,13 +15,13 @@ export class LoginRegister {
 
     private err: string;
     private loginState: Boolean = true;
-    private password: String;
-    private mail: String;
-    private name: String;
-    private surname: String;
+    private password: string;
+    private mail: string;
+    private name: string;
+    private surname: string;
 
 
-    constructor(private _userService: UserService) {
+    constructor(private _userService: UserService, private _modal: GenericModalService) {
     }
 
     private login() {
@@ -42,6 +43,11 @@ export class LoginRegister {
     onErr(msg) {
         console.error(msg);
         this.err = msg;
+
+        if (msg.status === 0) {
+            this._modal.show('Fehler', 'Das System ist derzeit leider offline');
+        }
+
     }
 
     private emit(data) {
