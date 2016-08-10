@@ -10,7 +10,6 @@ const inlineNg2Template = require('gulp-inline-ng2-template');
 const clean = require('gulp-clean');
 const merge = require('merge2');  // Require separate installation
 const fs = require('fs');
-const env = JSON.parse(fs.readFileSync('.env', 'utf-8'));
 
 gulp.task('clean', function () {
     return gulp.src(['production/*',
@@ -104,14 +103,19 @@ gulp.task('watch', ['build', 'web'], function () {
     gulp.watch('app/**/*.html', ['html']);
 });
 
-gulp.task('electron.deploy', ['production', 'bump'], shell.task([
-    'rm -rf mia-darwin-x64',
-    './node_modules/.bin/electron-packager production mia --platform=darwin --arch=x64 --icon icon.icns --overwrite',
-    'codesign --deep --force --verbose --sign ' + env.identity + ' mia-darwin-x64/mia.app',
-    './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + env.token + ' --repo michaelknoch/mia'
-], {
-    ignoreErrors: true
-}));
+
+gulp.task('electron.deploy', ['production', 'bump'], function () {
+    const env = JSON.parse(fs.readFileSync('.env', 'utf-8'));
+
+    shell.task([
+        'rm -rf mia-darwin-x64',
+        './node_modules/.bin/electron-packager production mia --platform=darwin --arch=x64 --icon icon.icns --overwrite',
+        'codesign --deep --force --verbose --sign ' + env.identity + ' mia-darwin-x64/mia.app',
+        './node_modules/.bin/electron-release --app mia-darwin-x64/mia.app --token ' + env.token + ' --repo michaelknoch/mia'
+    ], {
+        ignoreErrors: true
+    });
+});
 
 gulp.task('bump', function () {
     const bump = require('gulp-bump');
