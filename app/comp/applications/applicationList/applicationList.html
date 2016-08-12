@@ -1,5 +1,11 @@
-
 <div class="costumer-wrapper space-top space-bottom">
+
+    <div class="col-xs-12 actions"><a [hidden]="!hideTokenExample" (click)="hideTokenExample=false" class="pointer"><i
+            aria-hidden="true" class="fa fa-bars"></i>Show Token Code</a>
+        <a [hidden]="hideTokenExample" (click)="hideTokenExample=true" class="pointer"><i aria-hidden="true"
+                                                                                          class="fa fa-times"></i>Hide
+            Token Code</a></div>
+
     <div class="col-xs-12 col-sm-4 costumer" *ngFor="let item of applications; let i = index">
         <div [ngStyle]="{'border-color': item.color}" class="inner-wrapper">
             <div class="color" [ngStyle]="{'background-color': item.color}"></div>
@@ -11,12 +17,6 @@
                       [ngClass]="getApplicationStatus(item.last_mem_data).status" class="last-seen">last seen: {{getApplicationStatus(item.last_mem_data).moment}}</span>
 
                 <div class="actions">
-                    <a class="pointer"><i aria-hidden="true" class="fa fa-pencil"></i>Edit</a>
-                    <a [hidden]="!hideTokenExample" (click)="hideTokenExample=false" class="pointer"><i
-                            aria-hidden="true" class="fa fa-bars"></i>Show Token Code</a>
-                    <a [hidden]="hideTokenExample" (click)="hideTokenExample=true" class="pointer"><i aria-hidden="true"
-                                                                                                      class="fa fa-times"></i>Hide
-                        Token Code</a>
 
                     <a [hidden]="hideTokenExample" class="pointer" (click)="copyToken($event)">
                         <textarea type="text" name="token" id="apptoken">{{prepareToken(item.app_token)}}</textarea>
