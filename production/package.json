@@ -3,7 +3,7 @@
   "repository": "https://github.com/michaelknoch/mia",
   "main": "electron.js",
   "description": "Mia Frontend",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "license": "ISC",
   "devDependencies": {
     "electron-prebuilt": "^1.2.5"
