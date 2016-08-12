@@ -119,7 +119,7 @@ gulp.task('electron.deploy', ['production', 'bump'], function () {
 
 gulp.task('electron.windows.build', ['production'], function () {
 
-    shell.task([
+    return shell.task([
         'rm -rf mia-win32-x64',
         './node_modules/.bin/electron-packager production mia --platform=win32 --arch=x64 --icon icon.icns --overwrite'], {ignoreErrors: true})
 
@@ -133,8 +133,7 @@ gulp.task('electron.windows.setup', ['electron.windows.build'], function () {
         authors: 'Michael Knoch',
         owners: 'Michael Knoch',
         exe: 'mia.exe',
-        title: '123mia',
-        setupExe: '123mia_setup.exe',
+        title: 'mia',
         description: 'Mia Frontend installer',
         arch: 'x64'
     });
