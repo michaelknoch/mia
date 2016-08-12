@@ -1,6 +1,6 @@
 import {Component, Output, EventEmitter} from '@angular/core'
 import {UserService} from "../../../sharedServices/user.service";
-import {GenericModalService} from "../../../../dist/comp/genericModal/genericModal.service";
+import {GenericModalService} from "../../../comp/genericModal/genericModal.service";
 
 @Component({
     moduleId: module.id,
