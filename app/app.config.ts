@@ -1,5 +1,5 @@
 export class Config {
     public static get BASEPATH(): string {
-        return 'http://52.58.175.11:2020';
+        return 'http://52.29.3.70:2020';
     }
 }
