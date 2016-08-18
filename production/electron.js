@@ -63,7 +63,7 @@ function registerUpdater() {
     });
     console.info('appversion', appVersion);
 
-    let updateFeed = 'http://52.58.175.11:3000/release';
+    let updateFeed = 'http://52.29.3.70:3000/release';
     autoUpdater.setFeedURL(updateFeed + '?version=' + appVersion);
     autoUpdater.checkForUpdates();
 
