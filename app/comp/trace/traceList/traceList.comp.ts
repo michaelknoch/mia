@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TraceService} from "../trace.service";
 import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated'
 import {Loading} from "../../loading/loading.comp";
+import {mock2} from "../trace-mock";
 
 @Component({
     moduleId: module.id,
@@ -13,17 +14,17 @@ import {Loading} from "../../loading/loading.comp";
 
 export class TraceList implements OnInit {
 
-    private traces = [];
-    private loading: boolean = true;
+    private traces = mock2;
+    private loading: boolean = false;
 
     constructor(private _traceService: TraceService) {
     }
 
     ngOnInit() {
-        this._traceService.getTraces().subscribe(data => {
+        /*this._traceService.getTraces().subscribe(data => {
             this.traces = data;
             this.loading = false;
-        })
+        })*/
     }
 
 }

@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core'
 import {TraceService} from "../trace.service";
 import {Loading} from "../../loading/loading.comp";
 import {SimpleGantt} from 'ng2-simplegantt/dist';
+import {mock} from "../trace-mock";
 
 @Component({
     moduleId: module.id,
@@ -14,7 +15,7 @@ import {SimpleGantt} from 'ng2-simplegantt/dist';
 export class Trace implements OnInit {
 
     @Input() private id:string;
-    private nodes = [];
+    private nodes;
     private loading: boolean = true;
 
     constructor(private _traceService: TraceService) {
@@ -22,13 +23,17 @@ export class Trace implements OnInit {
 
     ngOnInit() {
         console.info(this.id);
-        this._traceService.getTrace(this.id).subscribe(
+        /*this._traceService.getTrace(this.id).subscribe(
             data => {
                 console.info(data);
                 this.nodes = this.parse(data).nodes;
                 console.info(this.nodes);
                 this.loading = false;
-            })
+            }) */
+
+        this.nodes = this.parse(mock).nodes;
+        console.info(this.nodes);
+        this.loading = false;
     }
 
     parse(data: any) {
