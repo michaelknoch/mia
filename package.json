@@ -1,7 +1,7 @@
 {
   "name": "mia",
   "repository": "https://github.com/michaelknoch/mia",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "main": "electron.js",
   "description": "Mia Frontend",
   "scripts": {
