@@ -7,7 +7,8 @@
 }
 
 .costumer {
-    padding-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-bottom: 10px;
 
     .content {
@@ -29,20 +30,20 @@
         width: 100%;
 
         a {
-            font-family: 'OpenSans-Semibold';
+            font-family: 'OpenSans-Semibold', 'Helvetica Neue';
         }
 
         h4 {
             text-align: center;
             text-transform: uppercase;
-            font-family: 'OpenSans-Semibold';
+            font-family: 'OpenSans-Semibold', 'Helvetica Neue';
         }
 
         span.last-seen {
             float: left;
             width: 100%;
             text-align: center;
-            font-family: 'OpenSans-Semibold';
+            font-family: 'OpenSans-Semibold', 'Helvetica Neue';
         }
 
         .color {

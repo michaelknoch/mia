@@ -5,37 +5,38 @@
         <a [hidden]="hideTokenExample" (click)="hideTokenExample=true" class="pointer"><i aria-hidden="true"
                                                                                           class="fa fa-times"></i>Hide
             Token Code</a></div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 costumer" *ngFor="let item of applications; let i = index">
+            <div [ngStyle]="{'border-color': item.color}" class="inner-wrapper">
+                <div class="color" [ngStyle]="{'background-color': item.color}"></div>
+                <div class="content">
+                    <h4>{{item.name}}</h4>
 
-    <div class="col-xs-12 col-sm-4 costumer" *ngFor="let item of applications; let i = index">
-        <div [ngStyle]="{'border-color': item.color}" class="inner-wrapper">
-            <div class="color" [ngStyle]="{'background-color': item.color}"></div>
-            <div class="content">
-                <h4>{{item.name}}</h4>
-
-                <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'red'" class="last-seen green">last seen: now</span>
+                    <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'red'" class="last-seen green">last seen: now</span>
                 <span [hidden]="getApplicationStatus(item.last_mem_data).status === 'green'"
                       [ngClass]="getApplicationStatus(item.last_mem_data).status" class="last-seen">last seen: {{getApplicationStatus(item.last_mem_data).moment}}</span>
 
-                <div class="actions">
+                    <div class="actions">
 
-                    <a [hidden]="hideTokenExample" class="pointer" (click)="copyToken($event)">
-                        <textarea type="text" name="token" id="apptoken">{{prepareToken(item.app_token)}}</textarea>
+                        <a [hidden]="hideTokenExample" class="pointer" (click)="copyToken($event)">
+                            <textarea type="text" name="token" id="apptoken">{{prepareToken(item.app_token)}}</textarea>
                         <span class="fullwidth">
                             <i aria-hidden="true"
                                class="pointer fa fa-files-o">
                             </i>Copytoken </span>
-                    </a>
+                        </a>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div *ngIf="applications.length" (click)="_newApplicationModal.show()"
-         class="col-xs-12 col-sm-4 costumer create pointer">
-        <div class="inner-wrapper">
-            <div class="content">
-                <h3>Create New Application</h3>
+        <div *ngIf="applications.length" (click)="_newApplicationModal.show()"
+             class="col-xs-12 col-sm-4 costumer create pointer">
+            <div class="inner-wrapper">
+                <div class="content">
+                    <h3>Create New Application</h3>
+                </div>
             </div>
         </div>
     </div>
