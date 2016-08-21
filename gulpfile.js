@@ -164,6 +164,8 @@ gulp.task('dist.inline', ['build'], function () {
     const stream = gulp.src('dist/**/*.js')
         .pipe(inlineNg2Template({
             base: '/app',
+            target: 'es5',
+            removeLineBreaks: true,
             useRelativePaths: true,
             supportNonExistentFiles: false
         }))
